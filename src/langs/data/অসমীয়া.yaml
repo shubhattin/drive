@@ -1,0 +1,66 @@
+client:
+  drive:
+    main:
+      fileBar:
+        Delete:
+          confirm_msg: আপুনি নিৰ্বাচিত ফাইলসমূহ বিলোপ কৰিব বিচাৰে নেকি?
+          'no': ''
+          'yes': হয়
+        Download:
+          download_msg: ডাউনলোড কৰা হৈছে
+        FileView:
+          download_msg: ''
+          view_error: ফাইল দৰ্শন কৰিবলৈ কেৱল এটা ক্লিক কৰক
+        Logout:
+          confirm_msg: আপুনি লগআউট কৰিব বিচাৰে নেকি?
+          'no': ''
+          'yes': ''
+        NewFolder:
+          add_file_msg: ফোল্ডাৰ যোগ কৰক
+          file_input: ফোল্ডাৰৰ নাম
+          'no': নহয়
+        Reload:
+          added_msg: যোগ কৰা হৈছে
+          deleted_msg: বিলোপ কৰা হৈছে
+        Upload:
+          upload_msg: আপলোড কৰা হৈছে
+          'yes': ''
+      fileList:
+        no_file: ইয়াত কোনো ফাইল নাই
+      title: অনলাইন ফাইল ড্ৰাইভ
+    login:
+      main:
+        id_input: ব্যৱহাৰকাৰীনাম প্ৰবিষ্ট কৰক
+        pass_input: পাছৱাৰ্ড প্ৰবিষ্ট কৰক
+        reset_btn: ৰিছেট কৰক
+        remember_btn: লগইন মনত ৰাখিব
+      new_user:
+        add_btn: ব্যৱহাৰকাৰী যোগ কৰক
+        blank_msg: ''
+        main_pass: প্ৰধান পাছৱাৰ্ড
+      reset:
+        blank_msg: অনুগ্ৰহ কৰি খালী ঠাইবোৰ পূৰণ কৰক
+        current_pass: বৰ্তমান পাছৱাৰ্ড
+        new_pass: নতুন পাছৱাৰ্ড
+        new_user_btn: নতুন ব্যৱহাৰকাৰী যোগ কৰক
+        reset_btn: পাছৱাৰ্ড ৰিছেট কৰক
+      title: লগইন অনলাইন ফাইল ড্ৰাইভ
+  tracker:
+    pass_error: ভুল কী
+    pass_input: ''
+    title: ট্ৰেকাৰ
+server:
+  drive_api:
+    reset:
+      user_not_found: ব্যৱহাৰকাৰী পোৱা নগল
+      wrong_current_pass: ভুল বৰ্তমান পাছৱাৰ্ড
+      success_detail: সফলতাৰে পৰিবৰ্তন কৰা পাছৱৰ্ড
+    add_new_user:
+      user_already_exist: প্ৰদান কৰা ব্যৱহাৰকাৰীনাম ইতিমধ্যে বিদ্যমান
+      wrong_main_pass: ভুল মুখ্য পাছৱৰ্ড
+      success_detail: সফলতাৰে নতুন ব্যৱহাৰকাৰী যোগ কৰা হৈছে
+  drive_security:
+    user_not_found: ''
+    wrong_pass: ভুল পাছৱাৰ্ড
+    wrong_credentials: অপ্ৰমাণিত প্ৰমাণপত্ৰ
+    expired_credentials: ম্যাদ উকলি যোৱা প্ৰমাণপত্ৰসমূহ

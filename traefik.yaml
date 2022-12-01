@@ -1,0 +1,7 @@
+entryPoints:
+  http:
+    address: ':3020'
+providers:
+  file:
+    filename: src/traefik-routes.yaml
+    watch: true

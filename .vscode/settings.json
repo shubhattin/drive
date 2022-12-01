@@ -1,0 +1,5 @@
+{
+  "python.formatting.provider": "black",
+  "scss.lint.unknownAtRules": "ignore",
+  "dotenv.enableAutocloaking": true
+}

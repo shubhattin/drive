@@ -1,0 +1,66 @@
+client:
+  drive:
+    main:
+      fileBar:
+        Delete:
+          confirm_msg: ಆಯ್ಕೆಮಾಡಿದ ಫೈಲ್ ಗಳನ್ನು ನೀವು ಅಳಿಸಲು ಬಯಸುವಿರಾ?
+          'no': ''
+          'yes': ಹೌದು
+        Download:
+          download_msg: ಡೌನ್ ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ
+        FileView:
+          download_msg: ''
+          view_error: ಫೈಲ್ ವೀಕ್ಷಿಸಲು ಕೇವಲ ಒಂದು ಕ್ಲಿಕ್ ಮಾಡಿ
+        Logout:
+          confirm_msg: ನೀವು ನಿರ್ಗಮಿಸಲು ಬಯಸುವಿರಾ?
+          'no': ''
+          'yes': ''
+        NewFolder:
+          add_file_msg: ಫೋಲ್ಡರ್ ಸೇರಿಸಿ
+          file_input: ಫೋಲ್ಡರ್ ಹೆಸರು
+          'no': ಇಲ್ಲ
+        Reload:
+          added_msg: ಸೇರಿಸಲಾಗಿದೆ
+          deleted_msg: ಅಳಿಸಿದ
+        Upload:
+          upload_msg: ಅಪ್ ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ
+          'yes': ''
+      fileList:
+        no_file: ಇಲ್ಲಿ ಯಾವುದೇ ಫೈಲ್ ಗಳು ಇಲ್ಲ
+      title: ಆನ್ ಲೈನ್ ಫೈಲ್ ಡ್ರೈವ್
+    login:
+      main:
+        id_input: ಬಳಕೆದಾರ ಹೆಸರು ನಮೂದಿಸಿ
+        pass_input: ಪಾಸ್ ವರ್ಡ್ ನಮೂದಿಸಿ
+        reset_btn: ರೀಸೆಟ್ ಮಾಡಿ
+        remember_btn: ಲಾಗಿನ್ ನೆನಪಿಡಿ
+      new_user:
+        add_btn: ಬಳಕೆದಾರನನ್ನು ಸೇರಿಸು
+        blank_msg: ''
+        main_pass: ಮುಖ್ಯ ಪಾಸ್ ವರ್ಡ್
+      reset:
+        blank_msg: ದಯವಿಟ್ಟು ಖಾಲಿ ಜಾಗಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ
+        current_pass: ಪ್ರಸ್ತುತ ಪಾಸ್ ವರ್ಡ್
+        new_pass: ಹೊಸ ಪಾಸ್ ವರ್ಡ್
+        new_user_btn: ಹೊಸ ಬಳಕೆದಾರ ಸೇರಿಸು
+        reset_btn: ಪಾಸ್ ವರ್ಡ್ ಮರುಹೊಂದಿಸು
+      title: ಆನ್ ಲೈನ್ ಫೈಲ್ ಡ್ರೈವ್ ಲಾಗಿನ್ ಮಾಡಿ
+  tracker:
+    pass_error: ತಪ್ಪು ಕೀಲಿ
+    pass_input: ''
+    title: ಟ್ರ್ಯಾಕರ್
+server:
+  drive_api:
+    reset:
+      user_not_found: ಬಳಕೆದಾರ ಸಿಗಲಿಲ್ಲ
+      wrong_current_pass: ತಪ್ಪಾದ ಪ್ರಸ್ತುತ ಪಾಸ್ ವರ್ಡ್
+      success_detail: ಪಾಸ್ ವರ್ಡ್ ಯಶಸ್ವಿಯಾಗಿ ಬದಲಾಗಿದೆ
+    add_new_user:
+      user_already_exist: ನೀಡಲಾದ ಬಳಕೆದಾರಹೆಸರು ಈಗಾಗಲೇ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ
+      wrong_main_pass: ತಪ್ಪು ಮುಖ್ಯ ಪಾಸ್ ವರ್ಡ್
+      success_detail: ಹೊಸ ಬಳಕೆದಾರನನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಸೇರಿಸಲಾಗಿದೆ
+  drive_security:
+    user_not_found: ''
+    wrong_pass: ತಪ್ಪು ಪಾಸ್ ವರ್ಡ್
+    wrong_credentials: ದೃಢೀಕರಿಸದ ರುಜುವಾತುಗಳು
+    expired_credentials: ಅವಧಿ ಮೀರಿದ ರುಜುವಾತುಗಳು

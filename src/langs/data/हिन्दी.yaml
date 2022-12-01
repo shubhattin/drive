@@ -1,0 +1,66 @@
+client:
+  drive:
+    main:
+      fileBar:
+        Delete:
+          confirm_msg: क्या आप चयनित संचितों को प्रणष्ट करना चहते हैं ?
+          'no': ''
+          'yes': हाँ
+        Download:
+          download_msg: अवाहरित हो रहा
+        FileView:
+          download_msg: ''
+          view_error: संचित देखने के लिए केवल एक हि दबाएं
+        Logout:
+          confirm_msg: क्या आप निर्प्रवेश करना चाहते हैं ?
+          'no': ''
+          'yes': ''
+        NewFolder:
+          add_file_msg: संचय योजित करें
+          file_input: संचय का नाम
+          'no': नहीं
+        Reload:
+          added_msg: युक्त किया गया
+          deleted_msg: प्रणष्ट किया गया
+        Upload:
+          upload_msg: उपारोपित हो रहा
+          'yes': ''
+      fileList:
+        no_file: यहां कोई संचित नही है
+      title: संचिका जालवृत्तक
+    login:
+      main:
+        id_input: उपनाम लिखें
+        pass_input: गूढपद लिखें
+        reset_btn: पुनर्स्थापन
+        remember_btn: सम्प्रवेश याद रखें
+      new_user:
+        add_btn: उपयोक्ता जोड़ें
+        blank_msg: ''
+        main_pass: सम्मूल गूढपद
+      reset:
+        blank_msg: कृपया रिक्त स्थानों को भरें
+        current_pass: वर्तमान गूढपद
+        new_pass: नव गूढपद
+        new_user_btn: नव उपयोक्ता को जोड़ें
+        reset_btn: गूढपद को पुनर्प्रवर्तित करें
+      title: संचिका जालवृत्तक सम्प्रवेश
+  tracker:
+    pass_error: अनुचित कीलक
+    pass_input: ''
+    title: प्राभिज्ञाता
+server:
+  drive_api:
+    reset:
+      user_not_found: उपयोक्ता नही मिला
+      wrong_current_pass: अनुचित वर्तमान गूढपदम
+      success_detail: सफलता पूर्वक गूढपद परिवर्तित हुआ
+    add_new_user:
+      user_already_exist: आपके द्वारा दिया गया उपनाम पूर्व से विद्यमान है
+      wrong_main_pass: अनुचित मुख्य गूढपद
+      success_detail: सफलता पूर्वक नये उपयोक्ता को स्थापित किया गया
+  drive_security:
+    user_not_found: ''
+    wrong_pass: अनुचित गूढपद
+    wrong_credentials: प्रत्ययपत्त्र अप्रमाणित है
+    expired_credentials: प्रत्ययपत्त्र कालातिक्रमित है

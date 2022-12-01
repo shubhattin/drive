@@ -1,0 +1,66 @@
+client:
+  drive:
+    main:
+      fileBar:
+        Delete:
+          confirm_msg: ଆପଣ ଚୟନିତ ଫାଇଲଗୁଡିକ ବିଲୋପ କରିବାକୁ ଚାହାଁନ୍ତି କି?
+          'no': ''
+          'yes': ହଁ
+        Download:
+          download_msg: ଡାଉନଲୋଡ୍ ହେଉଛି
+        FileView:
+          download_msg: ''
+          view_error: ଫାଇଲ୍ ଦେଖିବାକୁ କେବଳ ଗୋଟିଏ କ୍ଲିକ୍ କରନ୍ତୁ
+        Logout:
+          confirm_msg: ଆପଣ ଲଗ୍ ଆଉଟ୍ କରିବାକୁ ଚାହାଁନ୍ତି କି?
+          'no': ''
+          'yes': ''
+        NewFolder:
+          add_file_msg: ଫୋଲ୍ଡର୍ ଯୋଡନ୍ତୁ
+          file_input: ଫୋଲ୍ଡର୍ ନାମ
+          'no': ନାହିଁ
+        Reload:
+          added_msg: ଯୋଡାଯାଇଛି
+          deleted_msg: ବିଲୋପ ହୋଇଛି
+        Upload:
+          upload_msg: ଅପଲୋଡ୍ ହେଉଛି
+          'yes': ''
+      fileList:
+        no_file: ଏଠାରେ କୌଣସି ଫାଇଲ୍ ନାହିଁ
+      title: ଅନଲାଇନ୍ ଫାଇଲ୍ ଡ୍ରାଇଭ୍
+    login:
+      main:
+        id_input: ଉପଭୋକ୍ତାଙ୍କ ନାମ ପ୍ରବେଶ କରନ୍ତୁ
+        pass_input: ପାସୱାର୍ଡ୍ ପ୍ରବେଶ କରନ୍ତୁ
+        reset_btn: ପୁନଃସେଟ୍ କରନ୍ତୁ
+        remember_btn: ଲଗଇନ୍ ମନେ ରଖନ୍ତୁ
+      new_user:
+        add_btn: ଉପଭୋକ୍ତା ଯୋଡନ୍ତୁ
+        blank_msg: ''
+        main_pass: ମୁଖ୍ୟ ପାସୱାର୍ଡ୍
+      reset:
+        blank_msg: ଦୟାକରି ଖାଲି ସ୍ଥାନ ପୂରଣ କରନ୍ତୁ
+        current_pass: ସମ୍ପ୍ରତି ପାସୱାର୍ଡ୍
+        new_pass: ନୂତନ ପାସୱାର୍ଡ୍
+        new_user_btn: ନୂତନ ଉପଭୋକ୍ତା ଯୋଡନ୍ତୁ
+        reset_btn: ପାସୱାର୍ଡ୍ ପୁନଃସେଟ୍ କରନ୍ତୁ
+      title: ଅନଲାଇନ୍ ଫାଇଲ୍ ଡ୍ରାଇଭ୍ ଲଗଇନ୍ କରନ୍ତୁ
+  tracker:
+    pass_error: ଭୁଲ୍ କୀ
+    pass_input: ''
+    title: ଟ୍ରାକର୍
+server:
+  drive_api:
+    reset:
+      user_not_found: ଉପଭୋକ୍ତା ମିଳିଲା ନାହିଁ
+      wrong_current_pass: ଭୁଲ୍ ସମ୍ପ୍ରତି ପାସୱାର୍ଡ୍
+      success_detail: ସଫଳତାର ସହ ପାସୱାର୍ଡ୍ ପରିବର୍ତ୍ତନ ହୋଇଛି
+    add_new_user:
+      user_already_exist: ପୂର୍ବରୁ ଦିଆଯାଇଥିବା ଉପଭୋକ୍ତାଙ୍କ ନାମ ବିଦ୍ୟମାନ ଅଛି
+      wrong_main_pass: ଭୁଲ୍ ମୁଖ୍ୟ ପାସୱାର୍ଡ୍
+      success_detail: ସଫଳତାର ସହ ନୂତନ ଉପଭୋକ୍ତା ଯୋଡାଯାଇଛି
+  drive_security:
+    user_not_found: ''
+    wrong_pass: ଭୁଲ୍ ପାସୱାର୍ଡ୍
+    wrong_credentials: ଯାଞ୍ଚ ହୋଇନଥିବା ପରିଚୟପତ୍ର
+    expired_credentials: ସମୟ ସମାପ୍ତି ହୋଇଥିବା ପରିଚୟପତ୍ର

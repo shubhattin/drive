@@ -1,0 +1,66 @@
+client:
+  drive:
+    main:
+      fileBar:
+        Delete:
+          confirm_msg: ఎంచుకున్న ఫైళ్లను మీరు తొలగించదలిచారా?
+          'no': ''
+          'yes': అవును
+        Download:
+          download_msg: డౌన్ లోడ్ చేస్తోంది
+        FileView:
+          download_msg: ''
+          view_error: ఫైలును వీక్షించడానికి ఒకదానిపై మాత్రమే క్లిక్ చేయండి
+        Logout:
+          confirm_msg: మీరు నిష్క్రమించదలిచారా?
+          'no': ''
+          'yes': ''
+        NewFolder:
+          add_file_msg: సంచికను జోడించు
+          file_input: సంచిక పేరు
+          'no': కాదు
+        Reload:
+          added_msg: జోడించబడింది
+          deleted_msg: డిలీట్ చేయబడింది
+        Upload:
+          upload_msg: అప్ లోడ్ చేస్తోంది
+          'yes': ''
+      fileList:
+        no_file: ఇక్కడ ఫైళ్లు లేవు
+      title: ఆన్ లైన్ ఫైల్ డ్రైవ్
+    login:
+      main:
+        id_input: యూజర్ నేమ్ నమోదు చేయండి
+        pass_input: పాస్ వర్డ్ నమోదు చేయండి
+        reset_btn: రీసెట్ చేయి
+        remember_btn: లాగిన్ గుర్తుంచుకోండి
+      new_user:
+        add_btn: వినియోగదారుని జోడించు
+        blank_msg: ''
+        main_pass: ప్రధాన అనుమతిపదం
+      reset:
+        blank_msg: దయచేసి ఖాళీలను నింపండి
+        current_pass: ప్రస్తుత అనుమతిపదం
+        new_pass: కొత్త పాస్ వర్డ్
+        new_user_btn: కొత్త వినియోగదారుని జోడించు
+        reset_btn: పాస్ వర్డ్ రీసెట్ చేయి
+      title: లాగిన్ ఆన్ లైన్ ఫైల్ డ్రైవ్
+  tracker:
+    pass_error: తప్పు కీ
+    pass_input: ''
+    title: ట్రాకర్
+server:
+  drive_api:
+    reset:
+      user_not_found: వినియోగదారు కనుగొనబడలేదు
+      wrong_current_pass: తప్పు ప్రస్తుత అనుమతిపదం
+      success_detail: పాస్ వర్డ్ విజయవంతంగా మార్చబడింది
+    add_new_user:
+      user_already_exist: ఇవ్వబడ్డ యూజర్ నేమ్ ఇప్పటికే ఉనికిలో ఉంది
+      wrong_main_pass: తప్పు ప్రధాన అనుమతిపదం
+      success_detail: కొత్త యూజర్ విజయవంతంగా జోడించబడ్డాడు
+  drive_security:
+    user_not_found: ''
+    wrong_pass: తప్పు పాస్ వర్డ్
+    wrong_credentials: ధృవీకరించని ఆధారాలు
+    expired_credentials: గడువు తీరిన ఆధారాలు

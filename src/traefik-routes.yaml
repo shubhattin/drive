@@ -1,0 +1,20 @@
+http:
+  routers:
+    nextjs-main: # Nextjs for Handling Frontend
+      service: nextjs
+      rule: PathPrefix(`/`)
+    fastapi-main: # FastAPI to handle backend part
+      service: fast-api
+      rule: PathPrefix(`/api`)
+    auth-related: # Handling cookies and Authentication using FastAPI
+      service: fast-api
+      rule: Path(`/{lang:(.+/)?}drive{auth_path:(/login_navIkaraNam|/login)?}`)
+  services:
+    nextjs:
+      loadBalancer:
+        servers:
+          - url: http://localhost:3427
+    fast-api:
+      loadBalancer:
+        servers:
+          - url: http://localhost:3428

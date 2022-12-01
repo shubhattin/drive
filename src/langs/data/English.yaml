@@ -1,0 +1,66 @@
+client:
+  drive:
+    main:
+      fileBar:
+        Delete:
+          confirm_msg: Do you want to Delete Selected Files ?
+          'no': !!str
+          'yes': 'Yes'
+        Download:
+          download_msg: Downloading
+        FileView:
+          download_msg: !!str
+          view_error: To view File click only one
+        Logout:
+          confirm_msg: Do you want to logout ?
+          'no': !!str
+          'yes': !!str
+        NewFolder:
+          add_file_msg: Add Folder
+          file_input: Folder name
+          'no': 'No'
+        Reload:
+          added_msg: Added
+          deleted_msg: Deleted
+        Upload:
+          upload_msg: Uploading
+          'yes': !!str
+      fileList:
+        no_file: No Files Here
+      title: Online File Drive
+    login:
+      main:
+        id_input: Enter Username
+        pass_input: Enter Password
+        reset_btn: Reset
+        remember_btn: Remember Login
+      new_user:
+        add_btn: Add User
+        blank_msg: !!str
+        main_pass: Main Password
+      reset:
+        blank_msg: Please fill in the Blanks
+        current_pass: Current Password
+        new_pass: New Password
+        new_user_btn: Add New User
+        reset_btn: Reset Password
+      title: Login Online File Drive
+  tracker:
+    pass_error: Wrong Key
+    pass_input: !!str
+    title: Tracker
+server:
+  drive_api:
+    reset:
+      user_not_found: User Not Found
+      wrong_current_pass: Wrong Current Password
+      success_detail: Successfully Changed Password
+    add_new_user:
+      user_already_exist: Username given already exists
+      wrong_main_pass: Wrong Main Password
+      success_detail: Successfully Added new user
+  drive_security:
+    user_not_found: !!str
+    wrong_pass: Wrong Password
+    wrong_credentials: Unverified Credentials
+    expired_credentials: Expired Credentials

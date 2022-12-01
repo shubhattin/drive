@@ -1,0 +1,17 @@
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example
+
+/py/o
+# Ignore files for PNPM, NPM and YARN
+pnpm-lock.yaml
+src/langs/English.yaml
+# use this for safety
+# "endOfLine": "crlf", in .prettierrc
+# git config core.autocrlf true
+# git config core.safecrlf false

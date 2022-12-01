@@ -1,0 +1,37 @@
+{
+  "name": "drive",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "prettier --plugin-search-dir . --check .",
+    "format": "prettier --plugin-search-dir . --write .",
+    "py": "cd py && python app.py",
+    "local-test": "serve build"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "next",
+    "@sveltejs/kit": "next",
+    "@types/js-yaml": "^4.0.5",
+    "@zerodevx/svelte-toast": "^0.8.2",
+    "autoprefixer": "^10.4.7",
+    "eslint": "^8.28.0",
+    "html-minifier": "^4.0.0",
+    "js-yaml": "^4.1.0",
+    "postcss": "^8.4.14",
+    "postcss-load-config": "^4.0.1",
+    "prettier": "^2.8.0",
+    "prettier-plugin-svelte": "^2.8.1",
+    "sass": "^1.56.1",
+    "svelte": "^3.53.1",
+    "svelte-check": "^2.9.2",
+    "svelte-preprocess": "^4.10.7",
+    "tailwindcss": "^3.1.5",
+    "tslib": "^2.4.1",
+    "typescript": "^4.9.3",
+    "vite": "^3.2.4"
+  },
+  "type": "module"
+}
