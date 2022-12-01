@@ -5,7 +5,8 @@ export const default_locale = lang_data.default_locale;
 export const locales = lang_data.locales;
 
 /**
- * Pass `{ $page.params.lang }` imported from `$app/stores`
+ * `import{ page } from '$app/stores'`
+ *  and pass `$page.params.lang`
  * @returns string
  */
 export const get_current_locale: (page_lang: string) => string = (page_lang) =>

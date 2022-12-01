@@ -6,13 +6,13 @@
 
   export let data: infoType;
 
-  const t_cn_nm = 'परिगणना'; // name of total count key
+  const TOTAL_COUNT_KEY = 'परिगणना'; // name of total count key
   let val = writable('jala' in data ? 'jala' : Object.keys(data)[0]);
   $: list = (() => {
     let ls = Object.keys(data[$val].info);
-    if (ls.indexOf(t_cn_nm) !== -1) {
-      delete ls[ls.indexOf(t_cn_nm)];
-      ls.unshift(t_cn_nm);
+    if (ls.indexOf(TOTAL_COUNT_KEY) !== -1) {
+      delete ls[ls.indexOf(TOTAL_COUNT_KEY)];
+      ls.unshift(TOTAL_COUNT_KEY);
     }
     return ls;
   })();
@@ -47,7 +47,7 @@
       <li
         class={clsx(
           'hover:before:text-black hover:text-fuchsia-600 group',
-          nm === t_cn_nm ? 'text-[blue]' : ''
+          nm === TOTAL_COUNT_KEY ? 'text-[blue]' : ''
         )}
       >
         {nm} - <span class="text-amber-800 group-hover:text-blue-700">{count}</span>
