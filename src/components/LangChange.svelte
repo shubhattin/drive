@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { get_current_locale, change_locale, locales, locale_keys } from '@tools/get_link';
+  import { get_current_locale, change_locale, locales, locale_keys } from '@tools/i18n';
   import { clsx } from '@tools/clsx';
   import { page } from '$app/stores';
 
@@ -9,7 +9,7 @@
 
 <select
   bind:value
-  class="w-4 h-4 fixed bottom-0 right-1 bg-zinc-100"
+  class="w-4 h-4 fixed bottom-0 right-1 bg-zinc-100 outline-none"
   on:change={() => change_locale(value)}
 >
   {#each locale_keys as lng}
