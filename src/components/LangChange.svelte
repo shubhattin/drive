@@ -7,7 +7,6 @@
   $: value = get_current_locale($page.params.lang);
 </script>
 
-<button on:click={() => change_locale('kn')}>k</button>
 <select
   bind:value
   class="w-4 h-4 fixed bottom-0 right-1 bg-zinc-100"
