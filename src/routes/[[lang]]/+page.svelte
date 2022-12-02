@@ -1,10 +1,10 @@
 <script lang="ts">
   import type { PageData } from './$types';
   import { clsx } from '@tools/clsx';
-  import { SvelteToast } from '@zerodevx/svelte-toast';
   import { fetch_post } from '@tools/fetch';
   import { toast_error } from '@tools/toasts';
   import type { infoType } from '@components/tracker/types';
+
   export let data: PageData;
   let lekh: typeof data.lekh;
   $: lekh = data.lekh;
@@ -54,4 +54,6 @@
     <TrackInfo.default data={loaded_data} />
   {/await}
 {/if}
-<SvelteToast />
+{#await import('@zerodevx/svelte-toast') then Toast}
+  <Toast.SvelteToast />
+{/await}

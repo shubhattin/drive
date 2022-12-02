@@ -56,7 +56,10 @@ export const get_link = (url: string | null = null!, locale: string | null = nul
     parts = parts.slice(1);
   }
   let link = parts.join('/');
-  if (locale && locale !== default_locale) link = locale + (link === '' ? '' : '/') + link;
+  // If the locale is not defined then use the current locale to get the link
+  if (!locale) locale = get_current_locale();
+  // If detected locale is the default locale then it should not be prefixed with the url
+  if (locale !== default_locale) link = locale + (link === '' ? '' : '/') + link;
   link = '/' + link;
   return link;
 };
