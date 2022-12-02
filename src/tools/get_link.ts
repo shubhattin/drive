@@ -1,16 +1,22 @@
 import lang_data from '../langs/locales.json';
 import { goto } from '$app/navigation';
+import { page } from '$app/stores';
+import { get } from 'svelte/store';
+import type { langKey } from '@langs/datt';
 
 export const default_locale = lang_data.default_locale;
 export const locales = lang_data.locales;
+export const locale_keys = Object.keys(locales) as langKey[];
+export const locale_values = Object.values(locales);
 
 /**
  * `import{ page } from '$app/stores'`
- *  and pass `$page.params.lang`
+ *  and pass `$page.params.lang` if you want to watch the `changes` with `$: {...}`
  * @returns string
  */
-export const get_current_locale: (page_lang: string) => string = (page_lang) =>
-  page_lang || lang_data.default_locale;
+export const get_current_locale = (lang = get(page).params.lang) => {
+  return lang || lang_data.default_locale;
+};
 
 export const get_link = (url: string | null = null!, locale: string | null = null!) => {
   if (!url) url = window.location.pathname;
