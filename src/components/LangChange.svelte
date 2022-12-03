@@ -14,10 +14,9 @@
 >
   {#each locale_keys as lng}
     <option
-      value={lng}
       class={clsx('bg-black font-semibold', lng === value ? 'text-yellow-400' : 'text-white')}
+      value={lng}
+      selected={lng === value}>{locales[lng]}</option
     >
-      {locales[lng]}
-    </option>
   {/each}
 </select>

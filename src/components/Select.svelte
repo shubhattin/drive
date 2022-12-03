@@ -2,11 +2,11 @@
   import { onMount } from 'svelte';
   import type { Writable } from 'svelte/store';
 
-  export let value: Writable<string> = null!;
-  export let onChange: () => any = () => {};
-  export let className: string = null!;
+  export let value: Writable<string>;
+  export let onChange: () => any = undefined!;
+  export let className: string = undefined!;
   export let options: {
-    [x in string]: { text: string; className: string | null };
+    [x in string]: { text: string; className: string | undefined | null };
   };
 
   let width = 0;
@@ -51,8 +51,10 @@
   style:width={mounted ? `${width}px` : null}
 >
   {#each Object.keys(options) as vl}
-    {#if mounted || vl == $value}
-      <option value={vl} class={options[vl].className}>{options[vl].text}</option>
+    {#if mounted || vl === $value}
+      <option value={vl} class={options[vl].className} selected={vl === $value}
+        >{options[vl].text}</option
+      >
     {/if}
   {/each}
 </select>

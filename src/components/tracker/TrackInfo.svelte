@@ -3,6 +3,7 @@
   import type { infoType } from './types';
   import Select from '@components/Select.svelte';
   import { writable } from 'svelte/store';
+  import { fade, slide } from 'svelte/transition';
 
   export let data: infoType;
 
@@ -17,12 +18,12 @@
     return ls;
   })();
   let options: {
-    [x in string]: { text: string; className: string };
+    [x in string]: { text: string; className: string | undefined };
   };
   $: options = (() => {
     let res: typeof options = {};
     for (let x in data)
-      res[x] = { text: data[x].name, className: $val === x ? 'text-green-800' : '' };
+      res[x] = { text: data[x].name, className: $val === x ? 'text-green-800' : undefined };
     return res;
   })();
 </script>
@@ -35,13 +36,15 @@
   value={val}
   {options}
 />
-<ul
-  class={clsx(
-    'mx-4 text-lg font-semibold text-fuchsia-800',
-    `[&>li]:before:content-['•'] [&>li]:before:text-green-700 [&>li]:before:mr-1.5`
-  )}
->
-  {#each list as nm}
+{#each list as nm}
+  <ul
+    in:slide
+    out:fade
+    class={clsx(
+      'mx-4 text-lg font-semibold text-fuchsia-800',
+      `[&>li]:before:content-['•'] [&>li]:before:text-green-700 [&>li]:before:mr-1.5`
+    )}
+  >
     {#if nm}
       {@const count = data[$val].info[nm]}
       <li
@@ -53,5 +56,5 @@
         {nm} - <span class="text-amber-800 group-hover:text-blue-700">{count}</span>
       </li>
     {/if}
-  {/each}
-</ul>
+  </ul>
+{/each}

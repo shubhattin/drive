@@ -3,6 +3,7 @@
   import { clsx } from '@tools/clsx';
   import { fetch_post } from '@tools/fetch';
   import { toast_error } from '@tools/toasts';
+  import { slide } from 'svelte/transition';
   import type { infoType } from '@components/tracker/types';
 
   export let data: PageData;
@@ -35,6 +36,7 @@
 {#if !succes}
   <form on:submit|preventDefault={onClick}>
     <input
+      out:slide
       type="password"
       placeholder={lekh.pass_input}
       autocomplete="off"
