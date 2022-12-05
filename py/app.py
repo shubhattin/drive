@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.responses import Response
 from kry.plugins import sthaitik_sanchit
-import enathu, drive  # Routes
+import anya, drive  # Routes
 
 app = FastAPI(
     debug=True, # r_remove
@@ -32,7 +32,7 @@ async def middleware(req: Request, call_next):
     return res
 
 
-for route in [drive, enathu]:
+for route in [drive, anya]:
     app.include_router(route.router)
 
 # app.mount("/", sthaitik_sanchit(directory="public"), name="static") # r_remove_comment

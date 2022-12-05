@@ -36,25 +36,25 @@
   value={val}
   {options}
 />
-{#each list as nm}
-  <ul
-    in:slide
-    out:fade
-    class={clsx(
-      'mx-4 text-lg font-semibold text-fuchsia-800',
-      `[&>li]:before:content-['•'] [&>li]:before:text-green-700 [&>li]:before:mr-1.5`
-    )}
-  >
+<ul
+  class={clsx(
+    'mx-4 text-lg font-semibold text-fuchsia-800',
+    `[&>li]:before:content-['•'] [&>li]:before:text-green-700 [&>li]:before:mr-1.5`
+  )}
+>
+  {#each list as nm}
     {#if nm}
       {@const count = data[$val].info[nm]}
       <li
+        in:slide
+        out:fade
         class={clsx(
           'hover:before:text-black hover:text-fuchsia-600 group',
-          nm === TOTAL_COUNT_KEY ? 'text-[blue]' : ''
+          nm === TOTAL_COUNT_KEY ? 'text-[blue]' : null
         )}
       >
         {nm} - <span class="text-amber-800 group-hover:text-blue-700">{count}</span>
       </li>
     {/if}
-  </ul>
-{/each}
+  {/each}
+</ul>

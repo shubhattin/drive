@@ -2,14 +2,6 @@ from pydantic import BaseModel
 from typing import Optional
 
 
-def Detail(x):
-    return {"detail": x}
-
-
-def Value(x):
-    return {"value": x}
-
-
 class KEY(BaseModel):
     key: str
 
