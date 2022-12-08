@@ -12,7 +12,8 @@ const config = {
     alias: {
       '@langs': path.resolve('./src/langs'),
       '@tools': path.resolve('./src/tools'),
-      '@components': path.resolve('./src/components')
+      '@components': path.resolve('./src/components'),
+      '@state': path.resolve('./src/state')
     }
   }
 };

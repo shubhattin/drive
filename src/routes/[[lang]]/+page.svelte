@@ -15,7 +15,7 @@
   let err = false;
   let succes = false;
   let val: string = null!;
-  
+
   // resetting the error info to false
   $: err && setTimeout(() => (err = false), 750);
   const onClick = async () => {

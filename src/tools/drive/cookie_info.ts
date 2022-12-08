@@ -1,5 +1,5 @@
-import { setCookie, getTime } from 'tools/cookies';
-import { isLocalStorage } from 'state/ref/drive/shared';
+import { setCookie, getTime } from '@tools/cookies';
+import { isLocalStorage } from '@state/ref/drive/shared';
 export const AUTH_ID = 'drive_auth_id';
 export const ACCESS_ID = 'drive_access_id';
 export const ACCESS_ID_EXPIRE = `${ACCESS_ID}_expire`;

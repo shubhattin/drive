@@ -4,7 +4,8 @@
     "paths": {
       "@langs/*": ["src/langs/*"],
       "@tools/*": ["src/tools/*"],
-      "@components/*": ["src/components/*"]
+      "@components/*": ["src/components/*"],
+      "@state/*": ["src/state/*"]
     },
     // "allowJs": true,
     // "checkJs": true,

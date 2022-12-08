@@ -1,13 +1,48 @@
-{#await import('@zerodevx/svelte-toast') then Toast}
-  <Toast.SvelteToast options={{ classes: ['toast_container'] }} />
-{/await}
+<script lang="ts">
+  import { onMount } from 'svelte';
+  import type { SvelteToast as SvelteToastType } from '@zerodevx/svelte-toast';
 
-<style global lang="scss">
-  .toast_container {
-    &.error {
-      --toastBackground: rgb(255, 115, 115);
-      --toastBarBackground: rgb(255, 60, 60);
-      --toastColor: rgb(255, 230, 230);
-    }
+  let SvelteToast: typeof SvelteToastType = undefined!;
+  let mounted = false;
+
+  onMount(() => {
+    setTimeout(async () => {
+      SvelteToast = (await import('@zerodevx/svelte-toast')).SvelteToast;
+      mounted = true;
+    }, 500);
+  });
+</script>
+
+{#if mounted}
+  <div class="top-centre">
+    <svelte:component this={SvelteToast} target="top-centre" />
+  </div>
+  <div class="top-left">
+    <svelte:component this={SvelteToast} target="top-left" />
+  </div>
+{/if}
+
+<style>
+  .top-centre {
+    --toastContainerTop: 1rem;
+    --toastContainerRight: auto;
+    --toastContainerBottom: auto;
+    --toastContainerLeft: calc(50vw - 8rem);
+  }
+  .top-left {
+    --toastContainerTop: 1rem;
+    --toastContainerRight: auto;
+    --toastContainerBottom: auto;
+    --toastContainerLeft: 1.5rem;
+  }
+  :global(.error_qxt76c) {
+    --toastBackground: hsl(0, 100%, 73%);
+    --toastBarBackground: hsl(0, 100%, 62%);
+    --toastColor: hsl(0, 100%, 95%);
+  }
+  :global(.success_qxt76c) {
+    --toastColor: mintcream;
+    --toastBackground: hsla(145, 46%, 51%, 0.9);
+    --toastBarBackground: hsl(150, 49%, 41%);
   }
 </style>

@@ -82,7 +82,7 @@ if "deploy" in sh.argv:
     if "nobuild" not in sh.argv:
         sh.start_thread(
             lambda: print(
-                f"\n\tMinified with prettier :",
+                f"\n\tBeautified with prettier :",
                 "Success" if sh.cmd("pnpm format", display=False)[0] == 0 else "Failed",
             )
         )
