@@ -25,7 +25,7 @@ async def handle_drive_req(req: Request, user: str = Depends(praviShTa_puShTi())
     elif IS_LOGIN_PAGE and user:
         return RedirectResponse(LOCALE_PREFIX + TOKEN_URL_PREFIX)
     # r_start
-    return get(f"http://localhost:3427{URL}").text
+    return get(f"http://localhost:3427{URL}").content.decode("utf-8")
     # r_end
     return FileResponse(f"public{URL}.html")
 

@@ -1,4 +1,4 @@
-import lang_data from '../langs/locales.json';
+import lang_data from '@langs/locales.json';
 import { goto } from '$app/navigation';
 import { page } from '$app/stores';
 import { get } from 'svelte/store';

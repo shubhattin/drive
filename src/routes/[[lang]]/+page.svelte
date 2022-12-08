@@ -2,8 +2,9 @@
   import type { PageData } from './$types';
   import { clsx } from '@tools/clsx';
   import { fetch_post } from '@tools/fetch';
-  import { toast_error } from '@tools/toasts';
+  import { toast } from '@tools/toast';
   import { slide } from 'svelte/transition';
+  import ToastContainer from '@tools/toast/ToastContainer.svelte';
   import type { infoType } from '@components/tracker/types';
 
   export let data: PageData;
@@ -14,15 +15,16 @@
   let err = false;
   let succes = false;
   let val: string = null!;
-
+  
+  // resetting the error info to false
+  $: err && setTimeout(() => (err = false), 750);
   const onClick = async () => {
     if (val === '') return;
     const req = await fetch_post('/track_info', { json: { key: val } });
     val = '';
     if (req.status !== 200) {
-      err = true;
-      toast_error(lekh.pass_error, 2000);
-      setTimeout(() => (err = false), 750);
+      err = true; // will invoke reset
+      toast.error(lekh.pass_error, 2000);
       return;
     }
     loaded_data = await req.json();
@@ -56,6 +58,4 @@
     <TrackInfo.default data={loaded_data} />
   {/await}
 {/if}
-{#await import('@zerodevx/svelte-toast') then Toast}
-  <Toast.SvelteToast />
-{/await}
+<ToastContainer />
