@@ -16,18 +16,17 @@
   import NewUser from './NewUser.svelte';
   import { mode, id, pass, lekhAH } from './state';
   import { onMount } from 'svelte';
-  import { writable } from 'svelte/store';
 
   export let data: PageData;
   $: $lekhAH = data.lekh;
   $: lekh = $lekhAH.main;
 
   onMount(() => {
-    mounted = true;
+    window.onpopstate = null;
+    window.onbeforeunload = null;
+    // if (isProd) Blocker();
   });
-
   let err = false;
-  let mounted = false;
   const remember = getLocalStorageState<boolean>('drive_remember_pass_atom', isLocalStorage);
   $: setIsLocalStorage($remember);
   let show_remember_btn = false;
@@ -88,11 +87,11 @@
         'block my-2 border-2 rounded-md outline-none text-2xl p-1 w-44 focus:ring-2 transition-all duration-200',
         !err
           ? 'border-blue-800 ring-green-500 placeholder:text-zinc-400'
-          : 'border-rose-600 ring-rose-200 placeholder:text-orange-400'
+          : 'border-rose-600 rinPg-rose-200 placeholder:text-orange-400'
       )}
       bind:value={$pass}
       on:keydown={({ keyCode, code }) => {
-        if ((code === 'Enter' || keyCode === 13) && $mode === 'main' && passElmnt) validate();
+        if ((code === 'Enter' || keyCode === 13) && $mode === 'main') validate();
       }}
     />
   {/if}

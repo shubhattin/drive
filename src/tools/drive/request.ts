@@ -1,16 +1,10 @@
-import { fetch_post } from 'tools/fetch';
-import { getCookie, getTime, deleteCookie } from 'tools/cookies';
-import { Router } from 'state/ref/drive';
-import {
-  ACCESS_ID,
-  ACCESS_ID_EXPIRE,
-  AUTH_ID,
-  authRes,
-  storeAuthCookies,
-  COOKIE_LOC
-} from './cookie_info';
+import { fetch_post } from '@tools/fetch';
+import { getCookie, getTime, deleteCookie } from '@tools/cookies';
+import { router_push } from '@tools/i18n';
+import { ACCESS_ID, ACCESS_ID_EXPIRE, AUTH_ID, storeAuthCookies, COOKIE_LOC } from './cookie_info';
+import type { authRes } from './cookie_info';
 export * from './cookie_info';
-import { isLocalStorage } from 'state/ref/drive/shared';
+import { isLocalStorage } from '@state/ref/drive/shared';
 
 export const getCookieVal = (key: string) => {
   if (isLocalStorage) return getCookie(key);
@@ -26,7 +20,7 @@ type variables = {
 };
 export const graphql = async (query: string, vars: variables = {}) => {
   if (!getCookieVal(AUTH_ID)) {
-    Router.push('/drive/login');
+    router_push('/drive/login');
   } else if (parseInt(getLocalVal(ACCESS_ID_EXPIRE)!) - getTime() < 0) {
     const req = await fetch_post('/drive/login_navIkaraNam', {
       noUrlAdd: true

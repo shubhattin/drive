@@ -2,7 +2,7 @@
   export let src;
   export let title = undefined;
   export let className = '';
-
+  export let viewBox = undefined;
   let innerHtml;
 
   $: {
@@ -15,6 +15,7 @@
   fill="currentColor"
   stroke-width="0"
   class={className}
+  {viewBox}
   height="1em"
   width="1em"
   {...src.a}
