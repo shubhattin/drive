@@ -7,6 +7,7 @@
   import { onMount } from 'svelte';
   import ToastContainer from '@tools/toast/ToastContainer.svelte';
   import { reload_file_list, goBackInFileList } from '@components/drive/karah';
+  import Blocker from '@tools/block';
 
   export let data: PageData;
   $: $lekhAH = data.lekh;
@@ -17,10 +18,10 @@
       window.history.pushState(null, '', window.location.href);
       goBackInFileList();
     };
-    // if (isProd) {
-    //   window.onbeforeunload = () => 'किं भवान्वास्तवमेव प्रतिगन्तुमिच्छसि';
-    //   Blocker();
-    // }
+    if (import.meta.env.PROD) {
+      window.onbeforeunload = () => 'किं भवान्वास्तवमेव प्रतिगन्तुमिच्छसि';
+      Blocker();
+    }
 
     reload_file_list();
   });

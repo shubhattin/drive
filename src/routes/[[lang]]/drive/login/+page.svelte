@@ -16,6 +16,7 @@
   import NewUser from './NewUser.svelte';
   import { mode, id, pass, lekhAH } from './state';
   import { onMount } from 'svelte';
+  import Blocker from '@tools/block';
 
   export let data: PageData;
   $: $lekhAH = data.lekh;
@@ -24,7 +25,7 @@
   onMount(() => {
     window.onpopstate = null;
     window.onbeforeunload = null;
-    // if (isProd) Blocker();
+    import.meta.env.PROD && Blocker();
   });
   let err = false;
   const remember = getLocalStorageState<boolean>('drive_remember_pass_atom', isLocalStorage);
