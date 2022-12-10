@@ -4,6 +4,7 @@ client:
       fileBar:
         Delete:
           confirm_msg: ਕੀ ਤੁਸੀਂ ਚੁਣੀਆਂ ਹੋਈਆਂ ਫ਼ਾਈਲਾਂ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?
+          deleted_msg: ਹਟਾਇਆ
           'no': ''
           'yes': ਹਾਂ
         Download:
@@ -19,10 +20,8 @@ client:
           add_file_msg: ਫੋਲਡਰ ਸ਼ਾਮਲ
           file_input: ਫੋਲਡਰ ਨਾਂ
           'no': ਨਹੀਂ
-        Reload:
-          added_msg: ਸ਼ਾਮਲ ਕੀਤੇ
-          deleted_msg: ਹਟਾਇਆ
         Upload:
+          added_msg: ਸ਼ਾਮਲ ਕੀਤੇ
           upload_msg: ਅੱਪਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ
           'yes': ''
       fileList:

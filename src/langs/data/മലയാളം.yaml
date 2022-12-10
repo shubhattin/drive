@@ -4,6 +4,7 @@ client:
       fileBar:
         Delete:
           confirm_msg: തെരഞ്ഞെടുത്ത ഫയലുകൾ ഇല്ലാതാക്കണമോ?
+          deleted_msg: നീക്കം ചെയ്തു
           'no': ''
           'yes': ശരി
         Download:
@@ -19,10 +20,8 @@ client:
           add_file_msg: ഫോൾഡർ ചേർക്കുക
           file_input: അറയുടെ പേര്
           'no': അല്ല
-        Reload:
-          added_msg: ചേർത്തു
-          deleted_msg: നീക്കം ചെയ്തു
         Upload:
+          added_msg: ചേർത്തു
           upload_msg: അപ് ലോഡ് ചെയ്യുന്നു
           'yes': ''
       fileList:

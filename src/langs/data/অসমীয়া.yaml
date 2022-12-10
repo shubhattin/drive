@@ -4,6 +4,7 @@ client:
       fileBar:
         Delete:
           confirm_msg: আপুনি নিৰ্বাচিত ফাইলসমূহ বিলোপ কৰিব বিচাৰে নেকি?
+          deleted_msg: বিলোপ কৰা হৈছে
           'no': ''
           'yes': হয়
         Download:
@@ -19,10 +20,8 @@ client:
           add_file_msg: ফোল্ডাৰ যোগ কৰক
           file_input: ফোল্ডাৰৰ নাম
           'no': নহয়
-        Reload:
-          added_msg: যোগ কৰা হৈছে
-          deleted_msg: বিলোপ কৰা হৈছে
         Upload:
+          added_msg: যোগ কৰা হৈছে
           upload_msg: আপলোড কৰা হৈছে
           'yes': ''
       fileList:

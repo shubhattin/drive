@@ -4,6 +4,7 @@ client:
       fileBar:
         Delete:
           confirm_msg: தேர்ந்தெடுத்த கோப்புகளை நீக்க விரும்புகிறீர்களா?
+          deleted_msg: நீக்கப்பட்ட
           'no': ''
           'yes': ஆம்
         Download:
@@ -19,10 +20,8 @@ client:
           add_file_msg: கோப்புறை சேர்
           file_input: கோப்புறை பெயர்
           'no': இல்லை
-        Reload:
-          added_msg: சேர்க்க
-          deleted_msg: நீக்கப்பட்ட
         Upload:
+          added_msg: சேர்க்க
           upload_msg: பதிவேற்றுகிறது
           'yes': ''
       fileList:

@@ -4,6 +4,7 @@ client:
       fileBar:
         Delete:
           confirm_msg: Do you want to Delete Selected Files ?
+          deleted_msg: Deleted
           'no': !!str
           'yes': 'Yes'
         Download:
@@ -19,10 +20,8 @@ client:
           add_file_msg: Add Folder
           file_input: Folder name
           'no': 'No'
-        Reload:
-          added_msg: Added
-          deleted_msg: Deleted
         Upload:
+          added_msg: Added
           upload_msg: Uploading
           'yes': !!str
       fileList:

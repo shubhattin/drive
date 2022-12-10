@@ -4,6 +4,7 @@ client:
       fileBar:
         Delete:
           confirm_msg: क्या आप चयनित संचितों को प्रणष्ट करना चहते हैं ?
+          deleted_msg: प्रणष्ट किया गया
           'no': ''
           'yes': हाँ
         Download:
@@ -19,10 +20,8 @@ client:
           add_file_msg: संचय योजित करें
           file_input: संचय का नाम
           'no': नहीं
-        Reload:
-          added_msg: युक्त किया गया
-          deleted_msg: प्रणष्ट किया गया
         Upload:
+          added_msg: युक्त किया गया
           upload_msg: उपारोपित हो रहा
           'yes': ''
       fileList:

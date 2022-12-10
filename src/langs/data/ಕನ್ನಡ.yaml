@@ -4,6 +4,7 @@ client:
       fileBar:
         Delete:
           confirm_msg: ಆಯ್ಕೆಮಾಡಿದ ಫೈಲ್ ಗಳನ್ನು ನೀವು ಅಳಿಸಲು ಬಯಸುವಿರಾ?
+          deleted_msg: ಅಳಿಸಿದ
           'no': ''
           'yes': ಹೌದು
         Download:
@@ -19,10 +20,8 @@ client:
           add_file_msg: ಫೋಲ್ಡರ್ ಸೇರಿಸಿ
           file_input: ಫೋಲ್ಡರ್ ಹೆಸರು
           'no': ಇಲ್ಲ
-        Reload:
-          added_msg: ಸೇರಿಸಲಾಗಿದೆ
-          deleted_msg: ಅಳಿಸಿದ
         Upload:
+          added_msg: ಸೇರಿಸಲಾಗಿದೆ
           upload_msg: ಅಪ್ ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ
           'yes': ''
       fileList:

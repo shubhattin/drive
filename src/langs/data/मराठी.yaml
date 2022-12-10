@@ -4,6 +4,7 @@ client:
       fileBar:
         Delete:
           confirm_msg: तुम्हाला निवडलेले फाइल नष्ट करायचे आहे का?
+          deleted_msg: हटविलेName
           'no': ''
           'yes': हो
         Download:
@@ -19,10 +20,8 @@ client:
           add_file_msg: संचयीका जोडा
           file_input: संचयीका नावName
           'no': नाही
-        Reload:
-          added_msg: जोड़ा
-          deleted_msg: हटविलेName
         Upload:
+          added_msg: जोड़ा
           upload_msg: अपलोड करत आहे
           'yes': ''
       fileList:

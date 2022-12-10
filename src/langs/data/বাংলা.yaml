@@ -4,6 +4,7 @@ client:
       fileBar:
         Delete:
           confirm_msg: আপনি কি নির্বাচিত ফাইলগুলি মুছতে চান?
+          deleted_msg: বিলোপ
           'no': ''
           'yes': হ্যাঁ
         Download:
@@ -19,10 +20,8 @@ client:
           add_file_msg: ফোল্ডার জুড়ুন
           file_input: ফোল্ডারের নাম
           'no': না
-        Reload:
-          added_msg: যুক্ত
-          deleted_msg: বিলোপ
         Upload:
+          added_msg: যুক্ত
           upload_msg: আপলোড করা হচ্ছে
           'yes': ''
       fileList:

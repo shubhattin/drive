@@ -4,6 +4,9 @@
   import Download from './FileBar/Download/Download.svelte';
   import FileView from './FileBar/Download/FileView.svelte';
   import Delete from './FileBar/Delete.svelte';
+  import NewFolder from './FileBar/NewFolder.svelte';
+  import Logout from './FileBar/Logout.svelte';
+  import Upload from './FileBar/Upload.svelte';
 </script>
 
 <div class="flex">
@@ -11,5 +14,8 @@
   <Reload />
   <Download />
   <Delete />
+  <NewFolder />
+  <Upload />
   <FileView />
+  <Logout />
 </div>

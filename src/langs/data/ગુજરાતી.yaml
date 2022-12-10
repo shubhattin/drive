@@ -4,6 +4,7 @@ client:
       fileBar:
         Delete:
           confirm_msg: તમે પસંદ કરેલી ફાઇલ્સ ડિલીટ કરવા ઇચ્છો છો?
+          deleted_msg: કાઢી નંખાયેલ
           'no': ''
           'yes': હા
         Download:
@@ -19,10 +20,8 @@ client:
           add_file_msg: ફોલ્ડર ઉમેરો
           file_input: ફોલ્ડર નામ
           'no': ના
-        Reload:
-          added_msg: ઉમેરાયેલ
-          deleted_msg: કાઢી નંખાયેલ
         Upload:
+          added_msg: ઉમેરાયેલ
           upload_msg: અપલોડ કરી રહ્યા છીએ
           'yes': ''
       fileList:

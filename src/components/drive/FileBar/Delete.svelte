@@ -1,28 +1,35 @@
 <script lang="ts">
   import RiDeleteButton from 'svelte-icons-pack/ri/RiSystemDeleteBin6Line';
   import Icon from '@tools/Icon.svelte';
-  import { selectedFiles, lekhAH } from '@state/drive';
+  import { selectedFiles, lekhAH, currentLoc, files } from '@state/drive';
   import { slide, scale } from 'svelte/transition';
+  import { set_val_from_adress } from '@tools/json';
+  import { graphql } from '@tools/drive/request';
+  import { toast } from '@tools/toast';
 
   let clicked = false;
   $: lekh = $lekhAH.fileBar.Delete;
 
-  const delete_files = () => {
-    // const selected = getSelectedFiles().map((val) => (pre === '/' ? '' : pre) + '/' + val);
-    // if (selected.length === 0) return;
-    // setClicked(false);
-    // const res = await graphql(
-    //   `
-    //     query ($files: [String!]!) {
-    //       deleteFiles(files: $files) {
-    //         deleted
-    //         failed
-    //       }
-    //     }
-    //   `,
-    //   { files: selected }
-    // );
-    // refresh([selected, 'delete']);
+  const delete_files = async () => {
+    if ($selectedFiles.length === 0) return;
+    const selected = $selectedFiles.map(
+      (val) => ($currentLoc === '/' ? '' : $currentLoc) + '/' + val
+    );
+    clicked = false;
+    const res = await graphql(
+      `
+        query ($files: [String!]!) {
+          deleteFiles(files: $files) {
+            deleted
+            failed
+          }
+        }
+      `,
+      { files: selected }
+    );
+    for (let x of selected) set_val_from_adress(x, $files, -2);
+    for (let x of $selectedFiles) toast.info(`${x} ${lekh.deleted_msg}`, 3000, 'bottom-right');
+    files.set($files);
   };
 </script>
 

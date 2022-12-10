@@ -5,6 +5,7 @@ client:
         Delete:
           confirm_msg: کیآ آپَ چَیَنِتَ سَںچِتاوں کاو پرَݨَشٹَ کَرَنآ چَہَتے ہاَےں
             ؟
+          deleted_msg: پرَݨَشٹَ کِیآ گَیآ
           'no': ''
           'yes': ہآںں
         Download:
@@ -20,10 +21,8 @@ client:
           add_file_msg: سَںچَیَ یاوجِتَ کَرےں
           file_input: سَںچَیَ کآ نآمَ
           'no': نَہاِیں
-        Reload:
-          added_msg: یُکتَ کِیآ گَیآ
-          deleted_msg: پرَݨَشٹَ کِیآ گَیآ
         Upload:
+          added_msg: یُکتَ کِیآ گَیآ
           upload_msg: اُپآراوپِتَ ہاو رَہآ
           'yes': ''
       fileList:

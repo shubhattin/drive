@@ -2,13 +2,12 @@ export interface dattType {
   drive: {
     main: {
       fileBar: {
-        Delete: { confirm_msg: string; no: string; yes: string };
+        Delete: { confirm_msg: string; deleted_msg: string; no: string; yes: string };
         Download: { download_msg: string };
         FileView: { download_msg: string; view_error: string };
         Logout: { confirm_msg: string; no: string; yes: string };
         NewFolder: { add_file_msg: string; file_input: string; no: string };
-        Reload: { added_msg: string; deleted_msg: string };
-        Upload: { upload_msg: string; yes: string };
+        Upload: { added_msg: string; upload_msg: string; yes: string };
       };
       fileList: { no_file: string };
       title: string;

@@ -22,3 +22,8 @@ const update_current_file_lits = () => {
 currentLoc.subscribe(update_current_file_lits);
 files.subscribe(update_current_file_lits);
 // changing the current files and folders with these changes
+
+export const fileBarStores = {
+  kAryaCount: writable(0),
+  currentReq: writable<XMLHttpRequest>(null!)
+};

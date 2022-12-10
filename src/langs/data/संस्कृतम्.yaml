@@ -4,6 +4,7 @@ client:
       fileBar:
         Delete:
           confirm_msg: किं भवाञ् चयनितानि सञ्चितानि प्रणशितुमिच्छसि ?
+          deleted_msg: इत्यिदं प्रणष्टः
           'no': ''
           'yes': अस्तु
         Download:
@@ -19,10 +20,8 @@ client:
           add_file_msg: सञ्चयं योज्यताम्
           file_input: सञ्चयनामम्
           'no': नैवम्
-        Reload:
-          added_msg: इत्यिदं युक्तः
-          deleted_msg: इत्यिदं प्रणष्टः
         Upload:
+          added_msg: इत्यिदं युक्तः
           upload_msg: उपारोपनिदानीम्
           'yes': ''
       fileList:

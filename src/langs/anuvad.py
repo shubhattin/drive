@@ -12,7 +12,13 @@ else:
 if input(f"Do you want to translate with {src} as base? ") != "yes":
     exit()
 
-sh.write("locales.json", f"{sh.minify_json(sh.dict_rev(sh.lang_list))}")
+DEFAULT_LOCALE = "sa"
+sh.write(
+    "locales.json",
+    sh.dump_json(
+        {"locales": sh.dict_rev(sh.lang_list), "default_locale": DEFAULT_LOCALE}, 2
+    ),
+)
 sh.start_thread(lambda: sh.prettier_beautify("locales.json"))
 main_db = yaml.safe_load(sh.read(f"data/{ln2[src]}.yaml"))
 anu = {}

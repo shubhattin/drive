@@ -4,6 +4,7 @@ client:
       fileBar:
         Delete:
           confirm_msg: ଆପଣ ଚୟନିତ ଫାଇଲଗୁଡିକ ବିଲୋପ କରିବାକୁ ଚାହାଁନ୍ତି କି?
+          deleted_msg: ବିଲୋପ ହୋଇଛି
           'no': ''
           'yes': ହଁ
         Download:
@@ -19,10 +20,8 @@ client:
           add_file_msg: ଫୋଲ୍ଡର୍ ଯୋଡନ୍ତୁ
           file_input: ଫୋଲ୍ଡର୍ ନାମ
           'no': ନାହିଁ
-        Reload:
-          added_msg: ଯୋଡାଯାଇଛି
-          deleted_msg: ବିଲୋପ ହୋଇଛି
         Upload:
+          added_msg: ଯୋଡାଯାଇଛି
           upload_msg: ଅପଲୋଡ୍ ହେଉଛି
           'yes': ''
       fileList:

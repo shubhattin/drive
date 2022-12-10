@@ -32,6 +32,9 @@ export const val_from_adress = (lc: any, vl: any) => {
   }
   return n;
 };
+/**
+ * `val = -2` to delete entry
+ */
 export const set_val_from_adress = (lc: any, vl: any, val: any = null, make = false) => {
   let n = vl;
   lc = lc.substring(1).split('/');

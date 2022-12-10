@@ -4,6 +4,7 @@ client:
       fileBar:
         Delete:
           confirm_msg: ఎంచుకున్న ఫైళ్లను మీరు తొలగించదలిచారా?
+          deleted_msg: తొలగించబడింది
           'no': ''
           'yes': అవును
         Download:
@@ -19,10 +20,8 @@ client:
           add_file_msg: సంచికను జోడించు
           file_input: సంచిక పేరు
           'no': కాదు
-        Reload:
-          added_msg: జోడించబడింది
-          deleted_msg: డిలీట్ చేయబడింది
         Upload:
+          added_msg: జోడించబడింది
           upload_msg: అప్ లోడ్ చేస్తోంది
           'yes': ''
       fileList:
