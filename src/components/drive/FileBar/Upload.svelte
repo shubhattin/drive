@@ -20,8 +20,7 @@
   let downloadedSize = 0;
   let totalSize = 0;
   let fileName = '';
-  const kAryAcount = fileBarStores.kAryaCount;
-  const currentReq = fileBarStores.currentReq;
+  const { kAryaCount, currentReq } = fileBarStores;
 
   const get_URL = (id: string, user: string) => `https://drive.deta.sh/v1/${id}/${user}`;
   const upload_file = async () => {
@@ -94,12 +93,18 @@
               headers: { 'X-Api-Key': window.atob(ids[1]) }
             });
             if (req.status === 200) {
-              uploading = false;
               set_val_from_adress(`${prefix}/${file.name}`, $files, -1);
               toast.success(`${file.name} ${lekh.added_msg}`, 3800, 'bottom-right');
               files.set($files);
-              if (filesToUpload.length !== ++i) upld(i);
-              else $kAryAcount = 0;
+              if (filesToUpload.length !== ++i) {
+                fileName = '';
+                downloadedSize = 0;
+                totalSize = 0;
+                upld(i);
+              } else {
+                $kAryaCount = 0;
+                uploading = false;
+              }
             }
           }
         };
@@ -108,15 +113,15 @@
     upld();
   };
   const startUpload = () => {
-    if ($kAryAcount !== 0) return;
+    if ($kAryaCount !== 0) return;
     if (filesToUpload && filesToUpload.length === 0) return;
     clicked = false;
-    $kAryAcount++;
+    $kAryaCount++;
     upload_file();
   };
   const closeUpload = () => {
     uploading = false;
-    $kAryAcount = 0;
+    $kAryaCount = 0;
     $currentReq.abort();
     $currentReq = null!;
   };
@@ -170,10 +175,7 @@
           <span class="text-violet-800">{totalSize}</span>
         </span>
         <button on:click={closeUpload}>
-          <Icon
-            src={CgClose}
-            className="text-[red] text-3xl ml-5 cursor-button active:text-[brown]"
-          />
+          <Icon src={CgClose} className="text-[red] text-3xl ml-5 active:text-[brown]" />
         </button>
       </div>
       <ProgressBar per={(downloadedSize / totalSize) * 100} />

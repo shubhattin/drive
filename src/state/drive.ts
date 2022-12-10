@@ -24,6 +24,13 @@ files.subscribe(update_current_file_lits);
 // changing the current files and folders with these changes
 
 export const fileBarStores = {
+  download: {
+    totalSize: writable(0),
+    downloadedSize: writable(0),
+    fileName: writable(''),
+    iframeViewSrc: writable(''),
+    downloading: writable(false)
+  },
   kAryaCount: writable(0),
   currentReq: writable<XMLHttpRequest>(null!)
 };

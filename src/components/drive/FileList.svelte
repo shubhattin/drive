@@ -1,17 +1,8 @@
 <script lang="ts">
   import ImageSpan from '@components/ImageSpan.svelte';
-  import {
-    files,
-    currentLoc,
-    selectedFiles,
-    lekhAH,
-    currentFiles,
-    currentFolders
-  } from '@state/drive';
+  import { files, currentLoc, selectedFiles, currentFiles, currentFolders } from '@state/drive';
   import fileImageList, { fileImg, folderImg } from './datt/fileType';
   import { onDestroy } from 'svelte';
-
-  $: lekh = $lekhAH.fileList;
 
   const folderOpen = (path: string) => {
     $currentLoc += ($currentLoc !== '/' ? '/' : '') + path;
@@ -21,6 +12,10 @@
     $currentLoc = '/';
     $files = {};
   });
+
+  const get_img_path = (key?: string) => {
+    return key! in fileImageList ? fileImageList[key! as keyof typeof fileImageList] : fileImg;
+  };
 </script>
 
 <div
@@ -41,8 +36,7 @@
     </label>
   {/each}
   {#each $currentFiles as key}
-    {@const ext = key.split('.').pop()}
-    {@const src = ext in fileImageList ? fileImageList[ext] : fileImg}
+    {@const src = get_img_path(key.split('.').pop())}
     <label class="text-[#00f] font-semibold hover:text-black">
       <input
         type="checkbox"
