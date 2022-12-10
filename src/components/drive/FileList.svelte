@@ -29,8 +29,7 @@
     >
       <input type="checkbox" class="mr-1 w-0 h-0 absolute invisible" disabled />
       <div class="flex mb-1 p-[2px] whitespace-pre-wrap active:text-orange-600 transition">
-        <!-- <FcOpenedFolder className="text-2xl mr-1.5" /> -->
-        <ImageSpan className="w-5 h-5 mr-1.5 mt-1" src={folderImg} />
+        <ImageSpan className="w-6 h-6 mr-1.5" src={folderImg} />
         {key}
       </div>
     </label>

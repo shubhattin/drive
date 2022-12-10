@@ -58,7 +58,7 @@
             <Icon src={FiExternalLink} className="text-[blue] hover:text-blue-700" />
           </a>
           <a href={$iframeViewSrc} class="ml-2" download={$fileName}>
-            <Icon src={RiSystemDownloadLine} />
+            <Icon src={RiSystemDownloadLine} className="text-blue-800 hover:text-blue-700" />
           </a>
         </span>
         <button on:click={() => ($iframeViewSrc = '')}>

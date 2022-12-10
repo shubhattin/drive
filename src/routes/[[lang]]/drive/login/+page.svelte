@@ -38,6 +38,7 @@
   let passElmnt: HTMLInputElement;
   $: err && setTimeout(() => (err = false), 750);
   const validate = async () => {
+    console.log('executed');
     const req = await fetch_post('/drive/login', {
       noUrlAdd: true,
       form: { username: $id, password: $pass }
@@ -60,7 +61,7 @@
   <title>{data.lekh.title}</title>
   <link rel="icon" href="/drive.ico" />
 </svelte:head>
-<div>
+<form on:submit|preventDefault>
   <input
     bind:this={idElmnt}
     type="text"
@@ -75,7 +76,7 @@
     )}
     bind:value={$id}
     on:keydown={({ keyCode, code }) => {
-      if ((code === 'Enter' || keyCode === 13) && $mode === 'main' && passElmnt) passElmnt.focus();
+      if ((code === 'Enter' || keyCode === 13) && $mode === 'main') passElmnt.focus();
     }}
   />
   {#if $mode !== 'reset'}
@@ -88,7 +89,7 @@
         'block my-2 border-2 rounded-md outline-none text-2xl p-1 w-44 focus:ring-2 transition-all duration-200',
         !err
           ? 'border-blue-800 ring-green-500 placeholder:text-zinc-400'
-          : 'border-rose-600 rinPg-rose-200 placeholder:text-orange-400'
+          : 'border-rose-600 ring-rose-200 placeholder:text-orange-400'
       )}
       bind:value={$pass}
       on:keydown={({ keyCode, code }) => {
@@ -96,31 +97,31 @@
       }}
     />
   {/if}
-  {#if $mode === 'main'}
-    {#if show_remember_btn}
-      <label
-        class={clsx(
-          'block text-cyan-800 font-medium p-1 rounded-lg',
-          'active:border-blue-600 active:text-black font-medium',
-          `transition ${$remember ? 'text-[green]' : 'text-[red]'}`
-        )}
-      >
-        <input type="checkbox" bind:checked={$remember} class="mr-1" />
-        <span>{lekh.remember_btn}</span>
-      </label>
-    {/if}
-    <button on:click={validate}>
-      <Icon src={AiOutlineLogin} className="text-black text-4xl ml-3 active:fill-blue-700" />
-    </button>
-    <button
-      on:click={() => mode.set('reset')}
-      class="border-2 border-fuchsia-700 text-cyan-800 font-medium p-1 rounded-lg mx-2 active:border-blue-600 active:text-red-500"
+</form>
+{#if $mode === 'main'}
+  {#if show_remember_btn}
+    <label
+      class={clsx(
+        'block text-cyan-800 font-medium p-1 rounded-lg',
+        'active:border-blue-600 active:text-black font-medium',
+        `transition ${$remember ? 'text-[green]' : 'text-[red]'}`
+      )}
     >
-      <Icon src={BiReset} className="text-2xl text-black" />
-      {lekh.reset_btn}
-    </button>
+      <input type="checkbox" bind:checked={$remember} class="mr-1" />
+      <span>{lekh.remember_btn}</span>
+    </label>
   {/if}
-</div>
+  <button on:click={validate}>
+    <Icon src={AiOutlineLogin} className="text-black text-4xl ml-3 active:fill-blue-700" />
+  </button>
+  <button
+    on:click={() => mode.set('reset')}
+    class="border-2 border-fuchsia-700 text-cyan-800 font-medium p-1 rounded-lg mx-2 active:border-blue-600 active:text-red-500"
+  >
+    <Icon src={BiReset} className="text-2xl text-black" />
+    {lekh.reset_btn}
+  </button>
+{/if}
 {#if $mode === 'reset'}
   <Reset />
 {/if}
