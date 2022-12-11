@@ -66,10 +66,10 @@ export const download_file = async (isView: boolean) => {
         elm.click();
         elm.remove();
       } else iframeViewSrc.set(url);
+      fileName.set('');
+      downloadedSize.set(0);
+      totalSize.set(0);
       if (list.length !== ++i) {
-        fileName.set('');
-        downloadedSize.set(0);
-        totalSize.set(0);
         down_sanchit(i);
       } else {
         downloading.set(false);

@@ -96,10 +96,10 @@
               set_val_from_adress(`${prefix}/${file.name}`, $files, -1);
               toast.success(`${file.name} ${lekh.added_msg}`, 3800, 'bottom-right');
               files.set($files);
+              fileName = '';
+              downloadedSize = 0;
+              totalSize = 0;
               if (filesToUpload.length !== ++i) {
-                fileName = '';
-                downloadedSize = 0;
-                totalSize = 0;
                 upld(i);
               } else {
                 $kAryaCount = 0;

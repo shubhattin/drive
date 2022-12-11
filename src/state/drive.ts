@@ -14,7 +14,7 @@ export const fileDataFetchDone = writable(false);
 
 const update_current_file_lits = () => {
   const currentDir = val_from_adress(get(currentLoc), get(files));
-  const list = Object.keys(currentDir);
+  const list = currentDir ? Object.keys(currentDir) : [];
   currentFolders.set(list.filter((key) => typeof currentDir[key] === 'object'));
   currentFiles.set(list.filter((key) => currentDir[key] === -1));
 };
