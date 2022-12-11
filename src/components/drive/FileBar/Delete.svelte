@@ -28,7 +28,7 @@
       { files: selected }
     );
     for (let x of selected) set_val_from_adress(x, $files, -2);
-    for (let x of $selectedFiles) toast.info(`${x} ${lekh.deleted_msg}`, 3000, 'bottom-right');
+    toast.info(`${$selectedFiles.join(', ')} ${lekh.deleted_msg}`, 3000, 'bottom-right');
     files.set($files);
   };
 </script>

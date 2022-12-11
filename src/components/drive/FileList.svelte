@@ -1,8 +1,18 @@
 <script lang="ts">
   import ImageSpan from '@components/ImageSpan.svelte';
-  import { files, currentLoc, selectedFiles, currentFiles, currentFolders } from '@state/drive';
+  import {
+    lekhAH,
+    files,
+    currentLoc,
+    selectedFiles,
+    currentFiles,
+    currentFolders,
+    fileDataFetchDone
+  } from '@state/drive';
   import fileImageList, { fileImg, folderImg } from './datt/fileType';
   import { onDestroy } from 'svelte';
+
+  $: lekh = $lekhAH.fileList;
 
   const folderOpen = (path: string) => {
     $currentLoc += ($currentLoc !== '/' ? '/' : '') + path;
@@ -25,7 +35,7 @@
     <label
       class="text-[purple] font-semibold hover:text-black"
       on:click={() => folderOpen(key)}
-      on:keydown={() => {}}
+      on:keydown
     >
       <input type="checkbox" class="mr-1 w-0 h-0 absolute invisible" disabled />
       <div class="flex mb-1 p-[2px] whitespace-pre-wrap active:text-orange-600 transition">
@@ -51,7 +61,7 @@
       </div>
     </label>
   {/each}
-  <!-- {#if list.length === 0}
+  {#if $fileDataFetchDone && $currentFiles.length + $currentFolders.length === 0}
     {lekh.no_file}
-  {/if} -->
+  {/if}
 </div>

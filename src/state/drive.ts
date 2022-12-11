@@ -6,11 +6,11 @@ export const lekhAH = writable<dattType['drive']['main']>(null!);
 
 export const files = writable<any>({});
 export const currentLoc = writable('/');
-// export const refreshFilesAtom = atom<[string[], 'add' | 'delete']>([null!, null!]);
 
 export const selectedFiles = writable<string[]>([]);
 export const currentFiles = writable<string[]>([]);
 export const currentFolders = writable<string[]>([]);
+export const fileDataFetchDone = writable(false);
 
 const update_current_file_lits = () => {
   const currentDir = val_from_adress(get(currentLoc), get(files));

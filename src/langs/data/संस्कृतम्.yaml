@@ -4,7 +4,7 @@ client:
       fileBar:
         Delete:
           confirm_msg: किं भवाञ् चयनितानि सञ्चितानि प्रणशितुमिच्छसि ?
-          deleted_msg: इत्यिदं प्रणष्टः
+          deleted_msg: इत्यमानि प्रणष्टः
           'no': ''
           'yes': अस्तु
         Download:

@@ -4,7 +4,7 @@ client:
       fileBar:
         Delete:
           confirm_msg: क्या आप चयनित संचितों को प्रणष्ट करना चहते हैं ?
-          deleted_msg: प्रणष्ट किया गया
+          deleted_msg: प्रणष्ट किये गये
           'no': ''
           'yes': हाँ
         Download:
