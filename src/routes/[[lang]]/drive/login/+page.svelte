@@ -38,9 +38,7 @@
   let passElmnt: HTMLInputElement;
   $: err && setTimeout(() => (err = false), 750);
   const validate = async () => {
-    console.log('executed');
     const req = await fetch_post('/drive/login', {
-      noUrlAdd: true,
       form: { username: $id, password: $pass }
     });
     $id = '';

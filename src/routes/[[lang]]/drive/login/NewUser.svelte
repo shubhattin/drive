@@ -14,7 +14,7 @@
       toast.error(lekh.blank_msg, 3000);
       return;
     }
-    const req = await fetch_post('/drive/add_new_user', {
+    const req = await fetch_post('/api/drive/add_new_user', {
       json: { username: $id, password: $pass, mukhya: mainPass }
     });
     const res = await req.json();

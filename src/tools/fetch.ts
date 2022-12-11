@@ -1,11 +1,8 @@
-const URL = '/api';
-
 type str_dict = {
   [x in string]: string;
 };
 
 type options = Parameters<typeof fetch>[1] & {
-  noUrlAdd?: boolean;
   json?: any;
   form?: str_dict;
   params?: str_dict;
@@ -41,7 +38,9 @@ const AharaNam = (url: string, op: options = {}) => {
   const htmlID = document.querySelector('html')?.lang;
   if (!op.locale && htmlID) op.locale = htmlID;
   if (op.locale) op.headers['X-bhAShA'] = op.locale;
-  return fetch((!url.startsWith('http') && !op.noUrlAdd ? URL : '') + url, op);
+  // url = (!url.startsWith('http') && !op.noUrlAdd ? URL : '') + url;
+  // ^ this can be used when we want to prefix the request with some external url
+  return fetch(url, op);
 };
 export const fetch_post = (url: string, op: options = {}) => {
   op.method = 'POST';

@@ -20,7 +20,7 @@
   $: err && setTimeout(() => (err = false), 750);
   const onClick = async () => {
     if (val === '') return;
-    const req = await fetch_post('/track_info', { json: { key: val } });
+    const req = await fetch_post('/api/track_info', { json: { key: val } });
     val = '';
     if (req.status !== 200) {
       err = true; // will invoke reset

@@ -22,13 +22,11 @@ export const graphql = async (query: string, vars: variables = {}) => {
   if (!getCookieVal(AUTH_ID)) {
     router_push('/drive/login');
   } else if (parseInt(getLocalVal(ACCESS_ID_EXPIRE)!) - getTime() < 0) {
-    const req = await fetch_post('/drive/login_navIkaraNam', {
-      noUrlAdd: true
-    });
+    const req = await fetch_post('/drive/login_navIkaraNam');
     storeAuthCookies((await req.json()) as authRes);
   }
   const token = getLocalVal(ACCESS_ID);
-  const req = await fetch_post('/drive', {
+  const req = await fetch_post('/api/drive', {
     json: { query: query, variables: vars },
     headers: { Authorization: `Bearer ${token}` }
   });

@@ -16,7 +16,7 @@
       toast.error(lekh.blank_msg, 3000);
       return;
     }
-    const req = await fetch_post('/drive/reset', {
+    const req = await fetch_post('/api/drive/reset', {
       json: { currentPass: currentPass, newPass: newPass, id: $id }
     });
     const res = await req.json();
