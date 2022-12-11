@@ -4,7 +4,7 @@ from kry.plugins import sthaitik_sanchit
 import anya, drive  # Routes
 
 app = FastAPI(
-    debug=True, # r_remove
+    debug=True,  # r_remove
     # openapi_url=None, # r_remove_comment
     # redoc_url=None, # r_remove_comment
     title="शुभलिपिलघूपकरणम्",
@@ -20,8 +20,8 @@ async def middleware(req: Request, call_next):
             {
                 "X-Robots-Tag": "noindex",
                 "X-Frame-Options": "deny",
-                "Cache-Control": "No-Store", # r_remove
-                # "Cache-Control": "public, max-age=10800" # 3 hours # r_remove_comment
+                "Cache-Control": "No-Store",  # r_remove
+                # "Cache-Control": "public, max-age=604800" # 7 days # r_remove_comment
             }
         )
     for x in head:
