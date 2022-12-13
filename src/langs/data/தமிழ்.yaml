@@ -44,10 +44,6 @@ client:
         new_user_btn: புதிய பயனரை சேர்
         reset_btn: கடவுச்சொல்லை மீட்டமை
       title: உள்நுழைவு ஆன்லைன் கோப்பு இயக்ககம்
-  tracker:
-    pass_error: தவறான விசை
-    pass_input: ''
-    title: தடம்பார்த்துச் செல்பவர்
 server:
   drive_api:
     reset:

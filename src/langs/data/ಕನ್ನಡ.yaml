@@ -44,10 +44,6 @@ client:
         new_user_btn: ಹೊಸ ಬಳಕೆದಾರ ಸೇರಿಸು
         reset_btn: ಪಾಸ್ ವರ್ಡ್ ಮರುಹೊಂದಿಸು
       title: ಆನ್ ಲೈನ್ ಫೈಲ್ ಡ್ರೈವ್ ಲಾಗಿನ್ ಮಾಡಿ
-  tracker:
-    pass_error: ತಪ್ಪು ಕೀಲಿ
-    pass_input: ''
-    title: ಟ್ರ್ಯಾಕರ್
 server:
   drive_api:
     reset:

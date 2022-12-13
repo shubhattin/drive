@@ -25,5 +25,4 @@ export interface dattType {
       title: string;
     };
   };
-  tracker: { pass_error: string; pass_input: string; title: string };
 }

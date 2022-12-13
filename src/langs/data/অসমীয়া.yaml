@@ -44,10 +44,6 @@ client:
         new_user_btn: নতুন ব্যৱহাৰকাৰী যোগ কৰক
         reset_btn: পাছৱাৰ্ড ৰিছেট কৰক
       title: লগইন অনলাইন ফাইল ড্ৰাইভ
-  tracker:
-    pass_error: ভুল কী
-    pass_input: ''
-    title: ট্ৰেকাৰ
 server:
   drive_api:
     reset:

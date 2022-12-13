@@ -44,10 +44,6 @@ client:
         new_user_btn: ਨਵਾਂ ਯੂਜ਼ਰ ਸ਼ਾਮਲ
         reset_btn: ਪਾਸਵਰਡ ਮੁੜ- ਸੈੱਟ
       title: ਆਨਲਾਈਨ ਫਾਇਲ ਡਰਾਇਵ ਲੌਗਇਨ ਕਰੋ
-  tracker:
-    pass_error: ਗਲਤ ਕੁੰਜੀ
-    pass_input: ''
-    title: ਟਰੈਕਰ
 server:
   drive_api:
     reset:

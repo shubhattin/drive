@@ -13,10 +13,9 @@ export const langNames = Object.values(list);
 export const get_locale = (locale: string) => (locale || default_locale) as langKey;
 
 const reuseValues = (datt: dattType) => {
-  const { drive, tracker } = datt;
+  const { drive } = datt;
   const reuseMap: [string, string[]][] = [
     [drive.login.reset.blank_msg, ['datt.drive.login.new_user.blank_msg']],
-    [drive.login.main.pass_input, ['datt.tracker.pass_input']],
     [
       drive.main.fileBar.Delete.yes,
       ['datt.drive.main.fileBar.Logout.yes', 'datt.drive.main.fileBar.Upload.yes']

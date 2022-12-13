@@ -30,6 +30,16 @@ async def handle_drive_req(req: Request, user: str = Depends(praviShTa_puShTi())
     return FileResponse(f"public{URL}.html")
 
 
+@router.get("/")
+def redirect_home_page(req: Request):
+    URL = req.url.path
+    lst = URL.split("/")
+    LOCALE_PREFIX = ""
+    if lst[1] in LOCALES:
+        LOCALE_PREFIX = f"/{lst[1]}"
+    return RedirectResponse(LOCALE_PREFIX + "/drive")
+
+
 bhasha_router = APIRouter(prefix="", default_response_class=HTMLResponse)
 for x in LOCALES:
     bhasha_router.include_router(router, prefix=f"/{x}")

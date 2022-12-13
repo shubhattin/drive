@@ -44,10 +44,6 @@ client:
         new_user_btn: नव उपयोक्ता को जोड़ें
         reset_btn: गूढपद को पुनर्प्रवर्तित करें
       title: संचिका जालवृत्तक सम्प्रवेश
-  tracker:
-    pass_error: अनुचित कीलक
-    pass_input: ''
-    title: प्राभिज्ञाता
 server:
   drive_api:
     reset:

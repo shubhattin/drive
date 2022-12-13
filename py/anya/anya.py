@@ -2,10 +2,8 @@ from fastapi import APIRouter, HTTPException, status
 from kry.gupta import encrypt, decrypt_text
 from kry.datt import ERR_MSG
 import cryptography
-from .mamAnya import router as mamaRouter
 
 router = APIRouter(prefix="/api")
-router.include_router(mamaRouter)
 
 @router.get("/encrypt")
 async def encrypt_api_get(value: str, key: str):

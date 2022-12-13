@@ -44,10 +44,6 @@ client:
         new_user_btn: Add New User
         reset_btn: Reset Password
       title: Login Online File Drive
-  tracker:
-    pass_error: Wrong Key
-    pass_input: !!str
-    title: Tracker
 server:
   drive_api:
     reset:

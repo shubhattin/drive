@@ -44,10 +44,6 @@ client:
         new_user_btn: नविन वापरकर्ता जोडा
         reset_btn: गुप्तशब्द पुन्हस्थापीत करा
       title: ऑनलाइन फाइल ड्राइव
-  tracker:
-    pass_error: चुकीची कळ
-    pass_input: ''
-    title: ट्रॅकर
 server:
   drive_api:
     reset:

@@ -45,10 +45,6 @@ client:
         new_user_btn: نَوَ اُپَیاوکتآ کاو جاوڑےں
         reset_btn: گاُوڈھَپَدَ کاو پُنَرپرَوَرتِتَ کَرےں
       title: سَںچِکآ جآلَورِتتَکَ سَمپرَوےشَ
-  tracker:
-    pass_error: اَنُچِتَ کاِیلَکَ
-    pass_input: ''
-    title: پرآبھِجڃآتآ
 server:
   drive_api:
     reset:

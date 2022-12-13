@@ -44,10 +44,6 @@ client:
         new_user_btn: नवोपयोक्तृसमायोगम्
         reset_btn: गूढपदं पुनर्प्रवर्तयतु
       title: सञ्चिकाजालवृत्तकसम्प्रवेशम्
-  tracker:
-    pass_error: अनुचितकीलकम्
-    pass_input: ''
-    title: प्राभिज्ञाता
 server:
   drive_api:
     reset:

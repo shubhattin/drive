@@ -44,10 +44,6 @@ client:
         new_user_btn: కొత్త వినియోగదారుని జోడించు
         reset_btn: పాస్ వర్డ్ రీసెట్ చేయి
       title: లాగిన్ ఆన్ లైన్ ఫైల్ డ్రైవ్
-  tracker:
-    pass_error: తప్పు కీ
-    pass_input: ''
-    title: ట్రాకర్
 server:
   drive_api:
     reset:

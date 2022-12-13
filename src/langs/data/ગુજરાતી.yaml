@@ -44,10 +44,6 @@ client:
         new_user_btn: નવો વપરાશકર્તા ઉમેરો
         reset_btn: પાસવર્ડને પુન:સુયોજિત કરો
       title: ઓનલાઇન ફાઇલ ડ્રાઇવનો પ્રવેશ કરો
-  tracker:
-    pass_error: ખોટી કી
-    pass_input: ''
-    title: ટ્રેકર
 server:
   drive_api:
     reset:
