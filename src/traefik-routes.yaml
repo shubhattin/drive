@@ -8,7 +8,7 @@ http:
       rule: PathPrefix(`/api`)
     auth-related: # Handling cookies and Authentication using FastAPI
       service: fast-api
-      rule: Path(`/{lang:(.+/)?}drive{auth_path:(/login_navIkaraNam|/login)?}`)
+      rule: METHOD('GET') && (Path(`/`) || Path(`/{lang:(../)?}drive{auth_path:(/login_navIkaraNam|/login)?}`))
   services:
     nextjs:
       loadBalancer:

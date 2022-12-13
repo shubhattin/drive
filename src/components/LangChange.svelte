@@ -2,9 +2,14 @@
   import { get_current_locale, change_locale, locales, locale_keys } from '@tools/i18n';
   import { clsx } from '@tools/clsx';
   import { page } from '$app/stores';
+  import { onDestroy } from 'svelte';
 
-  let value: string;
-  $: value = get_current_locale($page.params.lang);
+  let value = get_current_locale($page.params.lang);
+  const unsubscribe = page.subscribe((page) => {
+    const locale = get_current_locale(page.params.lang);
+    if (locale !== value) value = locale;
+  });
+  onDestroy(unsubscribe);
 </script>
 
 <select
@@ -15,8 +20,8 @@
   {#each locale_keys as lng}
     <option
       class={clsx('bg-black font-semibold', lng === value ? 'text-yellow-400' : 'text-white')}
-      value={lng}
-      selected={lng === value}>{locales[lng]}</option
+      selected={lng === value}
+      value={lng}>{locales[lng]}</option
     >
   {/each}
 </select>

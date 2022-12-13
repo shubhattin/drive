@@ -1,6 +1,5 @@
 <script lang="ts">
   import '../app.postcss';
-  import LangChange from '@components/LangChange.svelte';
   import { onMount } from 'svelte';
   import { change_html_lang_tag } from '@tools/i18n';
 
@@ -9,5 +8,7 @@
 
 <div class="p-2">
   <slot />
-  <LangChange />
+  {#await import('@components/LangChange.svelte') then LangChange}
+    <LangChange.default />
+  {/await}
 </div>

@@ -17,7 +17,6 @@
   import { mode, id, pass, lekhAH } from './state';
   import { onMount } from 'svelte';
   import { getCookieVal, AUTH_ID } from '@tools/drive/request';
-  import Blocker from '@tools/block';
 
   export let data: PageData;
   $: $lekhAH = data.lekh;
@@ -30,7 +29,6 @@
       router_push('/drive');
       // this redirect should usually be handled on the server or edge function
     }
-    import.meta.env.PROD && Blocker();
   });
   let err = false;
   const remember = getLocalStorageState<boolean>('drive_remember_pass_atom', isLocalStorage);

@@ -32,19 +32,9 @@ export const get_locale_from_url = (url: string) => {
  * This function detects the change in url and updates the `HTML` tag's `lang` attribute
  */
 export const change_html_lang_tag = () => {
-  let lastUrl = location.pathname;
-  let lastLocale = get_locale_from_url(lastUrl);
-  new MutationObserver(() => {
-    const url = location.pathname;
-    if (url !== lastUrl) {
-      lastUrl = url;
-      let locale = get_locale_from_url(url);
-      if (lastLocale !== locale) {
-        lastLocale = locale;
-        document.querySelector('html')!.lang = locale;
-      }
-    }
-  }).observe(document, { subtree: true, childList: true });
+  page.subscribe((page) => {
+    document.querySelector('html')!.lang = get_current_locale(page.params.lang);
+  });
 };
 
 export const get_link = (url: string | null = null!, locale: string | null = null!) => {
