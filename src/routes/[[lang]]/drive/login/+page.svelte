@@ -16,6 +16,7 @@
   import NewUser from './NewUser.svelte';
   import { mode, id, pass, lekhAH } from './state';
   import { onMount } from 'svelte';
+  import { getCookieVal, AUTH_ID } from '@tools/drive/request';
   import Blocker from '@tools/block';
 
   export let data: PageData;
@@ -25,6 +26,10 @@
   onMount(() => {
     window.onpopstate = null;
     window.onbeforeunload = null;
+    if (getCookieVal(AUTH_ID)) {
+      router_push('/drive');
+      // this redirect should usually be handled on the server or edge function
+    }
     import.meta.env.PROD && Blocker();
   });
   let err = false;

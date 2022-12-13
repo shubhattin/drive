@@ -21,6 +21,7 @@ type variables = {
 export const graphql = async (query: string, vars: variables = {}) => {
   if (!getCookieVal(AUTH_ID)) {
     router_push('/drive/login');
+    // this redirect should usually be handled on the server or edge function
   } else if (parseInt(getLocalVal(ACCESS_ID_EXPIRE)!) - getTime() < 0) {
     const req = await fetch_post('/drive/login_navIkaraNam');
     storeAuthCookies((await req.json()) as authRes);

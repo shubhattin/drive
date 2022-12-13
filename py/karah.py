@@ -4,8 +4,8 @@ from kry.lang import LANG_DB, DEFAULT_LOCALE
 
 if sh.args(0) == "clone":
     sh.delete_folder("o")
-    NAME = "drive_me"
-    sh.cmd(f"deta clone --name {NAME} --project default")
+    NAME = "sanchika"
+    sh.cmd(f"deta clone --name {NAME} --project sandesh")
     os.rename(NAME, "o")
     exit()
 packages = [
