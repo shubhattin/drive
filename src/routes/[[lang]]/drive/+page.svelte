@@ -7,11 +7,14 @@
   import { onMount } from 'svelte';
   import ToastContainer from '@tools/toast/ToastContainer.svelte';
   import { reload_file_list, goBackInFileList } from '@components/drive/karah';
+  import { preloadData } from '$app/navigation';
+  import { get_link } from '@tools/i18n';
 
   export let data: PageData;
   $: $lekhAH = data.lekh;
 
   onMount(() => {
+    preloadData(get_link('/drive/login'));
     window.history.pushState(null, '', window.location.href);
     window.onpopstate = () => {
       window.history.pushState(null, '', window.location.href);

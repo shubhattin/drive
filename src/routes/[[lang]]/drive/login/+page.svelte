@@ -17,12 +17,15 @@
   import { mode, id, pass, lekhAH } from './state';
   import { onMount } from 'svelte';
   import { getCookieVal, AUTH_ID } from '@tools/drive/request';
+  import { preloadData } from '$app/navigation';
+  import { get_link } from '@tools/i18n';
 
   export let data: PageData;
   $: $lekhAH = data.lekh;
   $: lekh = $lekhAH.main;
 
   onMount(() => {
+    preloadData(get_link('/drive'));
     window.onpopstate = null;
     window.onbeforeunload = null;
     if (getCookieVal(AUTH_ID)) {
