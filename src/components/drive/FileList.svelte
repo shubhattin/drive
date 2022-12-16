@@ -29,7 +29,7 @@
 </script>
 
 <div
-  class="bg-[#fbfffb] inline-block mt-2 mx-1 mb-32 p-1.5 border-2 border-amber-800 min-w-[300px] min-h-[250px] rounded-md"
+  class="select-text bg-[#fbfffb] inline-block mt-2 mx-1 mb-32 p-1.5 border-2 border-amber-800 min-w-[300px] min-h-[250px] rounded-md"
 >
   {#each $currentFolders as key}
     <label
