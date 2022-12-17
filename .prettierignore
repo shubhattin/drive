@@ -11,6 +11,7 @@ node_modules
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml
 src/langs/English.yaml
+static/404.html
 # use this for safety
 # "endOfLine": "crlf", in .prettierrc
 # git config core.autocrlf true
