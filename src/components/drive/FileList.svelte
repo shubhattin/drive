@@ -31,7 +31,7 @@
 <div
   class="select-text bg-[#fbfffb] inline-block mt-2 mx-1 mb-32 p-1.5 border-2 border-amber-800 min-w-[300px] min-h-[250px] rounded-md"
 >
-  {#each $currentFolders as key}
+  {#each $currentFolders as key (key)}
     <label
       class="text-[purple] font-semibold hover:text-black"
       on:click={() => folderOpen(key)}
@@ -44,7 +44,7 @@
       </div>
     </label>
   {/each}
-  {#each $currentFiles as key}
+  {#each $currentFiles as key (key)}
     {@const src = get_img_path(key.split('.').pop())}
     <label class="text-[#00f] font-semibold hover:text-black">
       <input

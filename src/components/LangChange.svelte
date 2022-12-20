@@ -17,7 +17,7 @@
   class="w-4 h-4 fixed bottom-0 right-1 bg-zinc-100 outline-none"
   on:change={() => change_locale(value)}
 >
-  {#each locale_keys as lng}
+  {#each locale_keys as lng (lng)}
     <option
       class={clsx('bg-black font-semibold', lng === value ? 'text-yellow-400' : 'text-white')}
       selected={lng === value}

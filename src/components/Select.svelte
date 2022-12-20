@@ -50,7 +50,7 @@
   class={className}
   style:width={mounted ? `${width}px` : null}
 >
-  {#each Object.keys(options) as vl}
+  {#each Object.keys(options) as vl (vl)}
     {#if mounted || vl === $value}
       <option value={vl} class={options[vl].className} selected={vl === $value}
         >{options[vl].text}</option

@@ -25,7 +25,7 @@
       /
     </button>
     {#if list[0] !== ''}
-      {#each list as key, i}
+      {#each list as key, i (key)}
         <span>
           <button
             on:click={() => currentLoc.set('/' + list.slice(0, i + 1).join('/'))}
