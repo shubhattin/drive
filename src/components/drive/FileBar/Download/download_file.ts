@@ -4,7 +4,8 @@ import { get } from 'svelte/store';
 import { AUTH_ID, getCookieVal } from '@tools/drive/request';
 import { MIME } from '@components/drive/datt/mime';
 
-const { fileName, totalSize, downloadedSize, downloading, iframeViewSrc } = fileBarStores.download;
+const { fileName, viewFileName, totalSize, downloadedSize, downloading, iframeViewSrc } =
+  fileBarStores.download;
 const { currentReq, kAryaCount } = fileBarStores;
 
 const get_URL = (id: string, user: string) => `https://drive.deta.sh/v1/${id}/${user}`;
@@ -65,7 +66,10 @@ export const download_file = async (isView: boolean) => {
         elm.download = nm1;
         elm.click();
         elm.remove();
-      } else iframeViewSrc.set(url);
+      } else {
+        iframeViewSrc.set(url);
+        viewFileName.set(get(fileName));
+      }
       fileName.set('');
       downloadedSize.set(0);
       totalSize.set(0);

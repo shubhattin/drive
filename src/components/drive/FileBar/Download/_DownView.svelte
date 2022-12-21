@@ -14,7 +14,7 @@
 
   $: lekh = $lekhAH.fileBar.FileView;
 
-  const { downloadedSize, totalSize, fileName, iframeViewSrc, downloading } =
+  const { downloadedSize, totalSize, fileName, viewFileName, iframeViewSrc, downloading } =
     fileBarStores.download;
   const { kAryaCount, currentReq } = fileBarStores;
 
@@ -57,7 +57,7 @@
           <a href={$iframeViewSrc} target="_blank" class="ml-2" rel="noreferrer">
             <Icon src={FiExternalLink} className="text-[blue] hover:text-blue-700" />
           </a>
-          <a href={$iframeViewSrc} class="ml-2" download={$fileName}>
+          <a href={$iframeViewSrc} class="ml-2" download={$viewFileName}>
             <Icon src={RiSystemDownloadLine} className="text-blue-800 hover:text-blue-700" />
           </a>
         </span>

@@ -28,6 +28,7 @@ export const fileBarStores = {
     totalSize: writable(0),
     downloadedSize: writable(0),
     fileName: writable(''),
+    viewFileName: writable(''),
     iframeViewSrc: writable(''),
     downloading: writable(false)
   },
