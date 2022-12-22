@@ -125,11 +125,9 @@
     <Icon src={BiReset} className="text-2xl text-black" />
     {lekh.reset_btn}
   </button>
-{/if}
-{#if $mode === 'reset'}
+{:else if $mode === 'reset'}
   <Reset />
-{/if}
-{#if $mode === 'new_user'}
+{:else if $mode === 'new_user'}
   <NewUser />
 {/if}
 <ToastContainer />
