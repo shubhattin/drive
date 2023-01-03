@@ -19,7 +19,7 @@ packages = [
     "strawberry-graphql[fastapi]",
 ]
 if sh.args(0) == "update":
-    sh.cmd(f'pip install --upgrade {" ".join(packages)}', file=True)
+    sh.cmd(f'pip install --upgrade {" ".join(packages)}', False)
     exit()
 repl = {
     "kry/lang.py": {
