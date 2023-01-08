@@ -11,7 +11,6 @@ vite.config.ts.timestamp-*
 
 /py/o
 /py/.venv
-/py/Pipfile.lock
 */.env
 *__pycache__
 
