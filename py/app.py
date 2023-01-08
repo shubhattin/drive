@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import Response
 from kry.plugins import sthaitik_sanchit
 import anya, drive  # Routes
+from datetime import timedelta
 
 app = FastAPI(
     debug=True,  # r_remove
@@ -10,6 +11,7 @@ app = FastAPI(
     title="शुभलिपिलघूपकरणम्",
 )
 
+CACHE_DURATION = timedelta(days=7).seconds
 
 @app.middleware("http")
 async def middleware(req: Request, call_next):
@@ -21,7 +23,7 @@ async def middleware(req: Request, call_next):
                 "X-Robots-Tag": "noindex",
                 "X-Frame-Options": "deny",
                 "Cache-Control": "No-Store",  # r_remove
-                # "Cache-Control": "public, max-age=604800" # 7 days # r_remove_comment
+                # "Cache-Control": f"public, max-age={CACHE_DURATION}" # r_remove_comment
             }
         )
     for x in head:

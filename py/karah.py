@@ -1,4 +1,10 @@
-import shubhlipi as sh, re, os
+import sys, os
+
+if sys.argv[-1] == "install":  # install other development runtime requirements
+    lst = ["shubhlipi", "python-dotenv", "uvicorn", "toml", "pyyaml"]
+    os.system(f'pip install {" ".join(lst)}')
+    exit()
+import shubhlipi as sh, re
 from importlib.metadata import version
 from kry.lang import LANG_DB, DEFAULT_LOCALE
 
@@ -8,19 +14,9 @@ if sh.args(0) == "clone":
     sh.cmd(f"deta clone --name {NAME} --project sandesh")
     os.rename(NAME, "o")
     exit()
-packages = [
-    "fastapi",
-    "requests",
-    "deta",
-    "bcrypt",
-    "cryptography",
-    "python-multipart",
-    "python-jose[cryptography]",
-    "strawberry-graphql[fastapi]",
-]
-if sh.args(0) == "update":
-    sh.cmd(f'pip install --upgrade {" ".join(packages)}', False)
-    exit()
+import toml
+
+packages = list(toml.loads(sh.read("Pipfile"))["packages"].keys())
 repl = {
     "kry/lang.py": {
         r"LOCALES = []": f"LOCALES = {list(sh.lang_list.values())}",
@@ -88,8 +84,8 @@ if "deploy" in sh.argv:
         )
         sh.cmd("pnpm build", direct=False)
     sh.copy_folder("../build", "o/public")
-    print("\nCopied Nextjs 'build' folder to FastAPI 'public' folder")
-    sh.cmd("cd o\ndeta deploy", file=True)
+    print("\nCopied SvelteKit 'build' folder to FastAPI 'public' folder")
+    sh.cmd("cd o && deta deploy", direct=False)
 if "test" in sh.argv:
     # Testing After every deploy
     req = sh.get(
