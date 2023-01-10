@@ -11,7 +11,7 @@ app = FastAPI(
     title="शुभलिपिलघूपकरणम्",
 )
 
-CACHE_DURATION = timedelta(weeks=1).seconds
+CACHE_DURATION = int(timedelta(weeks=1).total_seconds())
 
 @app.middleware("http")
 async def middleware(req: Request, call_next):
