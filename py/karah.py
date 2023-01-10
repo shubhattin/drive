@@ -1,11 +1,4 @@
-import sys, os
-
-if sys.argv[-1] == "install":  # install other development runtime requirements
-    lst = ["shubhlipi", "python-dotenv", "uvicorn", "toml", "pyyaml"]
-    os.system(f'pip install {" ".join(lst)}')
-    exit()
-import shubhlipi as sh, re
-from importlib.metadata import version
+import shubhlipi as sh, re, os
 from kry.lang import LANG_DB, DEFAULT_LOCALE
 
 if sh.args(0) == "clone":
@@ -14,23 +7,25 @@ if sh.args(0) == "clone":
     sh.cmd(f"deta clone --name {NAME} --project sandesh")
     os.rename(NAME, "o")
     exit()
-import toml
-
-packages = list(toml.loads(sh.read("Pipfile"))["packages"].keys())
 repl = {
     "kry/lang.py": {
         r"LOCALES = []": f"LOCALES = {list(sh.lang_list.values())}",
     },
 }
 for x in os.listdir("o"):  # Clearing the directory
-    if x in [".deta", "requirements.txt"]:
+    if x in [".deta"]:
         continue
     sh.delete(f"o/{x}")
-req = []  # requirements -> version
-for x in packages:
-    x = re.sub(r"\[.+?\]", "", x)
-    req.append(f"{x}=={version(x)}")
-sh.write("o/requirements.txt", "\n".join(req))
+
+
+def make_requirements_txt():
+    sh.cmd("pipenv requirements --exclude-markers > o/requirements.txt", display=False)
+    fl = sh.read("o/requirements.txt")
+    fl = fl.replace("-i https://pypi.org/simple\n", "")
+    sh.write("o/requirements.txt", fl)
+
+
+make_requirements_txt()
 
 
 def copy_files(lc=""):
