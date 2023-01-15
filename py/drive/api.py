@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 from kry.datt import deta_val, Base
 from kry.gupta import bin_str, puShTi
-from kry.lang import LANG_DB
+from langs.datt import LANG_DB
 from kry.plugins import get_locale
 from .security import USERS_DB
 import bcrypt

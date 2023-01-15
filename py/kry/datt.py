@@ -1,20 +1,25 @@
 import os, json
 from deta import Deta
 
-# r_start
-import dotenv
-from .gupta import from_base64
+DEV_ENV: bool = os.getenv("PIPENV_ACTIVE") == "1"
+PROD_ENV: bool = not DEV_ENV
 
-dotenv.load_dotenv()
-# r_end
+if DEV_ENV:
+    from .gupta import from_base64
 
-deta = Deta(
-    # r_start
-    from_base64(os.getenv("DETA_KEY"))
-    # r_end
-)
+    deta = Deta(from_base64(os.getenv("DETA_KEY")))
+else:
+    deta = Deta()
+
 Drive = deta.Drive
 Base = deta.Base
+
+
+def read_file(file: str):
+    fl = open(file, encoding="utf-8", mode="r")
+    val = fl.read()
+    fl.close()
+    return val
 
 
 def deta_val(key: str, root="verify", jsn=False):

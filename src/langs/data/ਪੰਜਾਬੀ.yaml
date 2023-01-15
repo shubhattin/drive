@@ -1,61 +1,45 @@
-client:
-  drive:
+drive:
+  main:
+    fileBar:
+      Delete:
+        confirm_msg: ਕੀ ਤੁਸੀਂ ਚੁਣੀਆਂ ਹੋਈਆਂ ਫ਼ਾਈਲਾਂ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?
+        deleted_msg: ਹਟਾਇਆ
+        'no': ''
+        'yes': ਹਾਂ
+      Download:
+        download_msg: ਡਾਊਨਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ
+      FileView:
+        download_msg: ''
+        view_error: ਫਾਈਲ ਦੇਖਣ ਲਈ ਕੇਵਲ ਇੱਕ ਕਲਿੱਕ ਕਰੋ
+      Logout:
+        confirm_msg: ਕੀ ਤੁਸੀਂ ਲੌਗਆਉਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?
+        'no': ''
+        'yes': ''
+      NewFolder:
+        add_file_msg: ਫੋਲਡਰ ਸ਼ਾਮਲ
+        file_input: ਫੋਲਡਰ ਨਾਂ
+        'no': ਨਹੀਂ
+      Upload:
+        added_msg: ਸ਼ਾਮਲ ਕੀਤੇ
+        upload_msg: ਅੱਪਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ
+        'yes': ''
+    fileList:
+      no_file: ਇੱਥੇ ਕੋਈ ਫਾਇਲਾਂ ਨਹੀਂ ਹਨ
+    title: ਆਨਲਾਈਨ ਫਾਇਲ ਡਰਾਇਵ
+  login:
     main:
-      fileBar:
-        Delete:
-          confirm_msg: ਕੀ ਤੁਸੀਂ ਚੁਣੀਆਂ ਹੋਈਆਂ ਫ਼ਾਈਲਾਂ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?
-          deleted_msg: ਹਟਾਇਆ
-          'no': ''
-          'yes': ਹਾਂ
-        Download:
-          download_msg: ਡਾਊਨਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ
-        FileView:
-          download_msg: ''
-          view_error: ਫਾਈਲ ਦੇਖਣ ਲਈ ਕੇਵਲ ਇੱਕ ਕਲਿੱਕ ਕਰੋ
-        Logout:
-          confirm_msg: ਕੀ ਤੁਸੀਂ ਲੌਗਆਉਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?
-          'no': ''
-          'yes': ''
-        NewFolder:
-          add_file_msg: ਫੋਲਡਰ ਸ਼ਾਮਲ
-          file_input: ਫੋਲਡਰ ਨਾਂ
-          'no': ਨਹੀਂ
-        Upload:
-          added_msg: ਸ਼ਾਮਲ ਕੀਤੇ
-          upload_msg: ਅੱਪਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ
-          'yes': ''
-      fileList:
-        no_file: ਇੱਥੇ ਕੋਈ ਫਾਇਲਾਂ ਨਹੀਂ ਹਨ
-      title: ਆਨਲਾਈਨ ਫਾਇਲ ਡਰਾਇਵ
-    login:
-      main:
-        id_input: ਯੂਜ਼ਰ ਨਾਂ ਦਿਓ
-        pass_input: ਪਾਸਵਰਡ ਦਿਓ
-        reset_btn: ਮੁੜ- ਸੈੱਟ
-        remember_btn: ਲਾਗਇਨ ਯਾਦ ਰੱਖੋ
-      new_user:
-        add_btn: ਯੂਜ਼ਰ ਸ਼ਾਮਲ
-        blank_msg: ''
-        main_pass: ਮੁੱਖ ਪਾਸਵਰਡ
-      reset:
-        blank_msg: ਕਿਰਪਾ ਕਰਕੇ ਖਾਲੀ ਥਾਵਾਂ ਭਰੋ
-        current_pass: ਮੌਜੂਦਾ ਪਾਸਵਰਡ
-        new_pass: ਨਵਾਂ ਪਾਸਵਰਡ
-        new_user_btn: ਨਵਾਂ ਯੂਜ਼ਰ ਸ਼ਾਮਲ
-        reset_btn: ਪਾਸਵਰਡ ਮੁੜ- ਸੈੱਟ
-      title: ਆਨਲਾਈਨ ਫਾਇਲ ਡਰਾਇਵ ਲੌਗਇਨ ਕਰੋ
-server:
-  drive_api:
+      id_input: ਯੂਜ਼ਰ ਨਾਂ ਦਿਓ
+      pass_input: ਪਾਸਵਰਡ ਦਿਓ
+      reset_btn: ਮੁੜ- ਸੈੱਟ
+      remember_btn: ਲਾਗਇਨ ਯਾਦ ਰੱਖੋ
+    new_user:
+      add_btn: ਯੂਜ਼ਰ ਸ਼ਾਮਲ
+      blank_msg: ''
+      main_pass: ਮੁੱਖ ਪਾਸਵਰਡ
     reset:
-      user_not_found: ਯੂਜ਼ਰ ਨਹੀਂ ਲੱਭਿਆ
-      wrong_current_pass: ਗਲਤ ਮੌਜੂਦਾ ਪਾਸਵਰਡ
-      success_detail: ਪਾਸਵਰਡ ਸਫਲਤਾਪੂਰਵਕ ਬਦਲਿਆ ਗਿਆ
-    add_new_user:
-      user_already_exist: ਦਿੱਤਾ ਗਿਆ ਵਰਤੋਂਕਾਰ-ਨਾਮ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ
-      wrong_main_pass: ਗਲਤ ਮੁੱਖ ਪਾਸਵਰਡ
-      success_detail: ਨਵੇਂ ਯੂਜ਼ਰ ਨੂੰ ਸਫਲਤਾਪੂਰਵਕ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ
-  drive_security:
-    user_not_found: ''
-    wrong_pass: ਗਲਤ ਪਾਸਵਰਡ
-    wrong_credentials: ਨਾ-ਤਸਦੀਕ ਕੀਤੇ ਪ੍ਰਮਾਣ-ਪੱਤਰ
-    expired_credentials: ਮਿਆਦ ਪੁੱਗੇ ਪ੍ਰਮਾਣ-ਪੱਤਰ
+      blank_msg: ਕਿਰਪਾ ਕਰਕੇ ਖਾਲੀ ਥਾਵਾਂ ਭਰੋ
+      current_pass: ਮੌਜੂਦਾ ਪਾਸਵਰਡ
+      new_pass: ਨਵਾਂ ਪਾਸਵਰਡ
+      new_user_btn: ਨਵਾਂ ਯੂਜ਼ਰ ਸ਼ਾਮਲ
+      reset_btn: ਪਾਸਵਰਡ ਮੁੜ- ਸੈੱਟ
+    title: ਆਨਲਾਈਨ ਫਾਇਲ ਡਰਾਇਵ ਲੌਗਇਨ ਕਰੋ

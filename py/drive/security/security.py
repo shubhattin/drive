@@ -2,14 +2,14 @@ from fastapi import APIRouter, Depends, HTTPException, status, Request
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from datetime import datetime, timedelta
 from typing import Union, Optional
-from kry.datt import deta_val
+from kry.datt import deta_val, DEV_ENV
 from kry.gupta import bin_str
 from kry.plugins import get_locale
 from jose import JWTError, jwt, ExpiredSignatureError
 from time import time
 import bcrypt, os
 from kry.plugins import get_locale
-from kry.lang import LANG_DB
+from langs.datt import LANG_DB
 
 router = APIRouter(prefix="")
 USERS_DB = "drive_users"  # Hashed Password of users
@@ -79,14 +79,14 @@ class OAuth2GudhapadBearer(OAuth2PasswordBearer):
         type = request.method
         url = request.url.path
         if type == "GET" and url == GRAPHQL_URL:
+            # GraphQl UI is allowed to access the API in Dev Mode
+            # without any token in GET request in browser
             return "graphql_ui"
-        # r_start
-        if type == "POST":
+        if DEV_ENV and type == "POST":
             js = await request.json()
             nm = "operationName"
             if nm in js and js[nm] == "IntrospectionQuery":
                 return "graphql_ui"
-        # r_end
         return await super().__call__(request)
 
 
@@ -100,9 +100,8 @@ async def get_current_user(
     lekh = LANG_DB(locale).drive_security
     CREDENTIAL_EXCEPTION = LOGIN_EXCEPTION(lekh.wrong_credentials)
     if token == "graphql_ui":
-        # r_start
-        return "user"
-        # r_end
+        if DEV_ENV:
+            return "user"
         raise HTTPException(404, "Not Found")
     if not token:
         raise CREDENTIAL_EXCEPTION

@@ -26,15 +26,21 @@
   const upload_file = async () => {
     let prefix = $currentLoc;
     if (prefix === '/') prefix = '';
-    const ids = (
-      await graphql(
-        `
-          {
-            uploadID
-          }
-        `
-      )
-    )['uploadID'] as string[];
+    const ID = {
+      download: window.atob(
+        (
+          await graphql(
+            `
+              {
+                uploadID
+              }
+            `
+          )
+        )['uploadID'] as string
+      ),
+      project: ''
+    };
+    ID.project = ID.download.split('_')[0];
     const upld = async (i = 0) => {
       const file = filesToUpload[i];
       const AkAra = file.size / (1024 * 1024);
@@ -42,15 +48,16 @@
       totalSize = parseFloat(AkAra.toFixed(2));
       uploading = true;
       const MAX_CHUNK_SIZE = 9.985 * 1024 * 1024;
-      const TOKEN = JSON.parse(window.atob(getCookieVal(AUTH_ID)?.split('.')[1]!)).sub as string;
-      const URL = get_URL(ids[0], TOKEN);
+      const USER_TOKEN = JSON.parse(window.atob(getCookieVal(AUTH_ID)?.split('.')[1]!))
+        .sub as string;
+      const URL = get_URL(ID.project, USER_TOKEN);
       const UPLOAD_ID = (
         await (
           await fetch_post(`${URL}/uploads`, {
             params: {
               name: `${prefix}/${file.name}`
             },
-            headers: { 'X-Api-Key': window.atob(ids[1]) }
+            headers: { 'X-Api-Key': ID.download }
           })
         ).json()
       ).upload_id as string;
@@ -67,7 +74,7 @@
           `${URL}/uploads/${UPLOAD_ID}/parts?part=${++count}&name=${prefix}/${file.name}`,
           true
         );
-        xhr.setRequestHeader('X-Api-Key', window.atob(ids[1]));
+        xhr.setRequestHeader('X-Api-Key', ID.download);
         xhr.upload.addEventListener(
           'progress',
           function (evt) {
@@ -90,7 +97,7 @@
                 name: `${prefix}/${file.name}`
               },
               method: 'PATCH',
-              headers: { 'X-Api-Key': window.atob(ids[1]) }
+              headers: { 'X-Api-Key': ID.download }
             });
             if (req.status === 200) {
               set_val_from_adress(`${prefix}/${file.name}`, $files, -1);

@@ -1,61 +1,45 @@
-client:
-  drive:
+drive:
+  main:
+    fileBar:
+      Delete:
+        confirm_msg: તમે પસંદ કરેલી ફાઇલ્સ ડિલીટ કરવા ઇચ્છો છો?
+        deleted_msg: કાઢી નંખાયેલ
+        'no': ''
+        'yes': હા
+      Download:
+        download_msg: ડાઉનલોડ કરી રહ્યા છીએ
+      FileView:
+        download_msg: ''
+        view_error: ફાઈલ જોવા માટે માત્ર એક જ ક્લિક કરો
+      Logout:
+        confirm_msg: શું તમે બહાર નીકળવા માંગો છો?
+        'no': ''
+        'yes': ''
+      NewFolder:
+        add_file_msg: ફોલ્ડર ઉમેરો
+        file_input: ફોલ્ડર નામ
+        'no': ના
+      Upload:
+        added_msg: ઉમેરાયેલ
+        upload_msg: અપલોડ કરી રહ્યા છીએ
+        'yes': ''
+    fileList:
+      no_file: અહિંયા ફાઇલો નથી
+    title: ઓનલાઇન ફાઇલ ડ્રાઇવ
+  login:
     main:
-      fileBar:
-        Delete:
-          confirm_msg: તમે પસંદ કરેલી ફાઇલ્સ ડિલીટ કરવા ઇચ્છો છો?
-          deleted_msg: કાઢી નંખાયેલ
-          'no': ''
-          'yes': હા
-        Download:
-          download_msg: ડાઉનલોડ કરી રહ્યા છીએ
-        FileView:
-          download_msg: ''
-          view_error: ફાઈલ જોવા માટે માત્ર એક જ ક્લિક કરો
-        Logout:
-          confirm_msg: શું તમે બહાર નીકળવા માંગો છો?
-          'no': ''
-          'yes': ''
-        NewFolder:
-          add_file_msg: ફોલ્ડર ઉમેરો
-          file_input: ફોલ્ડર નામ
-          'no': ના
-        Upload:
-          added_msg: ઉમેરાયેલ
-          upload_msg: અપલોડ કરી રહ્યા છીએ
-          'yes': ''
-      fileList:
-        no_file: અહિંયા ફાઇલો નથી
-      title: ઓનલાઇન ફાઇલ ડ્રાઇવ
-    login:
-      main:
-        id_input: વપરાશકર્તાનામને દાખલ કરો
-        pass_input: પાસવર્ડ દાખલ કરો
-        reset_btn: પુન:સુયોજિત કરો
-        remember_btn: પ્રવેશ યાદ રાખો
-      new_user:
-        add_btn: વપરાશકર્તા ઉમેરો
-        blank_msg: ''
-        main_pass: મુખ્ય પાસવર્ડ
-      reset:
-        blank_msg: મહેરબાની કરીને ખાલી જગ્યાઓ ભરો
-        current_pass: વર્તમાન પાસવર્ડ
-        new_pass: નવો પાસવર્ડ
-        new_user_btn: નવો વપરાશકર્તા ઉમેરો
-        reset_btn: પાસવર્ડને પુન:સુયોજિત કરો
-      title: ઓનલાઇન ફાઇલ ડ્રાઇવનો પ્રવેશ કરો
-server:
-  drive_api:
+      id_input: વપરાશકર્તાનામને દાખલ કરો
+      pass_input: પાસવર્ડ દાખલ કરો
+      reset_btn: પુન:સુયોજિત કરો
+      remember_btn: પ્રવેશ યાદ રાખો
+    new_user:
+      add_btn: વપરાશકર્તા ઉમેરો
+      blank_msg: ''
+      main_pass: મુખ્ય પાસવર્ડ
     reset:
-      user_not_found: વપરાશકર્તા મળ્યો નથી
-      wrong_current_pass: ખોટો વર્તમાન પાસવર્ડ
-      success_detail: સફળતાપૂર્વક બદલાયેલ પાસવર્ડ
-    add_new_user:
-      user_already_exist: આપેલ વપરાશકર્તાનામ પહેલાથી જ હાજર છે
-      wrong_main_pass: ખોટો મુખ્ય પાસવર્ડ
-      success_detail: સફળતાપૂર્વક નવો વપરાશકર્તા ઉમેરાયો
-  drive_security:
-    user_not_found: ''
-    wrong_pass: ખોટો પાસવર્ડ
-    wrong_credentials: ચકાસાયેલ ઓળખાણપત્રો
-    expired_credentials: નિવૃત્ત થયેલ શ્રેય
+      blank_msg: મહેરબાની કરીને ખાલી જગ્યાઓ ભરો
+      current_pass: વર્તમાન પાસવર્ડ
+      new_pass: નવો પાસવર્ડ
+      new_user_btn: નવો વપરાશકર્તા ઉમેરો
+      reset_btn: પાસવર્ડને પુન:સુયોજિત કરો
+    title: ઓનલાઇન ફાઇલ ડ્રાઇવનો પ્રવેશ કરો

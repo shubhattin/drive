@@ -1,14 +1,10 @@
 from fastapi import APIRouter, Request, Depends
 from fastapi.responses import HTMLResponse, RedirectResponse, FileResponse
 from . import TOKEN_URL, TOKEN_URL_PREFIX, praviShTa_puShTi
-from kry.lang import LOCALES
+from langs.datt import LOCALES
+from kry.datt import DEV_ENV
 
 router = APIRouter(prefix="", default_response_class=HTMLResponse)
-
-# r_start
-from requests import get
-
-# r_end
 
 
 @router.get(TOKEN_URL_PREFIX)
@@ -24,9 +20,10 @@ async def handle_drive_req(req: Request, user: str = Depends(praviShTa_puShTi())
         return RedirectResponse(LOCALE_PREFIX + TOKEN_URL)
     elif IS_LOGIN_PAGE and user:
         return RedirectResponse(LOCALE_PREFIX + TOKEN_URL_PREFIX)
-    # r_start
-    return get(f"http://localhost:3427{URL}").content.decode("utf-8")
-    # r_end
+    if DEV_ENV:
+        from requests import get
+
+        return get(f"http://localhost:3427{URL}").content.decode("utf-8")
     return FileResponse(f"public{URL}.html")
 
 

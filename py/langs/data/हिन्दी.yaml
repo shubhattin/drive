@@ -1,0 +1,14 @@
+drive_api:
+  add_new_user:
+    success_detail: सफलता पूर्वक नये उपयोक्ता को स्थापित किया गया
+    user_already_exist: आपके द्वारा दिया गया उपनाम पूर्व से विद्यमान है
+    wrong_main_pass: अनुचित मुख्य गूढपद
+  reset:
+    success_detail: सफलता पूर्वक गूढपद परिवर्तित हुआ
+    user_not_found: उपयोक्ता नही मिला
+    wrong_current_pass: अनुचित वर्तमान गूढपदम
+drive_security:
+  expired_credentials: प्रत्ययपत्त्र कालातिक्रमित है
+  user_not_found: ''
+  wrong_credentials: प्रत्ययपत्त्र अप्रमाणित है
+  wrong_pass: अनुचित गूढपद

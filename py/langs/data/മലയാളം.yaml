@@ -1,0 +1,14 @@
+drive_api:
+  add_new_user:
+    success_detail: പുതിയ ഉപയോക്താവിനെ വിജയകരമായി ചേർത്തു
+    user_already_exist: നൽകിയിരിക്കുന്ന ഉപയോക്തൃനാമം നിലവിലുണ്ടു്
+    wrong_main_pass: തെറ്റായ പ്രധാന അടയാളവാക്ക്
+  reset:
+    success_detail: പാസ് വേഡ് വിജയകരമായി മാറ്റി
+    user_not_found: ഉപയോക്താവിനെ കണ്ടില്ല
+    wrong_current_pass: തെറ്റായ നിലവിലെ പാസ് വേഡ്
+drive_security:
+  expired_credentials: കാലഹരണപ്പെട്ട ക്രെഡൻഷ്യലുകൾ
+  user_not_found: ''
+  wrong_credentials: സ്ഥിരീകരിക്കാത്ത ക്രെഡൻഷ്യലുകൾ
+  wrong_pass: തെറ്റായ പാസ് വേഡ്

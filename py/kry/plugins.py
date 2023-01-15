@@ -2,7 +2,7 @@ from starlette.types import Receive, Scope, Send
 from fastapi.responses import FileResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi import Request
-from .lang import LOCALES, DEFAULT_LOCALE
+from langs.datt import LOCALES, DEFAULT_LOCALE
 import os
 
 

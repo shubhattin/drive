@@ -34,7 +34,7 @@ const db: { [x in langKey]?: dattType } = {};
 const main = (locale: langKey) => {
   if (process.env.NODE_ENV === 'production' && locale in db) return db[locale];
   const LOAD: any = load(fs.readFileSync(`./src/langs/data/${list[locale]}.yaml`).toString());
-  const dt = reuseValues(LOAD.client as dattType);
+  const dt = reuseValues(LOAD as dattType);
   db[locale] = dt;
   return dt;
 };

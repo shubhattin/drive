@@ -15,7 +15,6 @@ strawberry-graphql = {version = "==0.142.2", extras = ["fastapi"]}
 
 [dev-packages]
 shubhlipi = "*"
-python-dotenv = "*"
 uvicorn = "*"
 pyyaml = "*"
 black = "*"

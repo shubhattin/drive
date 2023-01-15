@@ -1,0 +1,14 @@
+drive_api:
+  add_new_user:
+    success_detail: সফলভাবে নতুন ব্যবহারকারী যোগ করা হয়েছে
+    user_already_exist: প্রদত্ত ব্যবহারকারীর নাম ইতিমধ্যে বিদ্যমান
+    wrong_main_pass: ভুল প্রধান পাসওয়ার্ড
+  reset:
+    success_detail: সফলভাবে পাসওয়ার্ড পরিবর্তন করা হয়েছে
+    user_not_found: ব্যবহারকারী খুঁজে পাওয়া যায়নি
+    wrong_current_pass: ভুল বর্তমান পাসওয়ার্ড
+drive_security:
+  expired_credentials: মেয়াদোত্তীর্ণ প্রমাণপত্রাদি
+  user_not_found: ''
+  wrong_credentials: অযাচাইকৃত প্রমাণপত্রাদি
+  wrong_pass: ভুল পাসওয়ার্ড

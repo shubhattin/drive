@@ -1,28 +1,28 @@
 from pydantic.dataclasses import dataclass
 
 @dataclass
-class Reset():
-    user_not_found: str
-    wrong_current_pass: str
-    success_detail: str
-
-@dataclass
 class AddNewUser():
+    success_detail: str
     user_already_exist: str
     wrong_main_pass: str
+
+@dataclass
+class Reset():
     success_detail: str
+    user_not_found: str
+    wrong_current_pass: str
 
 @dataclass
 class DriveApi():
-    reset: Reset
     add_new_user: AddNewUser
+    reset: Reset
 
 @dataclass
 class DriveSecurity():
-    user_not_found: str
-    wrong_pass: str
-    wrong_credentials: str
     expired_credentials: str
+    user_not_found: str
+    wrong_credentials: str
+    wrong_pass: str
 
 @dataclass
 class LangDBModel():

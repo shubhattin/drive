@@ -1,61 +1,45 @@
-client:
-  drive:
+drive:
+  main:
+    fileBar:
+      Delete:
+        confirm_msg: तुम्हाला निवडलेले फाइल नष्ट करायचे आहे का?
+        deleted_msg: हटविलेName
+        'no': ''
+        'yes': हो
+      Download:
+        download_msg: डाउनलोड करत आहे
+      FileView:
+        download_msg: ''
+        view_error: फाइल पाहण्यासाठी फक्त एका क्लिक करा
+      Logout:
+        confirm_msg: तुला लॉगआऊट करायचे आहे का?
+        'no': ''
+        'yes': ''
+      NewFolder:
+        add_file_msg: संचयीका जोडा
+        file_input: संचयीका नावName
+        'no': नाही
+      Upload:
+        added_msg: जोड़ा
+        upload_msg: अपलोड करत आहे
+        'yes': ''
+    fileList:
+      no_file: येथे फाइल नाही
+    title: ऑनलाइन फाइल ड्राइव
+  login:
     main:
-      fileBar:
-        Delete:
-          confirm_msg: तुम्हाला निवडलेले फाइल नष्ट करायचे आहे का?
-          deleted_msg: हटविलेName
-          'no': ''
-          'yes': हो
-        Download:
-          download_msg: डाउनलोड करत आहे
-        FileView:
-          download_msg: ''
-          view_error: फाइल पाहण्यासाठी फक्त एका क्लिक करा
-        Logout:
-          confirm_msg: तुला लॉगआऊट करायचे आहे का?
-          'no': ''
-          'yes': ''
-        NewFolder:
-          add_file_msg: संचयीका जोडा
-          file_input: संचयीका नावName
-          'no': नाही
-        Upload:
-          added_msg: जोड़ा
-          upload_msg: अपलोड करत आहे
-          'yes': ''
-      fileList:
-        no_file: येथे फाइल नाही
-      title: ऑनलाइन फाइल ड्राइव
-    login:
-      main:
-        id_input: वापरकर्तानाव प्रविष्ट करा
-        pass_input: गुप्तशब्द प्रविष्ट करा
-        reset_btn: पुन्हस्थापीत करा
-        remember_btn: लॉगिन लक्षात ठेवा
-      new_user:
-        add_btn: वापरकर्ता जोडा
-        blank_msg: ''
-        main_pass: मुख्य गुप्तशब्द
-      reset:
-        blank_msg: कृपया रिक्त जागा भरा
-        current_pass: वर्तमान गुप्तशब्द
-        new_pass: नविन गुप्तशब्द
-        new_user_btn: नविन वापरकर्ता जोडा
-        reset_btn: गुप्तशब्द पुन्हस्थापीत करा
-      title: ऑनलाइन फाइल ड्राइव
-server:
-  drive_api:
+      id_input: वापरकर्तानाव प्रविष्ट करा
+      pass_input: गुप्तशब्द प्रविष्ट करा
+      reset_btn: पुन्हस्थापीत करा
+      remember_btn: लॉगिन लक्षात ठेवा
+    new_user:
+      add_btn: वापरकर्ता जोडा
+      blank_msg: ''
+      main_pass: मुख्य गुप्तशब्द
     reset:
-      user_not_found: वापरकर्ता आढळला नाही
-      wrong_current_pass: चुकीचा वर्तमान गुप्तशब्द
-      success_detail: यशस्वीरित्या बदललेला गुप्तशब्द
-    add_new_user:
-      user_already_exist: दिलेले वापरकर्तानाव आधिपासूनच अस्तित्वात आहे
-      wrong_main_pass: चुकीचा मुख्य गुप्तशब्द
-      success_detail: यशस्वीरित्या नवीन वापरकर्ता जोडले
-  drive_security:
-    user_not_found: ''
-    wrong_pass: चुकीचा गुप्तशब्द
-    wrong_credentials: सत्यापित क्रेडेन्शियल्स
-    expired_credentials: कालबाह्य क्रेडेन्शियल्स
+      blank_msg: कृपया रिक्त जागा भरा
+      current_pass: वर्तमान गुप्तशब्द
+      new_pass: नविन गुप्तशब्द
+      new_user_btn: नविन वापरकर्ता जोडा
+      reset_btn: गुप्तशब्द पुन्हस्थापीत करा
+    title: ऑनलाइन फाइल ड्राइव

@@ -1,61 +1,45 @@
-client:
-  drive:
+drive:
+  main:
+    fileBar:
+      Delete:
+        confirm_msg: തെരഞ്ഞെടുത്ത ഫയലുകൾ ഇല്ലാതാക്കണമോ?
+        deleted_msg: നീക്കം ചെയ്തു
+        'no': ''
+        'yes': ശരി
+      Download:
+        download_msg: ഡൌൺലോഡ് ചെയ്യുന്നു
+      FileView:
+        download_msg: ''
+        view_error: ഫയൽ കാണുന്നതിന് ഒരെണ്ണം മാത്രം ക്ലിക്ക് ചെയ്യുക
+      Logout:
+        confirm_msg: നിങ്ങൾക്ക് ലോഗൗട്ട് ചെയ്യണോ?
+        'no': ''
+        'yes': ''
+      NewFolder:
+        add_file_msg: ഫോൾഡർ ചേർക്കുക
+        file_input: അറയുടെ പേര്
+        'no': അല്ല
+      Upload:
+        added_msg: ചേർത്തു
+        upload_msg: അപ് ലോഡ് ചെയ്യുന്നു
+        'yes': ''
+    fileList:
+      no_file: ഇവിടെ ഫയലുകളില്ല
+    title: ഓൺലൈൻ ഫയൽ ഡ്രൈവ്
+  login:
     main:
-      fileBar:
-        Delete:
-          confirm_msg: തെരഞ്ഞെടുത്ത ഫയലുകൾ ഇല്ലാതാക്കണമോ?
-          deleted_msg: നീക്കം ചെയ്തു
-          'no': ''
-          'yes': ശരി
-        Download:
-          download_msg: ഡൌൺലോഡ് ചെയ്യുന്നു
-        FileView:
-          download_msg: ''
-          view_error: ഫയൽ കാണുന്നതിന് ഒരെണ്ണം മാത്രം ക്ലിക്ക് ചെയ്യുക
-        Logout:
-          confirm_msg: നിങ്ങൾക്ക് ലോഗൗട്ട് ചെയ്യണോ?
-          'no': ''
-          'yes': ''
-        NewFolder:
-          add_file_msg: ഫോൾഡർ ചേർക്കുക
-          file_input: അറയുടെ പേര്
-          'no': അല്ല
-        Upload:
-          added_msg: ചേർത്തു
-          upload_msg: അപ് ലോഡ് ചെയ്യുന്നു
-          'yes': ''
-      fileList:
-        no_file: ഇവിടെ ഫയലുകളില്ല
-      title: ഓൺലൈൻ ഫയൽ ഡ്രൈവ്
-    login:
-      main:
-        id_input: ഉപയോക്തൃനാമം നൽകുക
-        pass_input: അടയാളവാക്ക് നൽകുക
-        reset_btn: റീസെറ്റ് ചെയ്യുക
-        remember_btn: ലോഗിൻ ഓർമ്മിക്കുക
-      new_user:
-        add_btn: ഉപയോക്താവിനെ ചേർക്കുക
-        blank_msg: ''
-        main_pass: പ്രധാന രഹസ്യവാക്ക്
-      reset:
-        blank_msg: ദയവായി ശൂന്യതകൾ പൂരിപ്പിക്കുക
-        current_pass: നിലവിലെ രഹസ്യവാക്ക്
-        new_pass: പുതിയ അടയാളവാക്ക്
-        new_user_btn: പുതിയ ഉപയോക്താവിനെ ചേർക്കുക
-        reset_btn: അടയാളവാക്ക് പുനഃക്രമീകരിക്കുക
-      title: ഓൺലൈൻ ഫയൽ ഡ്രൈവ് ലോഗിൻ ചെയ്യുക
-server:
-  drive_api:
+      id_input: ഉപയോക്തൃനാമം നൽകുക
+      pass_input: അടയാളവാക്ക് നൽകുക
+      reset_btn: റീസെറ്റ് ചെയ്യുക
+      remember_btn: ലോഗിൻ ഓർമ്മിക്കുക
+    new_user:
+      add_btn: ഉപയോക്താവിനെ ചേർക്കുക
+      blank_msg: ''
+      main_pass: പ്രധാന രഹസ്യവാക്ക്
     reset:
-      user_not_found: ഉപയോക്താവിനെ കണ്ടില്ല
-      wrong_current_pass: തെറ്റായ നിലവിലെ പാസ് വേഡ്
-      success_detail: പാസ് വേഡ് വിജയകരമായി മാറ്റി
-    add_new_user:
-      user_already_exist: നൽകിയിരിക്കുന്ന ഉപയോക്തൃനാമം നിലവിലുണ്ടു്
-      wrong_main_pass: തെറ്റായ പ്രധാന അടയാളവാക്ക്
-      success_detail: പുതിയ ഉപയോക്താവിനെ വിജയകരമായി ചേർത്തു
-  drive_security:
-    user_not_found: ''
-    wrong_pass: തെറ്റായ പാസ് വേഡ്
-    wrong_credentials: സ്ഥിരീകരിക്കാത്ത ക്രെഡൻഷ്യലുകൾ
-    expired_credentials: കാലഹരണപ്പെട്ട ക്രെഡൻഷ്യലുകൾ
+      blank_msg: ദയവായി ശൂന്യതകൾ പൂരിപ്പിക്കുക
+      current_pass: നിലവിലെ രഹസ്യവാക്ക്
+      new_pass: പുതിയ അടയാളവാക്ക്
+      new_user_btn: പുതിയ ഉപയോക്താവിനെ ചേർക്കുക
+      reset_btn: അടയാളവാക്ക് പുനഃക്രമീകരിക്കുക
+    title: ഓൺലൈൻ ഫയൽ ഡ്രൈവ് ലോഗിൻ ചെയ്യുക

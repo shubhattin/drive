@@ -30,17 +30,17 @@ class Query:
         return DeleteInfo(**res)
 
     @strawberry.field
-    async def downloadID() -> List[str]:
-        return [deta_val("drive_id", "keys"), to_base64(deta_val("drive_key", "keys"))]
+    async def downloadID() -> str:
+        return to_base64(deta_val("drive_key", "keys"))
 
     @strawberry.field
-    async def uploadID() -> List[str]:
-        return [deta_val("drive_id", "keys"), to_base64(deta_val("drive_key", "keys"))]
+    async def uploadID() -> str:
+        return to_base64(deta_val("drive_key", "keys"))
 
 
 class User(BaseContext):
     def __init__(self, user: str):
-        self.user = user
+        self.user: str = user
 
 
 async def get_context(username: str = Depends(get_current_user)) -> User:

@@ -1,0 +1,14 @@
+drive_api:
+  add_new_user:
+    success_detail: سَپھَلَتآ پاُوروَکَ نَیے اُپَیاوکتآ کاو ستھآپِتَ کِیآ گَیآ
+    user_already_exist: آپَکے دوآرآ دِیآ گَیآ اُپَنآمَ پاُوروَ سے وِدیَمآنَ ہاَے
+    wrong_main_pass: اَنُچِتَ مُکھیَ گاُوڈھَپَدَ
+  reset:
+    success_detail: سَپھَلَتآ پاُوروَکَ گاُوڈھَپَدَ پَرِوَرتِتَ ہُآ
+    user_not_found: اُپَیاوکتآ نَہاِی مِلآ
+    wrong_current_pass: اَنُچِتَ وَرتَمآنَ گاُوڈھَپَدَمَ
+drive_security:
+  expired_credentials: پرَتیَیَپَتترَ کآلآتِکرَمِتَ ہاَے
+  user_not_found: ''
+  wrong_credentials: پرَتیَیَپَتترَ اَپرَمآݨِتَ ہاَے
+  wrong_pass: اَنُچِتَ گاُوڈھَپَدَ

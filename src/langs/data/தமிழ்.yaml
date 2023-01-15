@@ -1,61 +1,45 @@
-client:
-  drive:
+drive:
+  main:
+    fileBar:
+      Delete:
+        confirm_msg: தேர்ந்தெடுத்த கோப்புகளை நீக்க விரும்புகிறீர்களா?
+        deleted_msg: நீக்கப்பட்ட
+        'no': ''
+        'yes': ஆம்
+      Download:
+        download_msg: பதிவிறக்குகிறது
+      FileView:
+        download_msg: ''
+        view_error: கோப்பைக் காண ஒன்றை மட்டும் கிளிக் செய்யவும்
+      Logout:
+        confirm_msg: வெளியேற விரும்புகிறீர்களா?
+        'no': ''
+        'yes': ''
+      NewFolder:
+        add_file_msg: கோப்புறை சேர்
+        file_input: கோப்புறை பெயர்
+        'no': இல்லை
+      Upload:
+        added_msg: சேர்க்க
+        upload_msg: பதிவேற்றுகிறது
+        'yes': ''
+    fileList:
+      no_file: இங்கு கோப்புகள் இல்லை
+    title: ஆன்லைன் கோப்பு இயக்ககம்
+  login:
     main:
-      fileBar:
-        Delete:
-          confirm_msg: தேர்ந்தெடுத்த கோப்புகளை நீக்க விரும்புகிறீர்களா?
-          deleted_msg: நீக்கப்பட்ட
-          'no': ''
-          'yes': ஆம்
-        Download:
-          download_msg: பதிவிறக்குகிறது
-        FileView:
-          download_msg: ''
-          view_error: கோப்பைக் காண ஒன்றை மட்டும் கிளிக் செய்யவும்
-        Logout:
-          confirm_msg: வெளியேற விரும்புகிறீர்களா?
-          'no': ''
-          'yes': ''
-        NewFolder:
-          add_file_msg: கோப்புறை சேர்
-          file_input: கோப்புறை பெயர்
-          'no': இல்லை
-        Upload:
-          added_msg: சேர்க்க
-          upload_msg: பதிவேற்றுகிறது
-          'yes': ''
-      fileList:
-        no_file: இங்கு கோப்புகள் இல்லை
-      title: ஆன்லைன் கோப்பு இயக்ககம்
-    login:
-      main:
-        id_input: பயனர்பெயரை உள்ளிடவும்
-        pass_input: கடவுச்சொல்லை உள்ளிடவும்
-        reset_btn: திருட்டுப்பொருள்களைப் பெறுதல்
-        remember_btn: உள்நுழைவை நினைவில் கொள்க
-      new_user:
-        add_btn: பயனரை சேர்
-        blank_msg: ''
-        main_pass: பிரதான கடவுச்சொல்
-      reset:
-        blank_msg: தயவுசெய்து கோடிட்ட இடங்களை நிரப்பவும்
-        current_pass: நடப்பு கடவுச்சொல்
-        new_pass: புதிய கடவுச்சொல்
-        new_user_btn: புதிய பயனரை சேர்
-        reset_btn: கடவுச்சொல்லை மீட்டமை
-      title: உள்நுழைவு ஆன்லைன் கோப்பு இயக்ககம்
-server:
-  drive_api:
+      id_input: பயனர்பெயரை உள்ளிடவும்
+      pass_input: கடவுச்சொல்லை உள்ளிடவும்
+      reset_btn: திருட்டுப்பொருள்களைப் பெறுதல்
+      remember_btn: உள்நுழைவை நினைவில் கொள்க
+    new_user:
+      add_btn: பயனரை சேர்
+      blank_msg: ''
+      main_pass: பிரதான கடவுச்சொல்
     reset:
-      user_not_found: பயனர் காணவில்லை
-      wrong_current_pass: தவறான நடப்பு கடவுச்சொல்
-      success_detail: கடவுச்சொல் வெற்றிகரமாக மாற்றப்பட்டது
-    add_new_user:
-      user_already_exist: கொடுக்கப்பட்ட பயனர்பெயர் ஏற்கனவே உள்ளது
-      wrong_main_pass: தவறான முதன்மை கடவுச்சொல்
-      success_detail: புதிய பயனரை வெற்றிகரமாக சேர்த்தது
-  drive_security:
-    user_not_found: ''
-    wrong_pass: தவறான கடவுச்சொல்
-    wrong_credentials: சரிபார்க்கப்படாத நம்பிக்கைச்சான்றுகள்
-    expired_credentials: காலாவதியான நம்பிக்கைச்சான்றுகள்
+      blank_msg: தயவுசெய்து கோடிட்ட இடங்களை நிரப்பவும்
+      current_pass: நடப்பு கடவுச்சொல்
+      new_pass: புதிய கடவுச்சொல்
+      new_user_btn: புதிய பயனரை சேர்
+      reset_btn: கடவுச்சொல்லை மீட்டமை
+    title: உள்நுழைவு ஆன்லைன் கோப்பு இயக்ககம்

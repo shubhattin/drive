@@ -1,0 +1,14 @@
+drive_api:
+  add_new_user:
+    success_detail: यशस्वीरित्या नवीन वापरकर्ता जोडले
+    user_already_exist: दिलेले वापरकर्तानाव आधिपासूनच अस्तित्वात आहे
+    wrong_main_pass: चुकीचा मुख्य गुप्तशब्द
+  reset:
+    success_detail: यशस्वीरित्या बदललेला गुप्तशब्द
+    user_not_found: वापरकर्ता आढळला नाही
+    wrong_current_pass: चुकीचा वर्तमान गुप्तशब्द
+drive_security:
+  expired_credentials: कालबाह्य क्रेडेन्शियल्स
+  user_not_found: ''
+  wrong_credentials: सत्यापित क्रेडेन्शियल्स
+  wrong_pass: चुकीचा गुप्तशब्द

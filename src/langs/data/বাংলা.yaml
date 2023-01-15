@@ -1,61 +1,45 @@
-client:
-  drive:
+drive:
+  main:
+    fileBar:
+      Delete:
+        confirm_msg: আপনি কি নির্বাচিত ফাইলগুলি মুছতে চান?
+        deleted_msg: বিলোপ
+        'no': ''
+        'yes': হ্যাঁ
+      Download:
+        download_msg: ডাউনলোড
+      FileView:
+        download_msg: ''
+        view_error: ফাইল দেখতে শুধুমাত্র একটি ক্লিক করুন
+      Logout:
+        confirm_msg: তুমি কি লগআউট করতে চাও?
+        'no': ''
+        'yes': ''
+      NewFolder:
+        add_file_msg: ফোল্ডার জুড়ুন
+        file_input: ফোল্ডারের নাম
+        'no': না
+      Upload:
+        added_msg: যুক্ত
+        upload_msg: আপলোড করা হচ্ছে
+        'yes': ''
+    fileList:
+      no_file: এখানে কোন ফাইল নেই
+    title: অনলাইন ফাইল ড্রাইভ
+  login:
     main:
-      fileBar:
-        Delete:
-          confirm_msg: আপনি কি নির্বাচিত ফাইলগুলি মুছতে চান?
-          deleted_msg: বিলোপ
-          'no': ''
-          'yes': হ্যাঁ
-        Download:
-          download_msg: ডাউনলোড
-        FileView:
-          download_msg: ''
-          view_error: ফাইল দেখতে শুধুমাত্র একটি ক্লিক করুন
-        Logout:
-          confirm_msg: তুমি কি লগআউট করতে চাও?
-          'no': ''
-          'yes': ''
-        NewFolder:
-          add_file_msg: ফোল্ডার জুড়ুন
-          file_input: ফোল্ডারের নাম
-          'no': না
-        Upload:
-          added_msg: যুক্ত
-          upload_msg: আপলোড করা হচ্ছে
-          'yes': ''
-      fileList:
-        no_file: এখানে কোন ফাইল নেই
-      title: অনলাইন ফাইল ড্রাইভ
-    login:
-      main:
-        id_input: ব্যবহারকারীর নাম লিখুন
-        pass_input: পাসওয়ার্ড লিখুন
-        reset_btn: রিসেট
-        remember_btn: লগইন মনে রাখবেন
-      new_user:
-        add_btn: ব্যবহারকারী যোগ করুন
-        blank_msg: ''
-        main_pass: প্রধান পাসওয়ার্ড
-      reset:
-        blank_msg: অনুগ্রহ করে শূন্যস্থানগুলি পূরণ করুন
-        current_pass: বর্তমান পাসওয়ার্ড
-        new_pass: নতুন পাসওয়ার্ড
-        new_user_btn: নতুন ব্যবহারকারী যুক্ত করুন
-        reset_btn: পাসওয়ার্ড রিসেট করুন
-      title: লগইন অনলাইন ফাইল ড্রাইভ
-server:
-  drive_api:
+      id_input: ব্যবহারকারীর নাম লিখুন
+      pass_input: পাসওয়ার্ড লিখুন
+      reset_btn: রিসেট
+      remember_btn: লগইন মনে রাখবেন
+    new_user:
+      add_btn: ব্যবহারকারী যোগ করুন
+      blank_msg: ''
+      main_pass: প্রধান পাসওয়ার্ড
     reset:
-      user_not_found: ব্যবহারকারী খুঁজে পাওয়া যায়নি
-      wrong_current_pass: ভুল বর্তমান পাসওয়ার্ড
-      success_detail: সফলভাবে পাসওয়ার্ড পরিবর্তন করা হয়েছে
-    add_new_user:
-      user_already_exist: প্রদত্ত ব্যবহারকারীর নাম ইতিমধ্যে বিদ্যমান
-      wrong_main_pass: ভুল প্রধান পাসওয়ার্ড
-      success_detail: সফলভাবে নতুন ব্যবহারকারী যোগ করা হয়েছে
-  drive_security:
-    user_not_found: ''
-    wrong_pass: ভুল পাসওয়ার্ড
-    wrong_credentials: অযাচাইকৃত প্রমাণপত্রাদি
-    expired_credentials: মেয়াদোত্তীর্ণ প্রমাণপত্রাদি
+      blank_msg: অনুগ্রহ করে শূন্যস্থানগুলি পূরণ করুন
+      current_pass: বর্তমান পাসওয়ার্ড
+      new_pass: নতুন পাসওয়ার্ড
+      new_user_btn: নতুন ব্যবহারকারী যুক্ত করুন
+      reset_btn: পাসওয়ার্ড রিসেট করুন
+    title: লগইন অনলাইন ফাইল ড্রাইভ

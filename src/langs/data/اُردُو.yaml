@@ -1,62 +1,45 @@
-client:
-  drive:
+drive:
+  main:
+    fileBar:
+      Delete:
+        confirm_msg: کیآ آپَ چَیَنِتَ سَںچِتاوں کاو پرَݨَشٹَ کَرَنآ چَہَتے ہاَےں ؟
+        deleted_msg: پرَݨَشٹَ کِیآ گَیآ
+        'no': ''
+        'yes': ہآںں
+      Download:
+        download_msg: اَوآہَرِتَ ہاو رَہآ
+      FileView:
+        download_msg: ''
+        view_error: سَںچِتَ دےکھَنے کے لِے کےوَلَ ےکَ ہِ دَبآےں
+      Logout:
+        confirm_msg: کیآ آپَ نِرپرَوےشَ کَرَنآ چآہَتے ہاَےں ؟
+        'no': ''
+        'yes': ''
+      NewFolder:
+        add_file_msg: سَںچَیَ یاوجِتَ کَرےں
+        file_input: سَںچَیَ کآ نآمَ
+        'no': نَہاِیں
+      Upload:
+        added_msg: یُکتَ کِیآ گَیآ
+        upload_msg: اُپآراوپِتَ ہاو رَہآ
+        'yes': ''
+    fileList:
+      no_file: یَہآں کاواِی سَںچِتَ نَہاِی ہاَے
+    title: سَںچِکآ جآلَورِتتَکَ
+  login:
     main:
-      fileBar:
-        Delete:
-          confirm_msg: کیآ آپَ چَیَنِتَ سَںچِتاوں کاو پرَݨَشٹَ کَرَنآ چَہَتے ہاَےں
-            ؟
-          deleted_msg: پرَݨَشٹَ کِیآ گَیآ
-          'no': ''
-          'yes': ہآںں
-        Download:
-          download_msg: اَوآہَرِتَ ہاو رَہآ
-        FileView:
-          download_msg: ''
-          view_error: سَںچِتَ دےکھَنے کے لِے کےوَلَ ےکَ ہِ دَبآےں
-        Logout:
-          confirm_msg: کیآ آپَ نِرپرَوےشَ کَرَنآ چآہَتے ہاَےں ؟
-          'no': ''
-          'yes': ''
-        NewFolder:
-          add_file_msg: سَںچَیَ یاوجِتَ کَرےں
-          file_input: سَںچَیَ کآ نآمَ
-          'no': نَہاِیں
-        Upload:
-          added_msg: یُکتَ کِیآ گَیآ
-          upload_msg: اُپآراوپِتَ ہاو رَہآ
-          'yes': ''
-      fileList:
-        no_file: یَہآں کاواِی سَںچِتَ نَہاِی ہاَے
-      title: سَںچِکآ جآلَورِتتَکَ
-    login:
-      main:
-        id_input: اُپَنآمَ لِکھےں
-        pass_input: گاُوڈھَپَدَ لِکھےں
-        reset_btn: پُنَرستھآپَنَ
-        remember_btn: سَمپرَوےشَ یآدَ رَکھےں
-      new_user:
-        add_btn: اُپَیاوکتآ جاوڑےں
-        blank_msg: ''
-        main_pass: سَمماُولَ گاُوڈھَپَدَ
-      reset:
-        blank_msg: کرِپَیآ رِکتَ ستھآناوں کاو بھَرےں
-        current_pass: وَرتَمآنَ گاُوڈھَپَدَ
-        new_pass: نَوَ گاُوڈھَپَدَ
-        new_user_btn: نَوَ اُپَیاوکتآ کاو جاوڑےں
-        reset_btn: گاُوڈھَپَدَ کاو پُنَرپرَوَرتِتَ کَرےں
-      title: سَںچِکآ جآلَورِتتَکَ سَمپرَوےشَ
-server:
-  drive_api:
+      id_input: اُپَنآمَ لِکھےں
+      pass_input: گاُوڈھَپَدَ لِکھےں
+      reset_btn: پُنَرستھآپَنَ
+      remember_btn: سَمپرَوےشَ یآدَ رَکھےں
+    new_user:
+      add_btn: اُپَیاوکتآ جاوڑےں
+      blank_msg: ''
+      main_pass: سَمماُولَ گاُوڈھَپَدَ
     reset:
-      user_not_found: اُپَیاوکتآ نَہاِی مِلآ
-      wrong_current_pass: اَنُچِتَ وَرتَمآنَ گاُوڈھَپَدَمَ
-      success_detail: سَپھَلَتآ پاُوروَکَ گاُوڈھَپَدَ پَرِوَرتِتَ ہُآ
-    add_new_user:
-      user_already_exist: آپَکے دوآرآ دِیآ گَیآ اُپَنآمَ پاُوروَ سے وِدیَمآنَ ہاَے
-      wrong_main_pass: اَنُچِتَ مُکھیَ گاُوڈھَپَدَ
-      success_detail: سَپھَلَتآ پاُوروَکَ نَیے اُپَیاوکتآ کاو ستھآپِتَ کِیآ گَیآ
-  drive_security:
-    user_not_found: ''
-    wrong_pass: اَنُچِتَ گاُوڈھَپَدَ
-    wrong_credentials: پرَتیَیَپَتترَ اَپرَمآݨِتَ ہاَے
-    expired_credentials: پرَتیَیَپَتترَ کآلآتِکرَمِتَ ہاَے
+      blank_msg: کرِپَیآ رِکتَ ستھآناوں کاو بھَرےں
+      current_pass: وَرتَمآنَ گاُوڈھَپَدَ
+      new_pass: نَوَ گاُوڈھَپَدَ
+      new_user_btn: نَوَ اُپَیاوکتآ کاو جاوڑےں
+      reset_btn: گاُوڈھَپَدَ کاو پُنَرپرَوَرتِتَ کَرےں
+    title: سَںچِکآ جآلَورِتتَکَ سَمپرَوےشَ

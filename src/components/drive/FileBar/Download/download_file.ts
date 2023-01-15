@@ -13,25 +13,31 @@ export const download_file = async (isView: boolean) => {
   const list = get(selectedFiles).map(
     (val) => (get(currentLoc) === '/' ? '' : get(currentLoc)) + '/' + val
   );
-  const ids = (
-    await graphql(
-      `
-        {
-          downloadID
-        }
-      `
-    )
-  )['downloadID'] as string[];
+  const ID = {
+    download: window.atob(
+      (
+        await graphql(
+          `
+            {
+              downloadID
+            }
+          `
+        )
+      )['downloadID'] as string
+    ),
+    project: ''
+  };
+  ID.project = ID.download.split('_')[0];
   const down_sanchit = async (i = 0) => {
     const nm = list[i];
     const nm1 = get(selectedFiles)[list.indexOf(nm)]; // name without prefix
     fileName.set(nm1);
     const TOKEN = JSON.parse(window.atob(getCookieVal(AUTH_ID)?.split('.')[1]!)).sub as string;
-    const URL = get_URL(ids[0], TOKEN);
+    const URL = get_URL(ID.project, TOKEN);
     const xhr = new XMLHttpRequest();
     currentReq.set(xhr);
     xhr.open('GET', `${URL}/files/download?name=${nm}`, true);
-    xhr.setRequestHeader('X-Api-Key', window.atob(ids[1]));
+    xhr.setRequestHeader('X-Api-Key', ID.download);
     xhr.addEventListener(
       'progress',
       (evt) => {

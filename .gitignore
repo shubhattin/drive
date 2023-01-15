@@ -9,10 +9,5 @@ node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
-/py/o
-/py/.venv
 */.env
 *__pycache__
-
-/src/langs/r.json
-/src/react

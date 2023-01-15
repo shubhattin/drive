@@ -60,5 +60,9 @@ sh.start_thread(lambda: sh.prettier_beautify("data"))
 
 if True:  # Adding a model for TypeScript
     model = anu["संस्कृतम्"]
-    sh.write("model.ts", sh.generate_typescript_data_model(model, "dattType"))
-    sh.start_thread(lambda: sh.prettier_beautify("model.ts"))
+    sh.write(
+        "lang_data_model.py",
+        sh.generate_pydantic_data_model(model).replace(
+            "class Model", "class LangDBModel"
+        ),
+    )
