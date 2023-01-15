@@ -35,9 +35,14 @@ const AharaNam = (url: string, op: options = {}) => {
     delete op.form;
     op.body = data;
   }
-  const htmlID = document.querySelector('html')?.lang;
-  if (!op.locale && htmlID) op.locale = htmlID;
-  if (op.locale) op.headers['X-bhAShA'] = op.locale;
+  if (typeof document !== 'undefined') {
+    const htmlID = document.querySelector('html')?.lang;
+    if (!op.locale && htmlID) op.locale = htmlID;
+  }
+  if (op.locale) {
+    op.headers['X-bhAShA'] = op.locale;
+    // op.headers['Accept-Language'] = op.locale;
+  }
   // url = (!url.startsWith('http') && !op.noUrlAdd ? URL : '') + url;
   // ^ this can be used when we want to prefix the request with some external url
   return fetch(url, op);
