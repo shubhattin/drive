@@ -32,26 +32,26 @@
     <div
       in:scale
       out:scale
-      class="p-1 fixed z-10 left-2 top-4 border-2 border-blue-700 rounded-lg bg-[aliceblue]"
+      class="fixed left-2 top-4 z-10 rounded-lg border-2 border-blue-700 bg-[aliceblue] p-1"
     >
       <form on:submit|preventDefault={addFolder}>
         <input
           bind:this={inputElmt}
           type="text"
-          class="px-1 mb-2 border border-black rounded"
+          class="mb-2 rounded border border-black px-1"
           placeholder={lekh.file_input}
           bind:value={val}
         />
       </form>
       <button
         on:click={addFolder}
-        class="rounded-lg border-green-600 border-2 px-1 mr-2 py-[2px] active:border-black active:text-[green]"
+        class="mr-2 rounded-lg border-2 border-green-600 px-1 py-[2px] active:border-black active:text-[green]"
       >
         {lekh.add_file_msg}
       </button>
       <button
         on:click={() => (clicked = false)}
-        class="rounded-lg border-rose-500 border-2 px-1 mr-2 py-[2px] active:border-black active:text-[red]"
+        class="mr-2 rounded-lg border-2 border-rose-500 px-1 py-[2px] active:border-black active:text-[red]"
       >
         {lekh.no}
       </button>

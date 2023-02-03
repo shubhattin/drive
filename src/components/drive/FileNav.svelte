@@ -13,14 +13,14 @@
   setGoBackInFileList(go_back);
 </script>
 
-<div class="mt-2 mb-1 5">
+<div class="mt-2 mb-1">
   <button on:click={go_back}>
     <Icon src={BiArrowBack} className="ml-[2px] text-2xl mr-3 cursor-button active:text-blue-800" />
   </button>
   <span class="font-semibold text-violet-900">
     <button
       on:click={() => currentLoc.set('/')}
-      class="hover:text-black active:text-[red] px-[2px]"
+      class="px-[2px] hover:text-black active:text-[red]"
     >
       /
     </button>

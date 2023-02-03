@@ -143,7 +143,7 @@
     <div
       in:fly
       out:scale
-      class="p-1 fixed z-10 left-2 top-4 border-2 border-blue-700 rounded-lg bg-[aliceblue]"
+      class="fixed left-2 top-4 z-10 rounded-lg border-2 border-blue-700 bg-[aliceblue] p-1"
     >
       <div>
         <input
@@ -151,9 +151,9 @@
           multiple
           bind:files={filesToUpload}
           class={clsx(
-            'file:mr-1 file:py-1 file:px-2 file:rounded-full file:border-0 file:text-md file:font-semibold  file:text-white',
+            'file:text-md file:mr-1 file:rounded-full file:border-0 file:py-1 file:px-2 file:font-semibold  file:text-white',
             'file:bg-gradient-to-r file:from-blue-600 file:to-amber-600',
-            'hover:file:cursor-pointer hover:file:opacity-80 text-xs text-grey-500'
+            'text-grey-500 text-xs hover:file:cursor-pointer hover:file:opacity-80'
           )}
         />
         <button on:click={startUpload}>
@@ -162,7 +162,7 @@
       </div>
       <button
         on:click={() => (clicked = false)}
-        class="rounded-lg border-green-600 border-2 px-1 mr-2 mt-1.5 py-[2px] active:border-black active:text-[green]"
+        class="mr-2 mt-1.5 rounded-lg border-2 border-green-600 px-1 py-[2px] active:border-black active:text-[green]"
       >
         {lekh.yes}
       </button>
@@ -172,12 +172,12 @@
     <div
       in:scale
       out:slide
-      class="p-1 pl-1.5 fixed z-10 left-2 bottom-2 border-2 border-[red] rounded-lg bg-[aliceblue] min-w-[100px] min-h-[20px] max-w-[90%]"
+      class="fixed left-2 bottom-2 z-10 min-h-[20px] min-w-[100px] max-w-[90%] rounded-lg border-2 border-[red] bg-[aliceblue] p-1 pl-1.5"
     >
       <div class="font-semibold">
         {lekh.upload_msg} - <span class="text-[brown]">{fileName}</span>
       </div>
-      <div class="font-semibold text-lg">
+      <div class="text-lg font-semibold">
         <span>
           <span class="text-purple-600">{downloadedSize}</span>/
           <span class="text-violet-800">{totalSize}</span>

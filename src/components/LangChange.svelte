@@ -14,7 +14,7 @@
 
 <select
   bind:value
-  class="w-4 h-4 fixed bottom-0 right-1 bg-zinc-100 outline-none"
+  class="fixed bottom-0 right-1 h-4 w-4 bg-zinc-100 outline-none"
   on:change={() => change_locale(value)}
 >
   {#each locale_keys as lng (lng)}

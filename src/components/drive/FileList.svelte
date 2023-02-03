@@ -29,11 +29,11 @@
 </script>
 
 <div
-  class="select-text bg-[#fbfffb] inline-block mt-2 mx-1 mb-32 p-1.5 border-2 border-amber-800 min-w-[300px] min-h-[250px] rounded-md"
+  class="mx-1 mt-2 mb-32 inline-block min-h-[250px] min-w-[300px] select-text rounded-md border-2 border-amber-800 bg-[#fbfffb] p-1.5"
 >
   {#if !$fileDataFetchDone}
     <svg
-      class="animate-spin ml-28 mt-24 h-10 w-10 text-blue-700"
+      class="ml-28 mt-24 h-10 w-10 animate-spin text-blue-700"
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
@@ -50,12 +50,12 @@
   {:else}
     {#each $currentFolders as key (key)}
       <label
-        class="text-[purple] font-semibold hover:text-black"
+        class="font-semibold text-[purple] hover:text-black"
         on:click={() => folderOpen(key)}
         on:keydown
       >
-        <input type="checkbox" class="mr-1 w-0 h-0 absolute invisible" disabled />
-        <div class="flex mb-1 p-[2px] whitespace-pre-wrap active:text-orange-600 transition">
+        <input type="checkbox" class="invisible absolute mr-1 h-0 w-0" disabled />
+        <div class="mb-1 flex whitespace-pre-wrap p-[2px] transition active:text-orange-600">
           <ImageSpan className="w-6 h-6 mr-1.5" src={folderImg} />
           {key}
         </div>
@@ -63,15 +63,15 @@
     {/each}
     {#each $currentFiles as key (key)}
       {@const src = get_img_path(key.split('.').pop())}
-      <label class="text-[#00f] font-semibold hover:text-black">
+      <label class="font-semibold text-[#00f] hover:text-black">
         <input
           type="checkbox"
-          class="mr-1 w-0 h-0 absolute peer invisible"
+          class="peer invisible absolute mr-1 h-0 w-0"
           bind:group={$selectedFiles}
           value={key}
         />
         <div
-          class="flex mb-1 p-[2px] rounded-sm whitespace-pre-wrap active:text-rose-600 peer-checked:bg-[#f2ff82] hover:bg-zinc-100 transition"
+          class="mb-1 flex whitespace-pre-wrap rounded-sm p-[2px] transition hover:bg-zinc-100 active:text-rose-600 peer-checked:bg-[#f2ff82]"
         >
           <ImageSpan className="w-5 h-5 mr-1.5 mt-1" {src} />
           {key}

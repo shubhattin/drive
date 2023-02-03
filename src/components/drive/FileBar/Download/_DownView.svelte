@@ -50,9 +50,9 @@
     <div
       in:scale
       out:scale
-      class="w-11/12 h-11/12 p-1 fixed z-10 left-2 top-2 border-2 border-blue-700 rounded-lg bg-[aliceblue]"
+      class="h-11/12 fixed left-2 top-2 z-10 w-11/12 rounded-lg border-2 border-blue-700 bg-[aliceblue] p-1"
     >
-      <div class="flex ml-4" style="justify-content: space-between;">
+      <div class="ml-4 flex" style="justify-content: space-between;">
         <span class="text-2xl">
           <a href={$iframeViewSrc} target="_blank" class="ml-2" rel="noreferrer">
             <Icon src={FiExternalLink} className="text-[blue] hover:text-blue-700" />
@@ -65,19 +65,19 @@
           <Icon src={CgClose} className="text-4xl text-red-500 cursor-button active:text-black" />
         </button>
       </div>
-      <iframe src={$iframeViewSrc} class="m-1 mt-1 w-[98%] h-[80vh]" title="सञ्चितदर्शनपट्टिका" />
+      <iframe src={$iframeViewSrc} class="m-1 mt-1 h-[80vh] w-[98%]" title="सञ्चितदर्शनपट्टिका" />
     </div>
   {/if}
   {#if $downloading}
     <div
       in:scale
       out:slide
-      class="p-1 pl-1.5 fixed z-10 left-2 bottom-2 border-2 border-[red] rounded-lg bg-[aliceblue] min-w-[100px] min-h-[20px] max-w-[90%]"
+      class="fixed left-2 bottom-2 z-10 min-h-[20px] min-w-[100px] max-w-[90%] rounded-lg border-2 border-[red] bg-[aliceblue] p-1 pl-1.5"
     >
       <div class="font-semibold">
         {lekh.download_msg} - <span class="text-[brown]">{$fileName}</span>
       </div>
-      <div class="font-semibold text-lg">
+      <div class="text-lg font-semibold">
         <span>
           <span class="text-purple-600">{$downloadedSize}</span>/
           <span class="text-violet-800">{$totalSize}</span>

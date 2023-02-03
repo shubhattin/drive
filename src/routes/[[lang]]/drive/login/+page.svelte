@@ -73,7 +73,7 @@
     autoComplete="off"
     spellCheck="false"
     class={clsx(
-      'block mb-2 border-2 rounded-md outline-none text-2xl p-1 w-44 focus:ring-2 transition-all duration-200',
+      'mb-2 block w-44 rounded-md border-2 p-1 text-2xl outline-none transition-all duration-200 focus:ring-2',
       !err
         ? 'border-blue-800 ring-green-500 placeholder:text-zinc-400'
         : 'border-rose-600 ring-rose-200 placeholder:text-orange-400'
@@ -90,7 +90,7 @@
       placeholder={lekh.pass_input}
       autoComplete="off"
       class={clsx(
-        'block my-2 border-2 rounded-md outline-none text-2xl p-1 w-44 focus:ring-2 transition-all duration-200',
+        'my-2 block w-44 rounded-md border-2 p-1 text-2xl outline-none transition-all duration-200 focus:ring-2',
         !err
           ? 'border-blue-800 ring-green-500 placeholder:text-zinc-400'
           : 'border-rose-600 ring-rose-200 placeholder:text-orange-400'
@@ -106,8 +106,8 @@
   {#if show_remember_btn}
     <label
       class={clsx(
-        'block text-cyan-800 font-medium p-1 rounded-lg',
-        'active:border-blue-600 active:text-black font-medium',
+        'block rounded-lg p-1 font-medium text-cyan-800',
+        'font-medium active:border-blue-600 active:text-black',
         `transition ${$remember ? 'text-[green]' : 'text-[red]'}`
       )}
     >
@@ -120,7 +120,7 @@
   </button>
   <button
     on:click={() => mode.set('reset')}
-    class="border-2 border-fuchsia-700 text-cyan-800 font-medium p-1 rounded-lg mx-2 active:border-blue-600 active:text-red-500"
+    class="mx-2 rounded-lg border-2 border-fuchsia-700 p-1 font-medium text-cyan-800 active:border-blue-600 active:text-red-500"
   >
     <Icon src={BiReset} className="text-2xl text-black" />
     {lekh.reset_btn}

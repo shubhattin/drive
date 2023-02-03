@@ -32,13 +32,13 @@
 <div>
   <input
     type="password"
-    class="block mb-1 border-2 border-emerald-600 rounded-lg p-1 w-40 text-sm"
+    class="mb-1 block w-40 rounded-lg border-2 border-emerald-600 p-1 text-sm"
     bind:value={mainPass}
     placeholder={lekh.main_pass}
   />
   <button
     on:click={add_new_user}
-    class="border-2 border-orange-700 text-violet-700 font-medium p-1 rounded-lg  active:border-blue-600 active:text-red-500"
+    class="rounded-lg border-2 border-orange-700 p-1 font-medium text-violet-700  active:border-blue-600 active:text-red-500"
   >
     <Icon src={HiSolidUserAdd} className="text-2xl text-black mr-1 ml-[2px]" />
     {lekh.add_btn}

@@ -23,18 +23,18 @@
   {#if clicked}
     <div
       in:scale
-      class="p-1 fixed z-10 left-2 top-4 border-2 border-blue-700 rounded-lg bg-[aliceblue]"
+      class="fixed left-2 top-4 z-10 rounded-lg border-2 border-blue-700 bg-[aliceblue] p-1"
     >
       <div>{lekh.confirm_msg}</div>
       <button
         on:click={logout}
-        class="rounded-lg border-green-600 border-2 px-1 mr-2 py-[2px] active:border-black active:text-[green]"
+        class="mr-2 rounded-lg border-2 border-green-600 px-1 py-[2px] active:border-black active:text-[green]"
       >
         {lekh.yes}
       </button>
       <button
         on:click={() => (clicked = false)}
-        class="rounded-lg border-rose-500 border-2 px-1 mr-2 py-[2px] active:border-black active:text-[red]"
+        class="mr-2 rounded-lg border-2 border-rose-500 px-1 py-[2px] active:border-black active:text-[red]"
       >
         {lekh.no}
       </button>

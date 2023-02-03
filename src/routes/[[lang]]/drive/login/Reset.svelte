@@ -34,26 +34,26 @@
 <div>
   <input
     type="password"
-    class="block mb-1 border-2 border-emerald-600 rounded-lg p-1 w-40 text-sm"
+    class="mb-1 block w-40 rounded-lg border-2 border-emerald-600 p-1 text-sm"
     bind:value={currentPass}
     placeholder={lekh.current_pass}
   />
   <input
     type="password"
-    class="block mb-1 border-2 border-emerald-600 rounded-lg p-1 w-40 text-sm"
+    class="mb-1 block w-40 rounded-lg border-2 border-emerald-600 p-1 text-sm"
     bind:value={newPass}
     placeholder={lekh.new_pass}
   />
   <button
     on:click={reset}
-    class="block border-2 border-fuchsia-700 text-cyan-800 font-medium p-1 rounded-lg mb-1 active:border-blue-600 active:text-red-500"
+    class="mb-1 block rounded-lg border-2 border-fuchsia-700 p-1 font-medium text-cyan-800 active:border-blue-600 active:text-red-500"
   >
     <Icon src={BiReset} className="text-2xl text-black" />
     {lekh.reset_btn}
   </button>
   <button
     on:click={() => mode.set('new_user')}
-    class="border-2 border-lime-600 text-emerald-600 font-medium p-1 rounded-lg active:border-blue-600 active:text-red-500"
+    class="rounded-lg border-2 border-lime-600 p-1 font-medium text-emerald-600 active:border-blue-600 active:text-red-500"
   >
     <Icon src={AiOutlineUserAdd} className="text-xl text-black" />
     {lekh.new_user_btn}
