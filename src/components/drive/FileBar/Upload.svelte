@@ -107,9 +107,9 @@
               downloadedSize = 0;
               totalSize = 0;
               if (filesToUpload.length !== ++i) {
-                filesToUpload = null!;
                 upld(i);
               } else {
+                filesToUpload = null!;
                 $kAryaCount = 0;
                 uploading = false;
               }

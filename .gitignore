@@ -2,6 +2,7 @@
 node_modules
 /build
 /.svelte-kit
+/.space
 /package
 .env
 .env.*
@@ -11,3 +12,8 @@ vite.config.ts.timestamp-*
 
 */.env
 *__pycache__
+
+py/public
+py/requirements.txt
+py/langs/data/json
+.space

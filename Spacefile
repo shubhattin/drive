@@ -1,0 +1,13 @@
+v: 0
+icon: ./Icon.png
+app_name: 'drive'
+micros:
+  - name: python-app
+    src: ./py
+    engine: python3.9
+    primary: true
+    public_routes:
+      - '/*'
+    presets:
+      env:
+        - name: JWT_KEY

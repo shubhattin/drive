@@ -27,7 +27,7 @@ class भाषादत्तांश:
         else:
             # for some reason unicode named files are not working in deta server
             # so using this
-            data: Dict = json.loads(read_file(f"langs/data/{locale}.json"))
+            data: Dict = json.loads(read_file(f"langs/data/json/{locale}.json"))
         dt = self.__reuse(data)
         self.data[locale] = dt
         if PROD_ENV:

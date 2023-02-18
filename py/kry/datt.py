@@ -1,11 +1,19 @@
 import os, json
 from deta import Deta
 
-DEV_ENV: bool = os.getenv("PIPENV_ACTIVE") == "1"
+DEV_ENV: bool = (
+    (os.getenv("DETA_SPACE_APP") and os.getenv("DETA_SPACE_APP") != "true")
+    or (os.getenv("VIRTUAL_ENV") is not None)
+    or (os.getenv("PIPENV_ACTIVE") and os.getenv("PIPENV_ACTIVE") == "1")
+)
 PROD_ENV: bool = not DEV_ENV
+DEV_ENV = not PROD_ENV
 
 if DEV_ENV:
     from .gupta import from_base64
+    import dotenv
+
+    dotenv.load_dotenv()
 
     deta = Deta(from_base64(os.getenv("DETA_KEY")))
 else:

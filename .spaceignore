@@ -1,0 +1,8 @@
+py/.venv
+node_modules
+/.svelte-kit
+.env.me
+
+*/.env
+*__pycache__
+*/a.ipynb
