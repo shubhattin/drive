@@ -1,8 +1,11 @@
-py/.venv
-node_modules
-/.svelte-kit
+py/.venv/
+node_modules/
+build/
+.svelte-kit/
 .env.me
 
 */.env
 *__pycache__
 */a.ipynb
+src/
+tests/
