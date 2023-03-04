@@ -24,9 +24,8 @@ async def middleware(req: Request, call_next):
             {
                 "X-Robots-Tag": "noindex",
                 "X-Frame-Options": "deny",
-                "Cache-Control": "No-Store"
-                if DEV_ENV
-                else f"public, max-age={CACHE_DURATION}",
+                "Cache-Control": "No-Store" if DEV_ENV else "public, max-age=0",
+                # Using the E-tag caching instead
             }
         )
     for x in head:
