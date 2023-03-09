@@ -21,6 +21,7 @@ drive:
         'no': नहीं
       Upload:
         added_msg: युक्त किया गया
+        already_exists: संचित पहले से ही है
         upload_msg: उपारोपित हो रहा
         'yes': ''
     fileList:

@@ -21,6 +21,7 @@ drive:
         'no': 'No'
       Upload:
         added_msg: Added
+        already_exists: File already exists
         upload_msg: Uploading
         'yes': ''
     fileList:

@@ -21,6 +21,7 @@ drive:
         'no': नैवम्
       Upload:
         added_msg: इत्यिदं युक्तः
+        already_exists: सञ्चितं पूर्वतो विद्यते
         upload_msg: उपारोपनिदानीम्
         'yes': ''
     fileList:

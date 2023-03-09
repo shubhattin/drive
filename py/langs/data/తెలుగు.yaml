@@ -1,14 +1,14 @@
 drive_api:
   add_new_user:
-    success_detail: కొత్త యూజర్ విజయవంతంగా జోడించబడ్డాడు
-    user_already_exist: ఇవ్వబడ్డ యూజర్ నేమ్ ఇప్పటికే ఉనికిలో ఉంది
-    wrong_main_pass: తప్పు ప్రధాన అనుమతిపదం
+    success_detail: కొత్త యూజర్ ని విజయవంతంగా జోడించారు
+    user_already_exist: ఇవ్వబడ్డ యూజర్ నేమ్ ఇప్పటికే ఉంది
+    wrong_main_pass: తప్పు ప్రధాన పాస్ వర్డ్
   reset:
-    success_detail: పాస్ వర్డ్ విజయవంతంగా మార్చబడింది
-    user_not_found: వినియోగదారు కనుగొనబడలేదు
-    wrong_current_pass: తప్పు ప్రస్తుత అనుమతిపదం
+    success_detail: పాస్ వర్డ్ ను విజయవంతంగా మార్చింది
+    user_not_found: యూజర్ కనుగొనబడలేదు
+    wrong_current_pass: తప్పు ప్రస్తుత పాస్ వర్డ్
 drive_security:
-  expired_credentials: గడువు తీరిన ఆధారాలు
+  expired_credentials: గడువు ముగిసిన ఆధారాలు
   user_not_found: ''
-  wrong_credentials: ధృవీకరించని ఆధారాలు
+  wrong_credentials: ధృవీకరించని Credentials
   wrong_pass: తప్పు పాస్ వర్డ్

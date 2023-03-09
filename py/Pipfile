@@ -18,6 +18,8 @@ shubhlipi = "*"
 uvicorn = "*"
 pyyaml = "*"
 python-dotenv = "*"
+black = "*"
+datamodel-code-generator = "*"
 
 [requires]
 python_version = "3"

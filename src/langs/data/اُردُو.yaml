@@ -21,6 +21,7 @@ drive:
         'no': نَہاِیں
       Upload:
         added_msg: یُکتَ کِیآ گَیآ
+        already_exists: 404 Not Found
         upload_msg: اُپآراوپِتَ ہاو رَہآ
         'yes': ''
     fileList:

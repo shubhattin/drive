@@ -21,6 +21,7 @@ drive:
         'no': இல்லை
       Upload:
         added_msg: சேர்க்க
+        already_exists: கோப்பு ஏற்கனவே உள்ளது
         upload_msg: பதிவேற்றுகிறது
         'yes': ''
     fileList:

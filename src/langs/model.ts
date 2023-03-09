@@ -27,6 +27,7 @@ export interface dattType {
         };
         Upload: {
           added_msg: string;
+          already_exists: string;
           upload_msg: string;
           yes: string;
         };

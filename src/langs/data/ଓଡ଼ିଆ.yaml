@@ -21,6 +21,7 @@ drive:
         'no': ନାହିଁ
       Upload:
         added_msg: ଯୋଡାଯାଇଛି
+        already_exists: ଫାଇଲ୍ ପୂର୍ବରୁ ବିଦ୍ୟମାନ ଅଛି
         upload_msg: ଅପଲୋଡ୍ ହେଉଛି
         'yes': ''
     fileList:

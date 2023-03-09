@@ -11,7 +11,7 @@
   import { fetch_post, Fetch } from '@tools/fetch';
   import { toast } from '@tools/toast';
   import { set_val_from_adress } from '@tools/json';
-  import { hash_256, salt } from '@tools/kry/gupta';
+  import { hash_256, salt, str_to_bin_str } from '@tools/kry/gupta';
   import { MIME as MIME_TYPE_LIST } from '../datt/mime';
   import type { fileInfoType } from '@state/drive_types';
 
@@ -45,7 +45,7 @@
               }
             `
           )
-        )['uploadID'] as string
+        ).uploadID as string
       ),
       project: ''
     };
@@ -53,7 +53,7 @@
     const upld = async (i = 0) => {
       const file = filesToUpload[i];
       if (check_for_file_in_current_directory(file.name)) {
-        toast.error(`${file.name} File Already exists`, 2500, 'top-centre');
+        toast.error(`${file.name} ${lekh.already_exists}`, 2500, 'top-centre');
         continue_next_file(i);
         return;
       }
@@ -72,7 +72,7 @@
         date: new Date().toUTCString(),
         key: ''
       };
-      const FILE_HASH_NAME = await hash_256(JSON.stringify(fileInfo) + salt());
+      const FILE_HASH_NAME = await hash_256(fileInfo.date + salt());
       fileInfo.key = FILE_HASH_NAME;
       const AkAra = file.size / (1024 * 1024);
       fileName = file.name;
@@ -145,7 +145,7 @@
                   }
                 `,
                 {
-                  name: window.btoa(`${prefix}/${file.name}`),
+                  name: window.btoa(str_to_bin_str(`${prefix}/${file.name}`)),
                   size: fileInfo.size,
                   date: fileInfo.date,
                   mime: fileInfo.mime,

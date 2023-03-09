@@ -21,6 +21,7 @@ drive:
         'no': അല്ല
       Upload:
         added_msg: ചേർത്തു
+        already_exists: ഫയൽ നിലവിലുണ്ട്
         upload_msg: അപ് ലോഡ് ചെയ്യുന്നു
         'yes': ''
     fileList:

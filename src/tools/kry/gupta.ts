@@ -18,16 +18,25 @@ const do_hash = async (value: string, algorithm: string) => {
   return hash;
 };
 
-export const hash_512 = async (str: string) => {
-  return await do_hash(str, 'SHA-512');
-};
-export const hash_md5 = async (str: string) => {
-  return await do_hash(str, 'MD5');
-};
 export const hash_256 = async (str: string) => {
   return await do_hash(str, 'SHA-256');
 };
 export const salt = () => {
   // genertating a 32 length random string salt
   return array_buffer_to_str(crypto.getRandomValues(new Uint8Array(16)));
+};
+
+export const str_to_bin_str = (value: string) => {
+  const codeUnits = new Uint16Array(value.length);
+  for (let i = 0; i < codeUnits.length; i++) {
+    codeUnits[i] = value.charCodeAt(i);
+  }
+  return String.fromCharCode(...new Uint8Array(codeUnits.buffer));
+};
+export const bin_str_to_str = (binary: string) => {
+  const bytes = new Uint8Array(binary.length);
+  for (let i = 0; i < bytes.length; i++) {
+    bytes[i] = binary.charCodeAt(i);
+  }
+  return String.fromCharCode(...new Uint16Array(bytes.buffer));
 };

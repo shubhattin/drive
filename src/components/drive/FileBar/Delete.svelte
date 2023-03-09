@@ -31,7 +31,11 @@
     );
     // -2 value deletes the key from the object
     for (let x of fileNames) set_val_from_adress(x, $files, -2);
-    toast.info(`${fileNames.join(', ')} ${lekh.deleted_msg}`, 3000, 'bottom-right');
+    toast.info(
+      `${$selectedFiles.map((v) => v.name).join(', ')} ${lekh.deleted_msg}`,
+      3000,
+      'bottom-right'
+    );
     files.set($files);
   };
 </script>
