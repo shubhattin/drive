@@ -31,6 +31,15 @@ export interface dattType {
           upload_msg: string;
           yes: string;
         };
+        Rename: {
+          rename_msg: string;
+          renamed_msg: string;
+          file_name: string;
+          no: string;
+        };
+        MoveFile: {
+          moved_msg: string;
+        };
       };
       fileList: {
         no_file: string;

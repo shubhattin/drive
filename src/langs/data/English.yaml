@@ -24,6 +24,13 @@ drive:
         already_exists: File already exists
         upload_msg: Uploading
         'yes': ''
+      Rename:
+        rename_msg: Rename
+        renamed_msg: Renamed
+        file_name: File name
+        'no': ''
+      MoveFile:
+        moved_msg: Moved
     fileList:
       no_file: No Files Here
     title: Online File Drive

@@ -24,6 +24,13 @@ drive:
         already_exists: ಫೈಲ್ ಈಗಾಗಲೇ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ
         upload_msg: ಅಪ್ ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ
         'yes': ''
+      Rename:
+        rename_msg: ಹೆಸರು ಬದಲಿಸಿ
+        renamed_msg: ಪುನರ್ನಾಮಕರಣ ಮಾಡಲಾಗಿದೆ
+        file_name: ಫೈಲ್ ಹೆಸರು
+        'no': ''
+      MoveFile:
+        moved_msg: ಸರಿ
     fileList:
       no_file: ಇಲ್ಲಿ ಯಾವುದೇ ಫೈಲ್ ಗಳು ಇಲ್ಲ
     title: ಆನ್ ಲೈನ್ ಫೈಲ್ ಡ್ರೈವ್

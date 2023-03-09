@@ -48,7 +48,18 @@ class Query:
             return [FileInfoType(**x) for x in data.items]
 
     @strawberry.field
-    async def deleteFiles(fileHashes: List[str], info: Info) -> DeleteInfo:
+    async def downloadID() -> str:
+        return to_base64(deta_val("drive_key", "keys"))
+
+    @strawberry.field
+    async def uploadID() -> str:
+        return to_base64(deta_val("drive_key", "keys"))
+
+
+@strawberry.type
+class Mutation:
+    @strawberry.mutation
+    async def deleteFiles(self, fileHashes: List[str], info: Info) -> DeleteInfo:
         DRIVE_NAME = get_user_drive_name(info)
         BASE_NAME = get_user_base_name(info)
         base = Base(BASE_NAME)
@@ -62,23 +73,29 @@ class Query:
                 res[x] = []
         return DeleteInfo(**res)
 
-    @strawberry.field
-    async def downloadID() -> str:
-        return to_base64(deta_val("drive_key", "keys"))
-
-    @strawberry.field
-    async def uploadID() -> str:
-        return to_base64(deta_val("drive_key", "keys"))
-
-
-@strawberry.type
-class Mutation:
     @strawberry.mutation
     async def uploadFile(
         self, name: str, size: str, mime: str, date: str, key: str, info: Info
     ) -> None:
         BASE_NAME = get_user_base_name(info)
         Base(BASE_NAME).put(dict(name=name, size=size, mime=mime, date=date), key)
+
+    @strawberry.mutation
+    async def renameFile(self, name: str, key: str, info: Info) -> None:
+        BASE_NAME = get_user_base_name(info)
+        base = Base(BASE_NAME)
+        data = base.get(key)
+        data["name"] = name
+        base.put(data)
+
+    @strawberry.mutation
+    async def moveFiles(self, names: List[str], keys: List[str], info: Info) -> None:
+        BASE_NAME = get_user_base_name(info)
+        base = Base(BASE_NAME)
+        for name, key in zip(names, keys):
+            data = base.get(key)
+            data["name"] = name
+            base.put(data)
 
 
 class User(BaseContext):

@@ -11,7 +11,7 @@
   import { fetch_post, Fetch } from '@tools/fetch';
   import { toast } from '@tools/toast';
   import { set_val_from_adress } from '@tools/json';
-  import { hash_256, salt, str_to_bin_str } from '@tools/kry/gupta';
+  import { hash_256, salt, from_base64, to_base64 } from '@tools/kry/gupta';
   import { MIME as MIME_TYPE_LIST } from '../datt/mime';
   import type { fileInfoType } from '@state/drive_types';
 
@@ -36,7 +36,7 @@
     let prefix = $currentLoc;
     if (prefix === '/') prefix = '';
     const ID = {
-      upload: window.atob(
+      upload: from_base64(
         (
           await graphql(
             `
@@ -79,7 +79,7 @@
       totalSize = parseFloat(AkAra.toFixed(2));
       uploading = true;
       const MAX_CHUNK_SIZE = 9.985 * 1024 * 1024;
-      const USER_TOKEN = JSON.parse(window.atob(getCookieVal(AUTH_ID)?.split('.')[1]!))
+      const USER_TOKEN = JSON.parse(from_base64(getCookieVal(AUTH_ID)?.split('.')[1]!))
         .sub as string;
       const URL = get_URL(ID.project, USER_TOKEN);
       const UPLOAD_ID = (
@@ -145,7 +145,7 @@
                   }
                 `,
                 {
-                  name: window.btoa(str_to_bin_str(`${prefix}/${file.name}`)),
+                  name: to_base64(`${prefix}/${file.name}`),
                   size: fileInfo.size,
                   date: fileInfo.date,
                   mime: fileInfo.mime,

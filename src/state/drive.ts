@@ -38,8 +38,18 @@ const update_current_file_lits = () => {
       fileList.push(fl);
     }
   }
-  currentFiles.set(fileList);
-  currentFolders.set(folderList);
+  currentFiles.set(
+    fileList.sort((a, b) => {
+      // sorting by name in ascending order
+      return a.name.localeCompare(b.name);
+    })
+  );
+  currentFolders.set(
+    folderList.sort(function (a, b) {
+      // sorting by name in ascending order
+      return a.localeCompare(b);
+    })
+  );
 };
 
 currentLoc.subscribe(update_current_file_lits);
@@ -58,3 +68,8 @@ export const fileBarStores = {
   kAryaCount: writable(0),
   currentReq: writable<XMLHttpRequest>(null!)
 };
+
+export const filesToMove = writable<{
+  path: string;
+  files: fileInfoType[];
+}>(null!);

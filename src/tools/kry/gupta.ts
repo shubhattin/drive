@@ -1,4 +1,4 @@
-export const str_to_array_buffer = (str: string) => {
+const str_to_array_buffer = (str: string) => {
   const buf = new ArrayBuffer(str.length);
   const bufView = new Uint8Array(buf);
   for (let i = 0, strLen = str.length; i < strLen; i++) {
@@ -6,7 +6,7 @@ export const str_to_array_buffer = (str: string) => {
   }
   return buf;
 };
-export const array_buffer_to_str = (buff: ArrayBuffer) => {
+const array_buffer_to_str = (buff: ArrayBuffer) => {
   return Array.from(new Uint8Array(buff))
     .map((b) => b.toString(16).padStart(2, '0'))
     .join('');
@@ -26,17 +26,30 @@ export const salt = () => {
   return array_buffer_to_str(crypto.getRandomValues(new Uint8Array(16)));
 };
 
-export const str_to_bin_str = (value: string) => {
+const str_to_bin_str = (value: string) => {
   const codeUnits = new Uint16Array(value.length);
   for (let i = 0; i < codeUnits.length; i++) {
     codeUnits[i] = value.charCodeAt(i);
   }
   return String.fromCharCode(...new Uint8Array(codeUnits.buffer));
 };
-export const bin_str_to_str = (binary: string) => {
+const bin_str_to_str = (binary: string) => {
   const bytes = new Uint8Array(binary.length);
   for (let i = 0; i < bytes.length; i++) {
     bytes[i] = binary.charCodeAt(i);
   }
   return String.fromCharCode(...new Uint16Array(bytes.buffer));
+};
+/** `encode=true` by default */
+export const to_base64 = (str: string, encode = true) => {
+  if (encode) str = str_to_bin_str(str);
+  return window.btoa(str);
+};
+/** `decode=false` by default */
+export const from_base64 = (str: string, decode = false) => {
+  str = window.atob(str);
+  try {
+    if (decode) str = bin_str_to_str(str);
+  } catch {}
+  return str;
 };

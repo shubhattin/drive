@@ -20,7 +20,7 @@
     clicked = false;
     await graphql(
       `
-        query ($fileHashes: [String!]!) {
+        mutation ($fileHashes: [String!]!) {
           deleteFiles(fileHashes: $fileHashes) {
             deleted
             failed

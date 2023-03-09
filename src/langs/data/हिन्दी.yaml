@@ -24,6 +24,13 @@ drive:
         already_exists: संचित पहले से ही है
         upload_msg: उपारोपित हो रहा
         'yes': ''
+      Rename:
+        rename_msg: नामान्तरण करें
+        renamed_msg: नामान्तरित किया गया
+        file_name: सञ्चित नाम
+        'no': ''
+      MoveFile:
+        moved_msg: स्थानान्तरित किया गया
     fileList:
       no_file: यहां कोई संचित नही है
     title: संचिका जालवृत्तक

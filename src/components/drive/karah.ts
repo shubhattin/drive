@@ -2,7 +2,7 @@ import { files, fileDataFetchDone, currentLoc } from '@state/drive';
 import { graphql } from '@tools/drive/request';
 import { set_val_from_adress } from '@tools/json';
 import type { fileInfoType } from '@state/drive_types';
-import { bin_str_to_str } from '@tools/kry/gupta';
+import { from_base64 } from '@tools/kry/gupta';
 import { get } from 'svelte/store';
 
 export const reload_file_list = async () => {
@@ -28,7 +28,7 @@ export const reload_file_list = async () => {
   let does_dir_exist = false;
   for (let item of list) {
     // names are base64 encoded
-    const name = bin_str_to_str(window.atob(item.name));
+    const name = from_base64(item.name, true);
     does_dir_exist = does_dir_exist || name.startsWith(current_dir);
     set_val_from_adress(`${name}`, json, item, true);
   }

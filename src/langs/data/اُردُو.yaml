@@ -24,6 +24,13 @@ drive:
         already_exists: 404 Not Found
         upload_msg: اُپآراوپِتَ ہاو رَہآ
         'yes': ''
+      Rename:
+        rename_msg: نآمآنتَرَݨَ کَرےں
+        renamed_msg: نآمآنتَرِتَ کِیآ گَیآ
+        file_name: سَڃچِتَ نآمَ
+        'no': ''
+      MoveFile:
+        moved_msg: ستھآنآنتَرِتَ کِیآ گَیآ
     fileList:
       no_file: یَہآں کاواِی سَںچِتَ نَہاِی ہاَے
     title: سَںچِکآ جآلَورِتتَکَ

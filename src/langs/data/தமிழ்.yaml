@@ -24,6 +24,13 @@ drive:
         already_exists: கோப்பு ஏற்கனவே உள்ளது
         upload_msg: பதிவேற்றுகிறது
         'yes': ''
+      Rename:
+        rename_msg: மறு பெயரிடு
+        renamed_msg: மறுபெயரிட
+        file_name: கோப்பு பெயர்
+        'no': ''
+      MoveFile:
+        moved_msg: நகர்த்த
     fileList:
       no_file: இங்கு கோப்புகள் இல்லை
     title: ஆன்லைன் கோப்பு இயக்ககம்

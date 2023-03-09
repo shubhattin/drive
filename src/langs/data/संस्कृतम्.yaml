@@ -24,6 +24,13 @@ drive:
         already_exists: सञ्चितं पूर्वतो विद्यते
         upload_msg: उपारोपनिदानीम्
         'yes': ''
+      Rename:
+        rename_msg: नामान्तरयतु
+        renamed_msg: इत्यिदं नामान्तरितः
+        file_name: सञ्चितनामम्
+        'no': ''
+      MoveFile:
+        moved_msg: स्थानान्तरितः
     fileList:
       no_file: अत्र कोऽपि सञ्चितं नैवं वर्तते
     title: सञ्चिकाजालवृत्तकम्

@@ -24,6 +24,13 @@ drive:
         already_exists: फाइल आधीच अस्तित्वात आहे
         upload_msg: अपलोड करत आहे
         'yes': ''
+      Rename:
+        rename_msg: नाम बदला
+        renamed_msg: नामांतर
+        file_name: फाइल चे नाव
+        'no': ''
+      MoveFile:
+        moved_msg: हल चले
     fileList:
       no_file: येथे फाइल नाही
     title: ऑनलाइन फाइल ड्राइव

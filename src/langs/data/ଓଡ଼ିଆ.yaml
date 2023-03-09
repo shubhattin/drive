@@ -24,6 +24,13 @@ drive:
         already_exists: ଫାଇଲ୍ ପୂର୍ବରୁ ବିଦ୍ୟମାନ ଅଛି
         upload_msg: ଅପଲୋଡ୍ ହେଉଛି
         'yes': ''
+      Rename:
+        rename_msg: ନାମ ପରିବର୍ତ୍ତନ କରାଯାଇଛି
+        renamed_msg: ପୁନଃନାମିତ ହୋଇଛି
+        file_name: ଫାଇଲ୍ ନାମ[ସମ୍ପାଦନା]
+        'no': ''
+      MoveFile:
+        moved_msg: ସ୍ଥାନାନ୍ତରିତ ହୋଇଛି
     fileList:
       no_file: ଏଠାରେ କୌଣସି ଫାଇଲ୍ ନାହିଁ
     title: ଅନଲାଇନ୍ ଫାଇଲ୍ ଡ୍ରାଇଭ୍

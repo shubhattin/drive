@@ -24,6 +24,13 @@ drive:
         already_exists: ফাইল ইতিমধ্যে বিদ্যমান
         upload_msg: আপলোড কৰা হৈছে
         'yes': ''
+      Rename:
+        rename_msg: পুনৰ নামকৰণ কৰক
+        renamed_msg: পুনৰ নামকৰণ কৰা হৈছে
+        file_name: নথিপত্ৰৰ নাম
+        'no': ''
+      MoveFile:
+        moved_msg: স্থানান্তৰিত হৈছে
     fileList:
       no_file: ইয়াত কোনো ফাইল নাই
     title: অনলাইন ফাইল ড্ৰাইভ
