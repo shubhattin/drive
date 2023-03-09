@@ -21,8 +21,16 @@ drive:
         'no': కాదు
       Upload:
         added_msg: జోడించబడింది
+        already_exists: ఫైలు ఇప్పటికే ఉంది
         upload_msg: అప్ లోడ్ చేస్తోంది
         'yes': ''
+      Rename:
+        rename_msg: పేరు మార్చండి
+        renamed_msg: పేరు మార్చబడింది
+        file_name: ఫైలు పేరు
+        'no': ''
+      MoveFile:
+        moved_msg: కదిలింది
     fileList:
       no_file: ఇక్కడ ఫైళ్లు లేవు
     title: ఆన్ లైన్ ఫైల్ డ్రైవ్

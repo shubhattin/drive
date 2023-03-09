@@ -21,8 +21,16 @@ drive:
         'no': না
       Upload:
         added_msg: যুক্ত
+        already_exists: ফাইল ইতিমধ্যে বিদ্যমান
         upload_msg: আপলোড করা হচ্ছে
         'yes': ''
+      Rename:
+        rename_msg: পুনঃনামকরণ
+        renamed_msg: পুনঃনামকরণ
+        file_name: ফাইলের নাম
+        'no': ''
+      MoveFile:
+        moved_msg: সরানো
     fileList:
       no_file: এখানে কোন ফাইল নেই
     title: অনলাইন ফাইল ড্রাইভ

@@ -61,20 +61,20 @@
         </div>
       </label>
     {/each}
-    {#each $currentFiles as key (key)}
-      {@const src = get_img_path(key.split('.').pop())}
+    {#each $currentFiles as fileItem (fileItem.key)}
+      {@const src = get_img_path(fileItem.name.split('.').pop())}
       <label class="font-semibold text-[#00f] hover:text-black">
         <input
           type="checkbox"
           class="peer invisible absolute mr-1 h-0 w-0"
           bind:group={$selectedFiles}
-          value={key}
+          value={fileItem}
         />
         <div
           class="mb-1 flex whitespace-pre-wrap rounded-sm p-[2px] transition hover:bg-zinc-100 active:text-rose-600 peer-checked:bg-[#f2ff82]"
         >
           <ImageSpan className="w-5 h-5 mr-1.5 mt-1" {src} />
-          {key}
+          {fileItem.name}
         </div>
       </label>
     {/each}

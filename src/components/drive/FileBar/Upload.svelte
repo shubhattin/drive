@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { lekhAH, fileBarStores, currentLoc, files } from '@state/drive';
+  import { lekhAH, fileBarStores, currentLoc, files, currentFiles } from '@state/drive';
   import Icon from '@tools/Icon.svelte';
   import FiUpload from 'svelte-icons-pack/fi/FiUpload';
   import RiDocumentFileUploadLine from 'svelte-icons-pack/ri/RiDocumentFileUploadLine';
@@ -11,6 +11,9 @@
   import { fetch_post, Fetch } from '@tools/fetch';
   import { toast } from '@tools/toast';
   import { set_val_from_adress } from '@tools/json';
+  import { hash_256, salt, from_base64, to_base64 } from '@tools/kry/gupta';
+  import { MIME as MIME_TYPE_LIST } from '../datt/mime';
+  import type { fileInfoType } from '@state/drive_types';
 
   $: lekh = $lekhAH.fileBar.Upload;
 
@@ -23,11 +26,17 @@
   const { kAryaCount, currentReq } = fileBarStores;
 
   const get_URL = (id: string, user: string) => `https://drive.deta.sh/v1/${id}/${user}`;
+  const check_for_file_in_current_directory = (name: string) => {
+    for (let item of $currentFiles) {
+      if (item.name === name) return true;
+    }
+    return false;
+  };
   const upload_file = async () => {
     let prefix = $currentLoc;
     if (prefix === '/') prefix = '';
     const ID = {
-      download: window.atob(
+      upload: from_base64(
         (
           await graphql(
             `
@@ -36,28 +45,50 @@
               }
             `
           )
-        )['uploadID'] as string
+        ).uploadID as string
       ),
       project: ''
     };
-    ID.project = ID.download.split('_')[0];
+    ID.project = ID.upload.split('_')[0];
     const upld = async (i = 0) => {
       const file = filesToUpload[i];
+      if (check_for_file_in_current_directory(file.name)) {
+        toast.error(`${file.name} ${lekh.already_exists}`, 2500, 'top-centre');
+        continue_next_file(i);
+        return;
+      }
+      let MIME_TYPE = file.type;
+      if (!MIME_TYPE || MIME_TYPE === '') {
+        const ext = file.name.split('.').pop();
+        if (ext) {
+          const mime = MIME_TYPE_LIST[ext! as keyof typeof MIME_TYPE_LIST];
+          if (mime) MIME_TYPE = mime;
+        }
+      }
+      const fileInfo: fileInfoType = {
+        name: file.name,
+        size: file.size.toString(),
+        mime: MIME_TYPE,
+        date: new Date().toUTCString(),
+        key: ''
+      };
+      const FILE_HASH_NAME = await hash_256(fileInfo.date + salt());
+      fileInfo.key = FILE_HASH_NAME;
       const AkAra = file.size / (1024 * 1024);
       fileName = file.name;
       totalSize = parseFloat(AkAra.toFixed(2));
       uploading = true;
       const MAX_CHUNK_SIZE = 9.985 * 1024 * 1024;
-      const USER_TOKEN = JSON.parse(window.atob(getCookieVal(AUTH_ID)?.split('.')[1]!))
+      const USER_TOKEN = JSON.parse(from_base64(getCookieVal(AUTH_ID)?.split('.')[1]!))
         .sub as string;
       const URL = get_URL(ID.project, USER_TOKEN);
       const UPLOAD_ID = (
         await (
           await fetch_post(`${URL}/uploads`, {
             params: {
-              name: `${prefix}/${file.name}`
+              name: FILE_HASH_NAME
             },
-            headers: { 'X-Api-Key': ID.download }
+            headers: { 'X-Api-Key': ID.upload }
           })
         ).json()
       ).upload_id as string;
@@ -71,10 +102,10 @@
         $currentReq = xhr;
         xhr.open(
           'POST',
-          `${URL}/uploads/${UPLOAD_ID}/parts?part=${++count}&name=${prefix}/${file.name}`,
+          `${URL}/uploads/${UPLOAD_ID}/parts?part=${++count}&name=${FILE_HASH_NAME}`,
           true
         );
-        xhr.setRequestHeader('X-Api-Key', ID.download);
+        xhr.setRequestHeader('X-Api-Key', ID.upload);
         xhr.upload.addEventListener(
           'progress',
           function (evt) {
@@ -94,29 +125,53 @@
           } else {
             const req = await Fetch(`${URL}/uploads/${UPLOAD_ID}`, {
               params: {
-                name: `${prefix}/${file.name}`
+                name: FILE_HASH_NAME
               },
               method: 'PATCH',
-              headers: { 'X-Api-Key': ID.download }
+              headers: { 'X-Api-Key': ID.upload }
             });
             if (req.status === 200) {
-              set_val_from_adress(`${prefix}/${file.name}`, $files, -1);
+              // save file info in database
+              await graphql(
+                `
+                  mutation (
+                    $name: String!
+                    $size: String!
+                    $date: String!
+                    $mime: String!
+                    $key: String!
+                  ) {
+                    uploadFile(name: $name, date: $date, mime: $mime, size: $size, key: $key)
+                  }
+                `,
+                {
+                  name: to_base64(`${prefix}/${file.name}`),
+                  size: fileInfo.size,
+                  date: fileInfo.date,
+                  mime: fileInfo.mime,
+                  key: fileInfo.key
+                }
+              );
+              set_val_from_adress(`${prefix}/${file.name}`, $files, fileInfo);
               toast.success(`${file.name} ${lekh.added_msg}`, 3800, 'bottom-right');
               files.set($files);
-              fileName = '';
-              downloadedSize = 0;
-              totalSize = 0;
-              if (filesToUpload.length !== ++i) {
-                upld(i);
-              } else {
-                filesToUpload = null!;
-                $kAryaCount = 0;
-                uploading = false;
-              }
+              continue_next_file(i);
             }
           }
         };
       };
+    };
+    const continue_next_file = (i: number) => {
+      fileName = '';
+      downloadedSize = 0;
+      totalSize = 0;
+      if (filesToUpload.length !== ++i) {
+        upld(i);
+      } else {
+        filesToUpload = null!;
+        $kAryaCount = 0;
+        uploading = false;
+      }
     };
     upld();
   };

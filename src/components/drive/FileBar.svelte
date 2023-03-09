@@ -7,15 +7,19 @@
   import NewFolder from './FileBar/NewFolder.svelte';
   import Logout from './FileBar/Logout.svelte';
   import Upload from './FileBar/Upload.svelte';
+  import Rename from './FileBar/Rename.svelte';
+  import MoveFile from './FileBar/MoveFile.svelte';
 </script>
 
 <div class="flex">
   <Selector />
   <Reload />
   <Download />
+  <Rename />
   <Delete />
   <NewFolder />
   <Upload />
+  <MoveFile />
   <FileView />
   <Logout />
 </div>

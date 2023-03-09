@@ -22,7 +22,11 @@ const reuseValues = (datt: dattType) => {
     ],
     [
       drive.main.fileBar.NewFolder.no,
-      ['datt.drive.main.fileBar.Delete.no', 'datt.drive.main.fileBar.Logout.no']
+      [
+        'datt.drive.main.fileBar.Delete.no',
+        'datt.drive.main.fileBar.Logout.no',
+        'datt.drive.main.fileBar.Rename.no'
+      ]
     ],
     [drive.main.fileBar.Download.download_msg, ['datt.drive.main.fileBar.FileView.download_msg']]
   ];

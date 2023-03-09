@@ -8,7 +8,7 @@ drive_api:
     user_not_found: ব্যবহারকারী খুঁজে পাওয়া যায়নি
     wrong_current_pass: ভুল বর্তমান পাসওয়ার্ড
 drive_security:
-  expired_credentials: মেয়াদোত্তীর্ণ প্রমাণপত্রাদি
+  expired_credentials: মেয়াদোত্তীর্ণ পরিচয়পত্র
   user_not_found: ''
-  wrong_credentials: অযাচাইকৃত প্রমাণপত্রাদি
+  wrong_credentials: যাচাই না করা পরিচয়পত্র
   wrong_pass: ভুল পাসওয়ার্ড

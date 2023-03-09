@@ -4,21 +4,24 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-fastapi = "==0.87.0"
-requests = "==2.28.1"
-deta = "==1.1.0"
-bcrypt = "==4.0.1"
-cryptography = "==38.0.3"
-python-multipart = "==0.0.5"
-python-jose = {version = "==3.3.0", extras = ["cryptography"]}
-strawberry-graphql = {version = "==0.142.2", extras = ["fastapi"]}
+fastapi = "*"
+requests = "*"
+deta = "*"
+bcrypt = "*"
+cryptography = "*"
+python-multipart = "*"
+python-jose = {version = "*", extras = ["cryptography"]}
+strawberry-graphql = {version = "*", extras = ["fastapi"]}
+brotli-asgi = "*"
+brotli = "*"
 
 [dev-packages]
 shubhlipi = "*"
 uvicorn = "*"
 pyyaml = "*"
-black = "*"
 python-dotenv = "*"
+black = "*"
+datamodel-code-generator = "*"
 
 [requires]
 python_version = "3"

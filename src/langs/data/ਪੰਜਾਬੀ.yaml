@@ -21,8 +21,16 @@ drive:
         'no': ਨਹੀਂ
       Upload:
         added_msg: ਸ਼ਾਮਲ ਕੀਤੇ
+        already_exists: ਫਾਇਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ
         upload_msg: ਅੱਪਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ
         'yes': ''
+      Rename:
+        rename_msg: ਨਾਂ ਬਦਲੋ
+        renamed_msg: ਨਾਂ- ਬਦਲੋ
+        file_name: ਫਾਇਲ ਨਾਂ
+        'no': ''
+      MoveFile:
+        moved_msg: ਮੂਵ ਕੀਤਾ
     fileList:
       no_file: ਇੱਥੇ ਕੋਈ ਫਾਇਲਾਂ ਨਹੀਂ ਹਨ
     title: ਆਨਲਾਈਨ ਫਾਇਲ ਡਰਾਇਵ

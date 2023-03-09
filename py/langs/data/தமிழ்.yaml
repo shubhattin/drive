@@ -1,14 +1,14 @@
 drive_api:
   add_new_user:
-    success_detail: புதிய பயனரை வெற்றிகரமாக சேர்த்தது
+    success_detail: புதிய பயனரை வெற்றிகரமாகச் சேர்த்தது
     user_already_exist: கொடுக்கப்பட்ட பயனர்பெயர் ஏற்கனவே உள்ளது
-    wrong_main_pass: தவறான முதன்மை கடவுச்சொல்
+    wrong_main_pass: தவறான பிரதான கடவுச்சொல்
   reset:
     success_detail: கடவுச்சொல் வெற்றிகரமாக மாற்றப்பட்டது
-    user_not_found: பயனர் காணவில்லை
+    user_not_found: பயனர் காணப்படவில்லை
     wrong_current_pass: தவறான நடப்பு கடவுச்சொல்
 drive_security:
-  expired_credentials: காலாவதியான நம்பிக்கைச்சான்றுகள்
+  expired_credentials: காலாவதியான சான்றுகள்
   user_not_found: ''
-  wrong_credentials: சரிபார்க்கப்படாத நம்பிக்கைச்சான்றுகள்
+  wrong_credentials: சரிபார்க்கப்படாத சான்றுகள்
   wrong_pass: தவறான கடவுச்சொல்
