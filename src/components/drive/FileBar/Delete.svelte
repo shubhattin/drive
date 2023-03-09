@@ -12,23 +12,26 @@
 
   const delete_files = async () => {
     if ($selectedFiles.length === 0) return;
-    const selected = $selectedFiles.map(
-      (val) => ($currentLoc === '/' ? '' : $currentLoc) + '/' + val
+    /** File names with full path preixed */
+    const fileHashes = $selectedFiles.map((val) => val.key);
+    const fileNames = $selectedFiles.map(
+      (val) => ($currentLoc === '/' ? '' : $currentLoc) + '/' + val.name
     );
     clicked = false;
-    const res = await graphql(
+    await graphql(
       `
-        query ($files: [String!]!) {
-          deleteFiles(files: $files) {
+        query ($fileHashes: [String!]!) {
+          deleteFiles(fileHashes: $fileHashes) {
             deleted
             failed
           }
         }
       `,
-      { files: selected }
+      { fileHashes: fileHashes }
     );
-    for (let x of selected) set_val_from_adress(x, $files, -2);
-    toast.info(`${$selectedFiles.join(', ')} ${lekh.deleted_msg}`, 3000, 'bottom-right');
+    // -2 value deletes the key from the object
+    for (let x of fileNames) set_val_from_adress(x, $files, -2);
+    toast.info(`${fileNames.join(', ')} ${lekh.deleted_msg}`, 3000, 'bottom-right');
     files.set($files);
   };
 </script>
