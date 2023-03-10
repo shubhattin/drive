@@ -4,13 +4,12 @@ from pydantic.dataclasses import dataclass
 class AddNewUser():
     success_detail: str
     user_already_exist: str
-    wrong_main_pass: str
 
 @dataclass
 class Reset():
     success_detail: str
     user_not_found: str
-    wrong_current_pass: str
+    wrong_email: str
 
 @dataclass
 class DriveApi():

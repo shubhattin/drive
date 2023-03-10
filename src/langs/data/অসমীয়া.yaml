@@ -40,14 +40,13 @@ drive:
       pass_input: পাছৱাৰ্ড প্ৰবিষ্ট কৰক
       reset_btn: ৰিছেট কৰক
       remember_btn: লগইন মনত ৰাখিব
+      new_user_btn: নতুন ব্যৱহাৰকাৰী যোগ কৰক
     new_user:
       add_btn: ব্যৱহাৰকাৰী যোগ কৰক
       blank_msg: ''
       main_pass: প্ৰধান পাছৱাৰ্ড
     reset:
       blank_msg: অনুগ্ৰহ কৰি খালী ঠাইবোৰ পূৰণ কৰক
-      current_pass: বৰ্তমান পাছৱাৰ্ড
       new_pass: নতুন পাছৱাৰ্ড
-      new_user_btn: নতুন ব্যৱহাৰকাৰী যোগ কৰক
       reset_btn: পাছৱাৰ্ড ৰিছেট কৰক
     title: লগইন অনলাইন ফাইল ড্ৰাইভ

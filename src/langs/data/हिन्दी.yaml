@@ -40,14 +40,13 @@ drive:
       pass_input: गूढपद लिखें
       reset_btn: पुनर्स्थापन
       remember_btn: सम्प्रवेश याद रखें
+      new_user_btn: नव उपयोक्ता जोड़ें
     new_user:
       add_btn: उपयोक्ता जोड़ें
       blank_msg: ''
       main_pass: सम्मूल गूढपद
     reset:
       blank_msg: कृपया रिक्त स्थानों को भरें
-      current_pass: वर्तमान गूढपद
       new_pass: नव गूढपद
-      new_user_btn: नव उपयोक्ता को जोड़ें
       reset_btn: गूढपद को पुनर्प्रवर्तित करें
     title: संचिका जालवृत्तक सम्प्रवेश

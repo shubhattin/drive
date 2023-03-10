@@ -2,11 +2,10 @@ drive_api:
   add_new_user:
     success_detail: ਨਵੇਂ ਯੂਜ਼ਰ ਨੂੰ ਸਫਲਤਾਪੂਰਵਕ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ
     user_already_exist: ਦਿੱਤਾ ਗਿਆ ਵਰਤੋਂਕਾਰ-ਨਾਮ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ
-    wrong_main_pass: ਗਲਤ ਮੁੱਖ ਪਾਸਵਰਡ
   reset:
     success_detail: ਪਾਸਵਰਡ ਸਫਲਤਾਪੂਰਵਕ ਬਦਲਿਆ ਗਿਆ
     user_not_found: ਯੂਜ਼ਰ ਨਹੀਂ ਲੱਭਿਆ
-    wrong_current_pass: ਗਲਤ ਮੌਜੂਦਾ ਪਾਸਵਰਡ
+    wrong_email: ਗਲਤ ਈਮੇਲ
 drive_security:
   expired_credentials: ਮਿਆਦ ਪੁੱਗੇ ਪ੍ਰਮਾਣ-ਪੱਤਰ
   user_not_found: ''

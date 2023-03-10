@@ -2,11 +2,10 @@ drive_api:
   add_new_user:
     success_detail: Successfully Added new user
     user_already_exist: Username given already exists
-    wrong_main_pass: Wrong Main Password
   reset:
     success_detail: Successfully Changed Password
     user_not_found: User Not Found
-    wrong_current_pass: Wrong Current Password
+    wrong_email: Wrong Email
 drive_security:
   expired_credentials: Expired Credentials
   user_not_found: !!str

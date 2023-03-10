@@ -2,11 +2,10 @@ drive_api:
   add_new_user:
     success_detail: सफलतया नवोपयोक्तरं स्थापयते
     user_already_exist: त्वया दत्तोपनामं पूर्वमेव विद्यते
-    wrong_main_pass: अनुचितं मुख्यगूढपदम्
   reset:
     success_detail: सफलतया गूढपदं परिवर्तयते
     user_not_found: उपयोक्तरं अविन्दितम्
-    wrong_current_pass: अनुचितं वर्तमानगूढपदम्
+    wrong_email: अनुचितं Email
 drive_security:
   expired_credentials: प्रत्ययपत्त्रं कालातिक्रमितम्
   user_not_found: ''

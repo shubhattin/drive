@@ -61,7 +61,7 @@
         name: to_base64(new_loc)
       }
     );
-    toast.info(`${fl_name} ${lekh.renamed_msg}`, 2000, 'bottom-right');
+    toast.info(`${fl_name} ${lekh.renamed_msg}`, 3800, 'bottom-right');
     $files = $files;
   };
 </script>

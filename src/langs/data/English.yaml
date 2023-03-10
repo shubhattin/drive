@@ -40,14 +40,13 @@ drive:
       pass_input: Enter Password
       reset_btn: Reset
       remember_btn: Remember Login
+      new_user_btn: Add New User
     new_user:
       add_btn: Add User
       blank_msg: ''
       main_pass: Main Password
     reset:
       blank_msg: Please fill in the Blanks
-      current_pass: Current Password
       new_pass: New Password
-      new_user_btn: Add New User
       reset_btn: Reset Password
     title: Login Online File Drive

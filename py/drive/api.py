@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from pydantic import BaseModel
 from kry.datt import deta_val, Base
-from kry.gupta import bin_str, puShTi
+from kry.gupta import bin_str, salt, hash_512, puShTi
 from langs.datt import LANG_DB
 from kry.plugins import get_locale
 from .security import USERS_DB
@@ -12,7 +12,7 @@ router = APIRouter(prefix="/api/drive")
 
 class ResetBody(BaseModel):
     id: str
-    currentPass: str
+    email: str
     newPass: str
 
 
@@ -22,8 +22,8 @@ async def reset_pass(bdy: ResetBody, locale: str = Depends(get_locale)):
     user_pass = deta_val(bdy.id, USERS_DB)
     if not user_pass:
         raise HTTPException(401, lekh.user_not_found)
-    if not bcrypt.checkpw(bin_str(bdy.currentPass), bin_str(user_pass)):
-        raise HTTPException(401, lekh.wrong_current_pass)
+    if not puShTi(bdy.email, deta_val(bdy.id, f"{USERS_DB}_email")):
+        raise HTTPException(401, lekh.wrong_email)
     Base(USERS_DB).put(
         bcrypt.hashpw(bin_str(bdy.newPass), bcrypt.gensalt()).decode("ascii"), bdy.id
     )
@@ -33,7 +33,7 @@ async def reset_pass(bdy: ResetBody, locale: str = Depends(get_locale)):
 class NewUserBody(BaseModel):
     username: str
     password: str
-    mukhya: str
+    email: str
 
 
 @router.post("/add_new_user")
@@ -41,8 +41,9 @@ async def reset_pass(bdy: NewUserBody, locale: str = Depends(get_locale)):
     lekh = LANG_DB(locale).drive_api.add_new_user
     if deta_val(bdy.username, USERS_DB):
         raise HTTPException(401, lekh.user_already_exist)
-    if not puShTi(bdy.mukhya, deta_val("drive_auth")):
-        raise HTTPException(401, lekh.wrong_main_pass)
+    if True:
+        slt = salt()
+        Base(f"{USERS_DB}_email").put(hash_512(bdy.email + slt) + slt, bdy.username)
     Base(USERS_DB).put(
         bcrypt.hashpw(bin_str(bdy.password), bcrypt.gensalt()).decode("ascii"),
         bdy.username,

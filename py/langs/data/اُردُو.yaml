@@ -1,12 +1,11 @@
 drive_api:
   add_new_user:
-    success_detail: 404 Not Found
-    user_already_exist: 404 Not Found
-    wrong_main_pass: 404 Not Found
+    success_detail: سَپھَلَتآ پاُوروَکَ نَیے اُپَیاوکتآ کاو ستھآپِتَ کِیآ گَیآ
+    user_already_exist: آپَکے دوآرآ دِیآ گَیآ اُپَنآمَ پاُوروَ سے وِدیَمآنَ ہاَے
   reset:
-    success_detail: 404 Not Found
-    user_not_found: 404 Not Found
-    wrong_current_pass: 404 Not Found
+    success_detail: سَپھَلَتآ پاُوروَکَ گاُوڈھَپَدَ پَرِوَرتِتَ ہُآ
+    user_not_found: اُپَیاوکتآ نَہاِی مِلآ
+    wrong_email: اَنُچِتَ ےماَےل
 drive_security:
   expired_credentials: 404 Not Found
   user_not_found: ''

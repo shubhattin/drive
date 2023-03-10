@@ -40,14 +40,13 @@ drive:
       pass_input: પાસવર્ડ દાખલ કરો
       reset_btn: પુન:સુયોજિત કરો
       remember_btn: પ્રવેશ યાદ રાખો
+      new_user_btn: નવો વપરાશકર્તા ઉમેરો
     new_user:
       add_btn: વપરાશકર્તા ઉમેરો
       blank_msg: ''
       main_pass: મુખ્ય પાસવર્ડ
     reset:
       blank_msg: મહેરબાની કરીને ખાલી જગ્યાઓ ભરો
-      current_pass: વર્તમાન પાસવર્ડ
       new_pass: નવો પાસવર્ડ
-      new_user_btn: નવો વપરાશકર્તા ઉમેરો
       reset_btn: પાસવર્ડને પુન:સુયોજિત કરો
     title: ઓનલાઇન ફાઇલ ડ્રાઇવનો પ્રવેશ કરો

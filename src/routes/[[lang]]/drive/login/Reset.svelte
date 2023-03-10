@@ -1,6 +1,5 @@
 <script lang="ts">
   import BiReset from 'svelte-icons-pack/bi/BiReset';
-  import AiOutlineUserAdd from 'svelte-icons-pack/ai/AiOutlineUserAdd';
   import AiTwoToneHome from 'svelte-icons-pack/ai/AiTwotoneHome';
   import Icon from '@tools/Icon.svelte';
   import { toast } from '@tools/toast';
@@ -9,15 +8,15 @@
 
   $: lekh = $lekhAH.reset;
   let newPass: string = '';
-  let currentPass: string = '';
+  let email: string = '';
 
   const reset = async () => {
-    if (currentPass === '' || newPass === '' || $id === '') {
+    if (email === '' || newPass === '' || $id === '') {
       toast.error(lekh.blank_msg, 3000);
       return;
     }
     const req = await fetch_post('/api/drive/reset', {
-      json: { currentPass: currentPass, newPass: newPass, id: $id }
+      json: { email: email, newPass: newPass, id: $id }
     });
     const res = await req.json();
     if (req.status != 200) {
@@ -26,8 +25,9 @@
     }
     toast.success(res.detail, 4000, 'top-left');
     newPass = '';
-    currentPass = '';
+    email = '';
     $id = '';
+    $mode = 'main';
   };
 </script>
 
@@ -35,14 +35,14 @@
   <input
     type="password"
     class="mb-1 block w-40 rounded-lg border-2 border-emerald-600 p-1 text-sm"
-    bind:value={currentPass}
-    placeholder={lekh.current_pass}
-  />
-  <input
-    type="password"
-    class="mb-1 block w-40 rounded-lg border-2 border-emerald-600 p-1 text-sm"
     bind:value={newPass}
     placeholder={lekh.new_pass}
+  />
+  <input
+    type="email"
+    class="mb-1 block w-40 rounded-lg border-2 border-emerald-600 p-1 text-sm"
+    bind:value={email}
+    placeholder="Email"
   />
   <button
     on:click={reset}
@@ -50,13 +50,6 @@
   >
     <Icon src={BiReset} className="text-2xl text-black" />
     {lekh.reset_btn}
-  </button>
-  <button
-    on:click={() => mode.set('new_user')}
-    class="rounded-lg border-2 border-lime-600 p-1 font-medium text-emerald-600 active:border-blue-600 active:text-red-500"
-  >
-    <Icon src={AiOutlineUserAdd} className="text-xl text-black" />
-    {lekh.new_user_btn}
   </button>
   <button on:click={() => ($mode = 'main')} class="block">
     <Icon src={AiTwoToneHome} className="mt-2 text-3xl ml-12 cursor-button" />

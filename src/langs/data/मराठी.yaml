@@ -36,18 +36,17 @@ drive:
     title: ऑनलाइन फाइल ड्राइव
   login:
     main:
-      id_input: वापरकर्तानाव प्रविष्ट करा
-      pass_input: गुप्तशब्द प्रविष्ट करा
-      reset_btn: पुन्हस्थापीत करा
+      id_input: वापरकर्ता नाव प्रविष्ट करा
+      pass_input: पासवर्ड प्रविष्ट करा
+      reset_btn: रीसेट
       remember_btn: लॉगिन लक्षात ठेवा
+      new_user_btn: नवीन वापरकर्ता जोडा
     new_user:
       add_btn: वापरकर्ता जोडा
       blank_msg: ''
       main_pass: मुख्य गुप्तशब्द
     reset:
       blank_msg: कृपया रिक्त जागा भरा
-      current_pass: वर्तमान गुप्तशब्द
-      new_pass: नविन गुप्तशब्द
-      new_user_btn: नविन वापरकर्ता जोडा
-      reset_btn: गुप्तशब्द पुन्हस्थापीत करा
+      new_pass: नया पासवर्ड
+      reset_btn: Reset Password
     title: ऑनलाइन फाइल ड्राइव

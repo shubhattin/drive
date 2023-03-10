@@ -2,11 +2,10 @@ drive_api:
   add_new_user:
     success_detail: ସଫଳତାର ସହ ନୂତନ ଉପଭୋକ୍ତା ଯୋଡାଯାଇଛି
     user_already_exist: ଦିଆଯାଇଥିବା ଉପଭୋକ୍ତା ନାମ ପୂର୍ବରୁ ବିଦ୍ୟମାନ ଅଛି
-    wrong_main_pass: ଭୁଲ୍ ମୁଖ୍ୟ ପାସୱାର୍ଡ୍
   reset:
     success_detail: ସଫଳତାର ସହ ପାସୱାର୍ଡ୍ ପରିବର୍ତ୍ତନ ହୋଇଛି
     user_not_found: ଉପଭୋକ୍ତା ମିଳିଲା ନାହିଁ
-    wrong_current_pass: ଭୁଲ୍ ସାମ୍ପ୍ରତିକ ପାସ୍ ୱାର୍ଡ୍
+    wrong_email: ଭୁଲ୍ ଇମେଲ୍
 drive_security:
   expired_credentials: ଅବଧି ସମାପ୍ତ ହୋଇଛି ପରିଚୟପତ୍ର
   user_not_found: ''

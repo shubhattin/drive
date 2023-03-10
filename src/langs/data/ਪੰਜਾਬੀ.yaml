@@ -40,14 +40,13 @@ drive:
       pass_input: ਪਾਸਵਰਡ ਦਿਓ
       reset_btn: ਮੁੜ- ਸੈੱਟ
       remember_btn: ਲਾਗਇਨ ਯਾਦ ਰੱਖੋ
+      new_user_btn: ਨਵਾਂ ਯੂਜ਼ਰ ਸ਼ਾਮਲ
     new_user:
       add_btn: ਯੂਜ਼ਰ ਸ਼ਾਮਲ
       blank_msg: ''
       main_pass: ਮੁੱਖ ਪਾਸਵਰਡ
     reset:
       blank_msg: ਕਿਰਪਾ ਕਰਕੇ ਖਾਲੀ ਥਾਵਾਂ ਭਰੋ
-      current_pass: ਮੌਜੂਦਾ ਪਾਸਵਰਡ
       new_pass: ਨਵਾਂ ਪਾਸਵਰਡ
-      new_user_btn: ਨਵਾਂ ਯੂਜ਼ਰ ਸ਼ਾਮਲ
       reset_btn: ਪਾਸਵਰਡ ਮੁੜ- ਸੈੱਟ
     title: ਆਨਲਾਈਨ ਫਾਇਲ ਡਰਾਇਵ ਲੌਗਇਨ ਕਰੋ

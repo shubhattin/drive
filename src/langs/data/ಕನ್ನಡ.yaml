@@ -38,16 +38,15 @@ drive:
     main:
       id_input: ಬಳಕೆದಾರ ಹೆಸರು ನಮೂದಿಸಿ
       pass_input: ಪಾಸ್ ವರ್ಡ್ ನಮೂದಿಸಿ
-      reset_btn: ರೀಸೆಟ್ ಮಾಡಿ
+      reset_btn: ಮರುಹೊಂದಿಕೆ
       remember_btn: ಲಾಗಿನ್ ನೆನಪಿಡಿ
+      new_user_btn: ಹೊಸ ಬಳಕೆದಾರನನ್ನು ಸೇರಿಸಿ
     new_user:
       add_btn: ಬಳಕೆದಾರನನ್ನು ಸೇರಿಸು
       blank_msg: ''
       main_pass: ಮುಖ್ಯ ಪಾಸ್ ವರ್ಡ್
     reset:
       blank_msg: ದಯವಿಟ್ಟು ಖಾಲಿ ಜಾಗಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ
-      current_pass: ಪ್ರಸ್ತುತ ಪಾಸ್ ವರ್ಡ್
       new_pass: ಹೊಸ ಪಾಸ್ ವರ್ಡ್
-      new_user_btn: ಹೊಸ ಬಳಕೆದಾರ ಸೇರಿಸು
-      reset_btn: ಪಾಸ್ ವರ್ಡ್ ಮರುಹೊಂದಿಸು
+      reset_btn: ಪಾಸ್ ವರ್ಡ್ ಮರುಹೊಂದಿಸಿ
     title: ಆನ್ ಲೈನ್ ಫೈಲ್ ಡ್ರೈವ್ ಲಾಗಿನ್ ಮಾಡಿ

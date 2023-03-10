@@ -38,16 +38,15 @@ drive:
     main:
       id_input: యూజర్ నేమ్ నమోదు చేయండి
       pass_input: పాస్ వర్డ్ నమోదు చేయండి
-      reset_btn: రీసెట్ చేయి
+      reset_btn: రీసెట్
       remember_btn: లాగిన్ గుర్తుంచుకోండి
+      new_user_btn: కొత్త యూజర్ ని జోడించు
     new_user:
       add_btn: వినియోగదారుని జోడించు
       blank_msg: ''
       main_pass: ప్రధాన అనుమతిపదం
     reset:
       blank_msg: దయచేసి ఖాళీలను నింపండి
-      current_pass: ప్రస్తుత అనుమతిపదం
       new_pass: కొత్త పాస్ వర్డ్
-      new_user_btn: కొత్త వినియోగదారుని జోడించు
-      reset_btn: పాస్ వర్డ్ రీసెట్ చేయి
+      reset_btn: రీసెట్ పాస్ వర్డ్
     title: లాగిన్ ఆన్ లైన్ ఫైల్ డ్రైవ్

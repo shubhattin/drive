@@ -19,6 +19,7 @@
   import { getCookieVal, AUTH_ID } from '@tools/drive/request';
   import { preloadData } from '$app/navigation';
   import { get_link } from '@tools/i18n';
+  import AiOutlineUserAdd from 'svelte-icons-pack/ai/AiOutlineUserAdd';
 
   export let data: PageData;
   $: $lekhAH = data.lekh;
@@ -44,6 +45,7 @@
   let passElmnt: HTMLInputElement;
   $: err && setTimeout(() => (err = false), 750);
   const validate = async () => {
+    if (!$id || $id === '' || !$pass || $pass === '') return;
     const req = await fetch_post('/drive/login', {
       form: { username: $id, password: $pass }
     });
@@ -125,6 +127,15 @@
     <Icon src={BiReset} className="text-2xl text-black" />
     {lekh.reset_btn}
   </button>
+  <div class="mt-8">
+    <button
+      on:click={() => mode.set('new_user')}
+      class="rounded-lg border-2 border-lime-600 p-1 font-medium text-emerald-600 active:border-blue-600 active:text-red-500"
+    >
+      <Icon src={AiOutlineUserAdd} className="text-xl text-black" />
+      {lekh.new_user_btn}
+    </button>
+  </div>
 {:else if $mode === 'reset'}
   <Reset />
 {:else if $mode === 'new_user'}

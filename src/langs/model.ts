@@ -52,6 +52,7 @@ export interface dattType {
         pass_input: string;
         reset_btn: string;
         remember_btn: string;
+        new_user_btn: string;
       };
       new_user: {
         add_btn: string;
@@ -60,9 +61,7 @@ export interface dattType {
       };
       reset: {
         blank_msg: string;
-        current_pass: string;
         new_pass: string;
-        new_user_btn: string;
         reset_btn: string;
       };
       title: string;

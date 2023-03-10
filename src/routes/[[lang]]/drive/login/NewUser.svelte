@@ -7,15 +7,15 @@
   import { fetch_post } from '@tools/fetch';
 
   $: lekh = $lekhAH.new_user;
-  let mainPass = '';
+  let email = '';
 
   const add_new_user = async () => {
-    if ($pass === '' || $id === '' || mainPass === '') {
+    if ($pass === '' || $id === '' || email === '') {
       toast.error(lekh.blank_msg, 3000);
       return;
     }
     const req = await fetch_post('/api/drive/add_new_user', {
-      json: { username: $id, password: $pass, mukhya: mainPass }
+      json: { username: $id, password: $pass, email: email }
     });
     const res = await req.json();
     if (req.status !== 200) {
@@ -25,16 +25,17 @@
     toast.success(res.detail, 4000, 'top-left');
     $id = '';
     $pass = '';
-    mainPass = '';
+    email = '';
+    $mode = 'main';
   };
 </script>
 
 <div>
   <input
-    type="password"
+    type="email"
     class="mb-1 block w-40 rounded-lg border-2 border-emerald-600 p-1 text-sm"
-    bind:value={mainPass}
-    placeholder={lekh.main_pass}
+    bind:value={email}
+    placeholder="Email"
   />
   <button
     on:click={add_new_user}

@@ -1,14 +1,18 @@
 import hashlib, uuid, hashlib, base64
 from cryptography.fernet import Fernet
 
+
 def get_type(fg):
     return str(type(fg))[8:-2]
+
 
 def from_base64(v):
     return base64.b64decode(v).decode("utf-8")
 
+
 def to_base64(v):
     return base64.b64encode(bytes(v, "utf-8")).decode("utf-8")
+
 
 def bin_str(val) -> str:
     if get_type(val) == "bytes":
