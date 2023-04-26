@@ -41,11 +41,19 @@ def get_user_base_name(info: Info) -> str:
 class Query:
     @strawberry.field
     async def fileList(info: Info) -> List[FileInfoType]:
-        data = Base(f"{info.context.user}_files").fetch()
-        if not data or data.count == 0:
+        db = Base(f"{info.context.user}_files")
+        last = None
+        data = []
+        while True:
+            res = db.fetch(last=last)
+            data.extend(res.items)
+            if res.last is None:
+                break
+            last = res.last
+        if len(data) == 0:
             return []
         else:
-            return [FileInfoType(**x) for x in data.items]
+            return [FileInfoType(**x) for x in data]
 
     @strawberry.field
     async def downloadID() -> str:

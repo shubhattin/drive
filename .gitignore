@@ -13,7 +13,7 @@ vite.config.ts.timestamp-*
 */.env
 *__pycache__
 
-py/public/
-py/requirements.txt
-py/langs/data/json/
+api/public/
+api/requirements.txt
+api/langs/data/json/
 .space

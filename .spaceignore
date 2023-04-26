@@ -1,4 +1,4 @@
-py/.venv/
+api/.venv/
 node_modules/
 build/
 .svelte-kit/

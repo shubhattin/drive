@@ -3,11 +3,12 @@ icon: ./Icon.png
 app_name: 'drive'
 micros:
   - name: python-app
-    src: ./py
+    src: ./api
     engine: python3.9
     primary: true
     public_routes:
       - '/*'
+    run: uvicorn main:app
     presets:
       env:
         - name: JWT_KEY

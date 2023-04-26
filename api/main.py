@@ -4,7 +4,8 @@ from fastapi import FastAPI, Request
 from fastapi.responses import Response
 from kry.plugins import sthaitik_sanchit
 from brotli_asgi import BrotliMiddleware
-import anya, drive  # Routes
+import anya
+import drive  # Routes
 from datetime import timedelta
 from kry.datt import DEV_ENV, PROD_ENV
 
@@ -17,8 +18,7 @@ else:
 
 CACHE_DURATION = int(timedelta(weeks=1).total_seconds())
 
-if DEV_ENV:  # Currently not working in the production(deta)
-    app.add_middleware(BrotliMiddleware)
+app.add_middleware(BrotliMiddleware)
 
 
 @app.middleware("http")
