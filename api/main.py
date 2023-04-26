@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from fastapi import FastAPI, Request
 from fastapi.responses import Response
 from kry.plugins import sthaitik_sanchit

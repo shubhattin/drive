@@ -13,11 +13,11 @@ python-multipart = "*"
 python-jose = {version = "*", extras = ["cryptography"]}
 strawberry-graphql = {version = "*", extras = ["fastapi"]}
 brotli-asgi = "*"
+uvicorn = "*"
 brotli = "*"
 
 [dev-packages]
 shubhlipi = "*"
-uvicorn = "*"
 pyyaml = "*"
 python-dotenv = "*"
 black = "*"
