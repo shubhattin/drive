@@ -13,7 +13,7 @@
   setGoBackInFileList(go_back);
 </script>
 
-<div class="mt-2 mb-1">
+<div class="mb-1 mt-2">
   <button on:click={go_back}>
     <Icon src={BiArrowBack} className="ml-[2px] text-2xl mr-3 cursor-button active:text-blue-800" />
   </button>

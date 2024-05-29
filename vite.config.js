@@ -13,7 +13,8 @@ const config = {
       '@langs': path.resolve('./src/langs'),
       '@tools': path.resolve('./src/tools'),
       '@components': path.resolve('./src/components'),
-      '@state': path.resolve('./src/state')
+      '@state': path.resolve('./src/state'),
+      '@api': path.resolve('./src/api')
     }
   }
 };

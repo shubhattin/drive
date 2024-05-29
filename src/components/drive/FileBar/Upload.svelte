@@ -206,7 +206,7 @@
           multiple
           bind:files={filesToUpload}
           class={clsx(
-            'file:text-md file:mr-1 file:rounded-full file:border-0 file:py-1 file:px-2 file:font-semibold  file:text-white',
+            'file:text-md file:mr-1 file:rounded-full file:border-0 file:px-2 file:py-1 file:font-semibold  file:text-white',
             'file:bg-gradient-to-r file:from-blue-600 file:to-amber-600',
             'text-grey-500 text-xs hover:file:cursor-pointer hover:file:opacity-80'
           )}
@@ -227,7 +227,7 @@
     <div
       in:scale
       out:slide
-      class="fixed left-2 bottom-2 z-10 min-h-[20px] min-w-[100px] max-w-[90%] rounded-lg border-2 border-[red] bg-[aliceblue] p-1 pl-1.5"
+      class="fixed bottom-2 left-2 z-10 min-h-[20px] min-w-[100px] max-w-[90%] rounded-lg border-2 border-[red] bg-[aliceblue] p-1 pl-1.5"
     >
       <div class="font-semibold">
         {lekh.upload_msg} - <span class="text-[brown]">{fileName}</span>

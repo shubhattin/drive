@@ -29,7 +29,7 @@
 </script>
 
 <div
-  class="mx-1 mt-2 mb-32 inline-block min-h-[250px] min-w-[300px] select-text rounded-md border-2 border-amber-800 bg-[#fbfffb] p-1.5"
+  class="mx-1 mb-32 mt-2 inline-block min-h-[250px] min-w-[300px] select-text rounded-md border-2 border-amber-800 bg-[#fbfffb] p-1.5"
 >
   {#if !$fileDataFetchDone}
     <svg

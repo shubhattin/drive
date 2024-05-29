@@ -20,6 +20,7 @@
   import { preloadData } from '$app/navigation';
   import { get_link } from '@tools/i18n';
   import AiOutlineUserAdd from 'svelte-icons-pack/ai/AiOutlineUserAdd';
+  import { client } from '@api/client';
 
   export let data: PageData;
   $: $lekhAH = data.lekh;
@@ -46,19 +47,20 @@
   $: err && setTimeout(() => (err = false), 750);
   const validate = async () => {
     if (!$id || $id === '' || !$pass || $pass === '') return;
-    const req = await fetch_post('/drive/login', {
-      form: { username: $id, password: $pass }
-    });
+    const res = await client.auth.verify_pass.query({ username: $id, password: $pass });
+    // const req = await fetch_post('/drive/login', {
+    //   form: { username: $id, password: $pass }
+    // });
     $id = '';
     $pass = '';
-    const rs = await req.json();
-    if (req.status !== 200) {
+    // const rs = await req.json();
+    if (!res.verified) {
       err = true;
       idElmnt.focus();
-      if (req.status === 401) toast.error(rs.detail, 3000);
+      // if (req.status === 401) toast.error(rs.detail, 3000);
       return;
     }
-    storeAuthCookies(rs as authRes);
+    storeAuthCookies(res);
     router_push('/drive');
   };
 </script>

@@ -1,27 +1,14 @@
 import { files, fileDataFetchDone, currentLoc } from '@state/drive';
-import { graphql } from '@tools/drive/request';
+import { ACCESS_ID } from '@tools/drive/request';
 import { set_val_from_adress } from '@tools/json';
-import type { fileInfoType } from '@state/drive_types';
 import { from_base64 } from '@tools/kry/gupta';
 import { get } from 'svelte/store';
+import { client, setJwtToken } from '@api/client';
 
 export const reload_file_list = async () => {
   fileDataFetchDone.set(false); // showing loading spinner
-  const list = (
-    await graphql(
-      `
-        query {
-          fileList {
-            name
-            size
-            mime
-            key
-            date
-          }
-        }
-      `
-    )
-  ).fileList as fileInfoType[];
+  setJwtToken(localStorage.getItem(ACCESS_ID)!);
+  const list = await client.drive.file_list.query();
   fileDataFetchDone.set(true); // hiding loading spinner
   let json: any = {};
   const current_dir = get(currentLoc);

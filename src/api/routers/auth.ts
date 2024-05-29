@@ -1,0 +1,58 @@
+import { protectedProcedure, publicProcedure, t } from '../trpc_init';
+import { z } from 'zod';
+import { JWT_SECRET } from '@tools/jwt';
+import jwt from 'jsonwebtoken';
+import { base_get } from '@tools/deta';
+import { compare } from 'bcrypt';
+import ms from 'ms';
+
+const ID_TOKREN_EXPIRE = ms('7days') / 1000;
+const ACCESS_TOKEN_EXPIRE = ms('8h') / 1000;
+export const USERS_INFO_DRIVE_LOC = 'drive_users';
+
+const get_pass_verify_status = async (username: string, password: string) => {
+  const user_info = await base_get<{ key: string; value: string }>(USERS_INFO_DRIVE_LOC, username);
+  if (!user_info?.value) return false;
+  const verified = await compare(password, user_info.value);
+  return verified;
+};
+
+const verify_pass_router = publicProcedure
+  .input(
+    z.object({
+      username: z.string(),
+      password: z.string()
+    })
+  )
+  .output(
+    z.object({ verified: z.literal(false) }).or(
+      z.object({
+        verified: z.literal(true),
+        access_token: z.string(),
+        access_token_expire: z.number().int(),
+        id_token: z.string(),
+        id_token_expire: z.number().int()
+      })
+    )
+  )
+  .query(async ({ input: { password, username } }) => {
+    const verified = await get_pass_verify_status(username, password);
+    if (!verified) return { verified };
+    const id_token = jwt.sign({ user: username, type: 'login' }, JWT_SECRET, {
+      expiresIn: ID_TOKREN_EXPIRE
+    });
+    const access_token = jwt.sign({ user: username, type: 'api' }, JWT_SECRET, {
+      expiresIn: ACCESS_TOKEN_EXPIRE
+    });
+    return {
+      verified,
+      id_token,
+      access_token,
+      id_token_expire: ID_TOKREN_EXPIRE,
+      access_token_expire: ACCESS_TOKEN_EXPIRE
+    };
+  });
+
+export const auth_router = t.router({
+  verify_pass: verify_pass_router
+});

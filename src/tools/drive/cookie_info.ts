@@ -12,7 +12,6 @@ export interface authRes {
   id_token_expire: number;
   access_token: string;
   access_token_expire: number;
-  token_type: 'bearer';
 }
 export const storeAuthCookies = (res: authRes) => {
   if (isLocalStorage) {

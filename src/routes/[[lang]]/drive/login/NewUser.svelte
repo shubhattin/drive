@@ -39,7 +39,7 @@
   />
   <button
     on:click={add_new_user}
-    class="rounded-lg border-2 border-orange-700 p-1 font-medium text-violet-700  active:border-blue-600 active:text-red-500"
+    class="rounded-lg border-2 border-orange-700 p-1 font-medium text-violet-700 active:border-blue-600 active:text-red-500"
   >
     <Icon src={HiSolidUserAdd} className="text-2xl text-black mr-1 ml-[2px]" />
     {lekh.add_btn}
