@@ -68,9 +68,17 @@ export const base_put = async <T>(baseName: string, values: T[]) => {
   return resp_json;
 };
 
-export const base_delete = async (baseName: string, keys: string[]) => {
+type BaseDeleteResponse<T extends string | string[]> = T extends string
+  ? { key: string }
+  : { key: string }[];
+
+export const base_delete = async <T extends string | string[]>(
+  baseName: string,
+  keys: T
+): Promise<BaseDeleteResponse<T>> => {
+  const file_keys = Array.isArray(keys) ? keys : [keys];
   const responses_json = await Promise.all(
-    keys.map(async (key) => {
+    file_keys.map(async (key) => {
       const resp = await Fetch(`${URL(baseName)}/items/${key}`, {
         method: 'DELETE',
         headers: {
@@ -80,5 +88,5 @@ export const base_delete = async (baseName: string, keys: string[]) => {
       return (await resp.json()) as { key: string };
     })
   );
-  return responses_json;
+  return responses_json as BaseDeleteResponse<T>;
 };

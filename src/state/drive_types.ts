@@ -1,12 +1,11 @@
-export interface fileInfoType {
-  /** File name */
-  name: string;
-  /** Mime type */
-  mime: string;
-  /** File size */
-  size: string;
-  /** Date Created */
-  date: string;
-  /** Hash to uniquely itentify file */
-  key: string;
-}
+import { z } from 'zod';
+
+export const fileInfoSchema = z.object({
+  name: z.string(),
+  mime: z.string(),
+  size: z.string(),
+  date: z.string(),
+  key: z.string()
+});
+
+export type fileInfoType = z.infer<typeof fileInfoSchema>;

@@ -7,13 +7,14 @@
   import { clsx } from '@tools/clsx';
   import { fly, scale, slide } from 'svelte/transition';
   import ProgressBar from './ProgressBar.svelte';
-  import { graphql, getCookieVal, AUTH_ID } from '@tools/drive/request';
+  import { getCookieVal, AUTH_ID } from '@tools/drive/request';
   import { fetch_post, Fetch } from '@tools/fetch';
   import { toast } from '@tools/toast';
   import { set_val_from_adress } from '@tools/json';
   import { hash_256, salt, from_base64, to_base64 } from '@tools/kry/gupta';
   import { MIME as MIME_TYPE_LIST } from '../datt/mime';
   import type { fileInfoType } from '@state/drive_types';
+  import { client } from '@api/client';
 
   $: lekh = $lekhAH.fileBar.Upload;
 
@@ -36,17 +37,7 @@
     let prefix = $currentLoc;
     if (prefix === '/') prefix = '';
     const ID = {
-      upload: from_base64(
-        (
-          await graphql(
-            `
-              {
-                uploadID
-              }
-            `
-          )
-        ).uploadID as string
-      ),
+      upload: from_base64(await client.drive.uploadID.query()),
       project: ''
     };
     ID.project = ID.upload.split('_')[0];
@@ -80,7 +71,7 @@
       uploading = true;
       const MAX_CHUNK_SIZE = 9.985 * 1024 * 1024;
       const USER_TOKEN = JSON.parse(from_base64(getCookieVal(AUTH_ID)?.split('.')[1]!))
-        .sub as string;
+        .user as string;
       const URL = get_URL(ID.project, USER_TOKEN);
       const UPLOAD_ID = (
         await (
@@ -132,26 +123,13 @@
             });
             if (req.status === 200) {
               // save file info in database
-              await graphql(
-                `
-                  mutation (
-                    $name: String!
-                    $size: String!
-                    $date: String!
-                    $mime: String!
-                    $key: String!
-                  ) {
-                    uploadFile(name: $name, date: $date, mime: $mime, size: $size, key: $key)
-                  }
-                `,
-                {
-                  name: to_base64(`${prefix}/${file.name}`),
-                  size: fileInfo.size,
-                  date: fileInfo.date,
-                  mime: fileInfo.mime,
-                  key: fileInfo.key
-                }
-              );
+              await client.drive.upload_file.mutate({
+                name: to_base64(`${prefix}/${file.name}`),
+                size: fileInfo.size,
+                date: fileInfo.date,
+                mime: fileInfo.mime,
+                key: fileInfo.key
+              });
               set_val_from_adress(`${prefix}/${file.name}`, $files, fileInfo);
               toast.success(`${file.name} ${lekh.added_msg}`, 3800, 'bottom-right');
               files.set($files);
