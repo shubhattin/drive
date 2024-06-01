@@ -8,6 +8,7 @@
   import { client } from '@api/client';
   import { to_base64 } from '@tools/kry/gupta';
   import { toast } from '@tools/toast';
+  import { ensure_jwt_status } from '@tools/drive/request';
 
   $: lekh = $lekhAH.fileBar.Rename;
 
@@ -50,6 +51,7 @@
     // adding renamed file refrence
     set_val_from_adress(new_loc, $files, new_loc_obj);
     clicked = false;
+    await ensure_jwt_status();
     await client.drive.rename_file.mutate({
       key: $selectedFiles[0].key,
       name: to_base64(new_loc)

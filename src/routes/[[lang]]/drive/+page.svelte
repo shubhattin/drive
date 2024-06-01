@@ -9,11 +9,12 @@
   import { reload_file_list, goBackInFileList } from '@components/drive/karah';
   import { preloadData } from '$app/navigation';
   import { get_link } from '@tools/i18n';
+  import { ensure_jwt_status } from '@tools/drive/request';
 
   export let data: PageData;
   $: $lekhAH = data.lekh;
 
-  onMount(() => {
+  onMount(async () => {
     preloadData(get_link('/drive/login')); // can be done for this page but not
     window.history.pushState(null, '', window.location.href);
     window.onpopstate = () => {
@@ -23,8 +24,8 @@
     if (import.meta.env.PROD) {
       window.onbeforeunload = () => 'किं भवान्वास्तवमेव प्रतिगन्तुमिच्छसि';
     }
-
-    reload_file_list();
+    await ensure_jwt_status();
+    await reload_file_list();
   });
 </script>
 

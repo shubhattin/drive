@@ -7,7 +7,7 @@
   import { clsx } from '@tools/clsx';
   import { fly, scale, slide } from 'svelte/transition';
   import ProgressBar from './ProgressBar.svelte';
-  import { getCookieVal, AUTH_ID } from '@tools/drive/request';
+  import { getCookieVal, AUTH_ID, ensure_jwt_status } from '@tools/drive/request';
   import { fetch_post, Fetch } from '@tools/fetch';
   import { toast } from '@tools/toast';
   import { set_val_from_adress } from '@tools/json';
@@ -36,6 +36,7 @@
   const upload_file = async () => {
     let prefix = $currentLoc;
     if (prefix === '/') prefix = '';
+    await ensure_jwt_status();
     const ID = {
       upload: from_base64(await client.drive.uploadID.query()),
       project: ''

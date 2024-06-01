@@ -1,8 +1,16 @@
-import { setCookie, getTime } from '@tools/cookies';
+import { setCookie, getCookie } from '@tools/cookies';
 import { isLocalStorage } from '@state/ref/drive/shared';
 import { from_base64 } from '@tools/kry/gupta';
-import { getCookieVal } from './request';
 import { z } from 'zod';
+
+export const getCookieVal = (key: string) => {
+  if (isLocalStorage) return getCookie(key);
+  else return sessionStorage.getItem(key);
+};
+export const getLocalVal = (key: string) => {
+  if (isLocalStorage) return localStorage.getItem(key);
+  else return sessionStorage.getItem(key);
+};
 
 export const AUTH_ID = 'drive_auth_id'; // id token
 export const ACCESS_ID = 'drive_access_id';

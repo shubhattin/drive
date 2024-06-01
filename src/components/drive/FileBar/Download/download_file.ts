@@ -1,6 +1,6 @@
 import { selectedFiles, fileBarStores } from '@state/drive';
 import { get } from 'svelte/store';
-import { AUTH_ID, getCookieVal } from '@tools/drive/request';
+import { AUTH_ID, ensure_jwt_status, getCookieVal } from '@tools/drive/request';
 import { from_base64 } from '@tools/kry/gupta';
 import { client } from '@api/client';
 
@@ -10,6 +10,7 @@ const { currentReq, kAryaCount } = fileBarStores;
 
 const get_URL = (id: string, user: string) => `https://drive.deta.sh/v1/${id}/${user}`;
 export const download_file = async (isView: boolean) => {
+  await ensure_jwt_status();
   const ID = {
     download: from_base64(await client.drive.downloadID.query()),
     project: ''

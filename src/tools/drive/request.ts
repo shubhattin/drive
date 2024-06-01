@@ -1,47 +1,37 @@
-import { fetch_post } from '@tools/fetch';
-import { getCookie, getTime, deleteCookie } from '@tools/cookies';
+import { getTime, deleteCookie } from '@tools/cookies';
 import { router_push } from '@tools/i18n';
-import { ACCESS_ID, ACCESS_ID_EXPIRE, AUTH_ID, storeAuthCookies, COOKIE_LOC } from './cookie_info';
-import type { authRes } from './cookie_info';
+import {
+  ACCESS_ID,
+  AUTH_ID,
+  storeAuthCookies,
+  COOKIE_LOC,
+  getCookieVal,
+  get_access_token_info
+} from './cookie_info';
 export * from './cookie_info';
 import { isLocalStorage } from '@state/ref/drive/shared';
+import { client, setJwtToken } from '@api/client';
 
-export const getCookieVal = (key: string) => {
-  if (isLocalStorage) return getCookie(key);
-  else return sessionStorage.getItem(key);
-};
-export const getLocalVal = (key: string) => {
-  if (isLocalStorage) return localStorage.getItem(key);
-  else return sessionStorage.getItem(key);
-};
-
-type variables = {
-  [x in string]: any;
-};
-export const graphql = async (query: string, vars: variables = {}) => {
+export const ensure_jwt_status = async () => {
   if (!getCookieVal(AUTH_ID)) {
     router_push('/drive/login');
-    // this redirect should usually be handled on the server or edge function
-  } else if (parseInt(getLocalVal(ACCESS_ID_EXPIRE)!) - getTime() < 0) {
-    const req = await fetch_post('/drive/login_navIkaraNam');
-    storeAuthCookies((await req.json()) as authRes);
+    return;
   }
-  const token = getLocalVal(ACCESS_ID);
-  const req = await fetch_post('/api/drive', {
-    json: { query: query, variables: vars },
-    headers: { Authorization: `Bearer ${token}` }
-  });
-  return (await req.json()).data;
+  const access_token_expire = get_access_token_info().exp;
+  if (access_token_expire - getTime() <= 0) {
+    const res = await client.auth.renew_access_token.query({ id_token: getCookieVal(AUTH_ID)! });
+    if (!res.verified) return;
+    storeAuthCookies(res);
+    setJwtToken(res.access_token);
+  }
 };
 
 export const deleteAuthCookies = () => {
   if (isLocalStorage) {
     deleteCookie(AUTH_ID, COOKIE_LOC);
     localStorage.removeItem(ACCESS_ID);
-    localStorage.removeItem(ACCESS_ID_EXPIRE);
   } else {
     sessionStorage.removeItem(AUTH_ID);
     sessionStorage.removeItem(ACCESS_ID);
-    sessionStorage.removeItem(ACCESS_ID_EXPIRE);
   }
 };

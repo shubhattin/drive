@@ -6,9 +6,7 @@
   import BiReset from 'svelte-icons-pack/bi/BiReset';
   import Icon from '@tools/Icon.svelte';
   import { toast } from '@tools/toast';
-  import { fetch_post } from '@tools/fetch';
   import { storeAuthCookies } from '@tools/drive/cookie_info';
-  import type { authRes } from '@tools/drive/cookie_info';
   import { router_push } from '@tools/i18n';
   import { isLocalStorage, setIsLocalStorage } from '@state/ref/drive/shared';
   import { getLocalStorageState } from '@tools/state';
@@ -17,8 +15,6 @@
   import { mode, id, pass, lekhAH } from './state';
   import { onMount } from 'svelte';
   import { getCookieVal, AUTH_ID } from '@tools/drive/request';
-  import { preloadData } from '$app/navigation';
-  import { get_link } from '@tools/i18n';
   import AiOutlineUserAdd from 'svelte-icons-pack/ai/AiOutlineUserAdd';
   import { client } from '@api/client';
 

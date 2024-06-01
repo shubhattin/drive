@@ -6,6 +6,7 @@
   import { set_val_from_adress } from '@tools/json';
   import { toast } from '@tools/toast';
   import { client } from '@api/client';
+  import { ensure_jwt_status } from '@tools/drive/request';
 
   let clicked = false;
   $: lekh = $lekhAH.fileBar.Delete;
@@ -18,6 +19,7 @@
       (val) => ($currentLoc === '/' ? '' : $currentLoc) + '/' + val.name
     );
     clicked = false;
+    await ensure_jwt_status();
     await client.drive.delete_file.mutate({ keys: fileHashes });
     // -2 value deletes the key from the object
     for (let x of fileNames) set_val_from_adress(x, $files, -2);
