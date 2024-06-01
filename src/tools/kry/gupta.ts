@@ -42,12 +42,15 @@ const bin_str_to_str = (binary: string) => {
 };
 /** `encode=true` by default */
 export const to_base64 = (str: string, encode = true) => {
+  if (typeof window === 'undefined') str = Buffer.from(str, 'utf-8').toString('base64');
+  else str = window.btoa(str);
   if (encode) str = str_to_bin_str(str);
-  return window.btoa(str);
+  return str;
 };
 /** `decode=false` by default */
 export const from_base64 = (str: string, decode = false) => {
-  str = window.atob(str);
+  if (typeof window === 'undefined') str = Buffer.from(str, 'base64').toString('utf-8');
+  else str = window.atob(str);
   try {
     if (decode) str = bin_str_to_str(str);
   } catch {}

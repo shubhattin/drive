@@ -14,7 +14,7 @@
   $: $lekhAH = data.lekh;
 
   onMount(() => {
-    preloadData(get_link('/drive/login'));
+    preloadData(get_link('/drive/login')); // can be done for this page but not
     window.history.pushState(null, '', window.location.href);
     window.onpopstate = () => {
       window.history.pushState(null, '', window.location.href);

@@ -27,7 +27,6 @@
   $: lekh = $lekhAH.main;
 
   onMount(() => {
-    preloadData(get_link('/drive'));
     window.onpopstate = null;
     window.onbeforeunload = null;
     if (getCookieVal(AUTH_ID)) {
@@ -48,12 +47,8 @@
   const validate = async () => {
     if (!$id || $id === '' || !$pass || $pass === '') return;
     const res = await client.auth.verify_pass.query({ username: $id, password: $pass });
-    // const req = await fetch_post('/drive/login', {
-    //   form: { username: $id, password: $pass }
-    // });
     $id = '';
     $pass = '';
-    // const rs = await req.json();
     if (!res.verified) {
       err = true;
       idElmnt.focus();

@@ -29,9 +29,7 @@ const verify_pass_router = publicProcedure
       z.object({
         verified: z.literal(true),
         access_token: z.string(),
-        access_token_expire: z.number().int(),
-        id_token: z.string(),
-        id_token_expire: z.number().int()
+        id_token: z.string()
       })
     )
   )
@@ -47,9 +45,7 @@ const verify_pass_router = publicProcedure
     return {
       verified,
       id_token,
-      access_token,
-      id_token_expire: ID_TOKREN_EXPIRE,
-      access_token_expire: ACCESS_TOKEN_EXPIRE
+      access_token
     };
   });
 
