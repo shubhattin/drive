@@ -1,6 +1,6 @@
 <script lang="ts">
   import { lekhAH } from '@state/drive';
-  import { deleteAuthCookies } from '@tools/drive/request';
+  import { deleteAuthCookies } from '@tools/auth_tools';
   import { router_push } from '@tools/i18n';
   import HiOutlineLogout from 'svelte-icons-pack/hi/HiOutlineLogout';
   import Icon from '@tools/Icon.svelte';
@@ -12,7 +12,7 @@
 
   const logout = () => {
     deleteAuthCookies();
-    router_push('/drive/login');
+    router_push('/login');
   };
 </script>
 

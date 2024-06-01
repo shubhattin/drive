@@ -1,8 +1,7 @@
 import adapter from '@sveltejs/adapter-node';
 import preprocess from 'svelte-preprocess';
-import { get_all_routes } from './src/tools/i18n/get_all_routes.js';
 
-const routes = get_all_routes(['/drive', '/drive/login']);
+// const routes = get_all_routes(['/', '/login']);
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -12,10 +11,11 @@ const config = {
     })
   ],
   kit: {
-    adapter: adapter(),
-    prerender: {
-      entries: routes
-    }
+    adapter: adapter()
+    // prerender: {
+    //   entries: routes
+    // }
+    // disabling prerender for now as using adapter-node
   }
 };
 

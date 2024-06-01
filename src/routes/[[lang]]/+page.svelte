@@ -9,13 +9,13 @@
   import { reload_file_list, goBackInFileList } from '@components/drive/karah';
   import { preloadData } from '$app/navigation';
   import { get_link } from '@tools/i18n';
-  import { ensure_jwt_status } from '@tools/drive/request';
+  import { ensure_jwt_status } from '@tools/auth_tools';
 
   export let data: PageData;
   $: $lekhAH = data.lekh;
 
   onMount(async () => {
-    preloadData(get_link('/drive/login')); // can be done for this page but not
+    preloadData(get_link('/login')); // can be done for this page but not
     window.history.pushState(null, '', window.location.href);
     window.onpopstate = () => {
       window.history.pushState(null, '', window.location.href);

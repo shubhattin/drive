@@ -1,6 +1,6 @@
 import { selectedFiles, fileBarStores } from '@state/drive';
 import { get } from 'svelte/store';
-import { AUTH_ID, ensure_jwt_status, getCookieVal } from '@tools/drive/request';
+import { AUTH_ID, ensure_jwt_status, getCookieVal } from '@tools/auth_tools';
 import { from_base64 } from '@tools/kry/gupta';
 import { client } from '@api/client';
 

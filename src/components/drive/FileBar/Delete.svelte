@@ -6,7 +6,7 @@
   import { set_val_from_adress } from '@tools/json';
   import { toast } from '@tools/toast';
   import { client } from '@api/client';
-  import { ensure_jwt_status } from '@tools/drive/request';
+  import { ensure_jwt_status } from '@tools/auth_tools';
 
   let clicked = false;
   $: lekh = $lekhAH.fileBar.Delete;

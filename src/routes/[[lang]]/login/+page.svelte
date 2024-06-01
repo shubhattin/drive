@@ -6,7 +6,7 @@
   import BiReset from 'svelte-icons-pack/bi/BiReset';
   import Icon from '@tools/Icon.svelte';
   import { toast } from '@tools/toast';
-  import { storeAuthCookies } from '@tools/drive/cookie_info';
+  import { storeAuthCookies, getCookieVal, AUTH_ID } from '@tools/auth_tools';
   import { router_push } from '@tools/i18n';
   import { isLocalStorage, setIsLocalStorage } from '@state/ref/drive/shared';
   import { getLocalStorageState } from '@tools/state';
@@ -14,7 +14,6 @@
   import NewUser from './NewUser.svelte';
   import { mode, id, pass, lekhAH } from './state';
   import { onMount } from 'svelte';
-  import { getCookieVal, AUTH_ID } from '@tools/drive/request';
   import AiOutlineUserAdd from 'svelte-icons-pack/ai/AiOutlineUserAdd';
   import { client } from '@api/client';
 
@@ -26,7 +25,7 @@
     window.onpopstate = null;
     window.onbeforeunload = null;
     if (getCookieVal(AUTH_ID)) {
-      router_push('/drive');
+      router_push('/');
       // this redirect should usually be handled on the server or edge function
     }
   });
@@ -52,7 +51,7 @@
       return;
     }
     storeAuthCookies(res);
-    router_push('/drive');
+    router_push('/');
   };
 </script>
 

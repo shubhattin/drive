@@ -1,5 +1,5 @@
 import { files, fileDataFetchDone, currentLoc } from '@state/drive';
-import { ACCESS_ID, ensure_jwt_status } from '@tools/drive/request';
+import { ACCESS_ID, ensure_jwt_status } from '@tools/auth_tools';
 import { set_val_from_adress } from '@tools/json';
 import { from_base64 } from '@tools/kry/gupta';
 import { get } from 'svelte/store';

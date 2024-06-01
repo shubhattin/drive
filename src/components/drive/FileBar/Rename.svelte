@@ -8,7 +8,7 @@
   import { client } from '@api/client';
   import { to_base64 } from '@tools/kry/gupta';
   import { toast } from '@tools/toast';
-  import { ensure_jwt_status } from '@tools/drive/request';
+  import { ensure_jwt_status } from '@tools/auth_tools';
 
   $: lekh = $lekhAH.fileBar.Rename;
 

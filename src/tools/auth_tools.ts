@@ -2,6 +2,9 @@ import { setCookie, getCookie } from '@tools/cookies';
 import { isLocalStorage } from '@state/ref/drive/shared';
 import { from_base64 } from '@tools/kry/gupta';
 import { z } from 'zod';
+import { getTime, deleteCookie } from '@tools/cookies';
+import { router_push } from '@tools/i18n';
+import { client, setJwtToken } from '@api/client';
 
 export const getCookieVal = (key: string) => {
   if (isLocalStorage) return getCookie(key);
@@ -56,4 +59,28 @@ export const get_access_token_info = () => {
       exp: z.number().int()
     })
     .parse(payload);
+};
+
+export const ensure_jwt_status = async () => {
+  if (!getCookieVal(AUTH_ID)) {
+    router_push('/login');
+    return;
+  }
+  const access_token_expire = get_access_token_info().exp;
+  if (access_token_expire - getTime() <= 0) {
+    const res = await client.auth.renew_access_token.query({ id_token: getCookieVal(AUTH_ID)! });
+    if (!res.verified) return;
+    storeAuthCookies(res);
+    setJwtToken(res.access_token);
+  }
+};
+
+export const deleteAuthCookies = () => {
+  if (isLocalStorage) {
+    deleteCookie(AUTH_ID, COOKIE_LOC);
+    localStorage.removeItem(ACCESS_ID);
+  } else {
+    sessionStorage.removeItem(AUTH_ID);
+    sessionStorage.removeItem(ACCESS_ID);
+  }
 };

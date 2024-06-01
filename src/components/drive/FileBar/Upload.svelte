@@ -7,7 +7,7 @@
   import { clsx } from '@tools/clsx';
   import { fly, scale, slide } from 'svelte/transition';
   import ProgressBar from './ProgressBar.svelte';
-  import { getCookieVal, AUTH_ID, ensure_jwt_status } from '@tools/drive/request';
+  import { getCookieVal, AUTH_ID, ensure_jwt_status } from '@tools/auth_tools';
   import { fetch_post, Fetch } from '@tools/fetch';
   import { toast } from '@tools/toast';
   import { set_val_from_adress } from '@tools/json';
