@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
-
 from time import time
-import shubhlipi as sh, json, yaml, os
+import os
+import json
+import shubhlipi as sh
+import yaml
 
 ln = sh.lang_list
 ln2 = sh.dict_rev(ln)
@@ -14,7 +16,7 @@ else:
 if input(f"Do you want to translate with {src} as base? ") != "yes":
     exit()
 
-DEFAULT_LOCALE = "sa"
+DEFAULT_LOCALE = "hi"
 sh.write(
     "locales.json",
     sh.dump_json(

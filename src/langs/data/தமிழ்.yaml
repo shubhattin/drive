@@ -45,8 +45,20 @@ drive:
       add_btn: பயனரை சேர்
       blank_msg: ''
       main_pass: பிரதான கடவுச்சொல்
+      msg_codes:
+        success_detail: புதிய பயனரை வெற்றிகரமாகச் சேர்த்தது
+        user_already_exist: கொடுக்கப்பட்ட பயனர்பெயர் ஏற்கனவே உள்ளது
     reset:
       blank_msg: வெற்றிடங்களை நிரப்பவும்
       new_pass: புதிய கடவுச்சொல்
       reset_btn: கடவுச்சொல்லை மீட்டமைக்கவும்
+      msg_codes:
+        success_detail: கடவுச்சொல் வெற்றிகரமாக மாற்றப்பட்டது
+        user_not_found: பயனர் காணப்படவில்லை
+        wrong_email: தவறான மின்னஞ்சல்
     title: உள்நுழைவு ஆன்லைன் கோப்பு இயக்ககம்
+    drive_auth_msgs:
+      expired_credentials: காலாவதியான சான்றுகள்
+      user_not_found: ''
+      wrong_credentials: சரிபார்க்கப்படாத சான்றுகள்
+      wrong_pass: தவறான கடவுச்சொல்

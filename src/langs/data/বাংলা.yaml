@@ -45,8 +45,20 @@ drive:
       add_btn: ব্যবহারকারী যোগ করুন
       blank_msg: ''
       main_pass: প্রধান পাসওয়ার্ড
+      msg_codes:
+        success_detail: সফলভাবে নতুন ব্যবহারকারী যোগ করা হয়েছে
+        user_already_exist: প্রদত্ত ব্যবহারকারীর নাম ইতিমধ্যে বিদ্যমান
     reset:
       blank_msg: দয়া করে ফাঁকা জায়গাগুলি পূরণ করুন
       new_pass: নতুন পাসওয়ার্ড
       reset_btn: পাসওয়ার্ড রিসেট করুন
+      msg_codes:
+        success_detail: সফলভাবে পাসওয়ার্ড পরিবর্তন করা হয়েছে
+        user_not_found: ব্যবহারকারী খুঁজে পাওয়া যায়নি
+        wrong_email: ভুল ইমেইল
     title: লগইন অনলাইন ফাইল ড্রাইভ
+    drive_auth_msgs:
+      expired_credentials: মেয়াদোত্তীর্ণ পরিচয়পত্র
+      user_not_found: ''
+      wrong_credentials: যাচাই না করা পরিচয়পত্র
+      wrong_pass: ভুল পাসওয়ার্ড

@@ -15,23 +15,23 @@ export const get_locale = (locale: string) => (locale || default_locale) as lang
 const reuseValues = (datt: dattType) => {
   const { drive } = datt;
   const reuseMap: [string, string[]][] = [
-    [drive.login.reset.blank_msg, ['datt.drive.login.new_user.blank_msg']],
+    [drive.login.reset.blank_msg, ['drive.login.new_user.blank_msg']],
     [
       drive.main.fileBar.Delete.yes,
-      ['datt.drive.main.fileBar.Logout.yes', 'datt.drive.main.fileBar.Upload.yes']
+      ['drive.main.fileBar.Logout.yes', 'drive.main.fileBar.Upload.yes']
     ],
     [
       drive.main.fileBar.NewFolder.no,
       [
-        'datt.drive.main.fileBar.Delete.no',
-        'datt.drive.main.fileBar.Logout.no',
-        'datt.drive.main.fileBar.Rename.no'
+        'drive.main.fileBar.Delete.no',
+        'drive.main.fileBar.Logout.no',
+        'drive.main.fileBar.Rename.no'
       ]
     ],
-    [drive.main.fileBar.Download.download_msg, ['datt.drive.main.fileBar.FileView.download_msg']]
+    [drive.main.fileBar.Download.download_msg, ['drive.main.fileBar.FileView.download_msg']]
   ];
   for (const x of reuseMap)
-    for (const y of x[1]) set_val_from_adress(y.substring(4).split('.').join('/'), datt, x[0]);
+    for (const y of x[1]) set_val_from_adress(`/${y.split('.').join('/')}`, datt, x[0]);
   return datt;
 };
 const db: { [x in langKey]?: dattType } = {};

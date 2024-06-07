@@ -45,8 +45,20 @@ drive:
       add_btn: ഉപയോക്താവിനെ ചേർക്കുക
       blank_msg: ''
       main_pass: പ്രധാന രഹസ്യവാക്ക്
+      msg_codes:
+        success_detail: പുതിയ ഉപയോക്താവിനെ വിജയകരമായി ചേർത്തു
+        user_already_exist: നൽകിയ ഉപയോക്തൃനാമം ഇതിനകം നിലവിലുണ്ട്
     reset:
       blank_msg: ദയവായി ശൂന്യതകൾ പൂരിപ്പിക്കുക
       new_pass: പുതിയ പാസ് വേഡ്
       reset_btn: പാസ് വേഡ് പുനഃക്രമീകരിക്കുക
+      msg_codes:
+        success_detail: പാസ് വേഡ് വിജയകരമായി മാറ്റി
+        user_not_found: ഉപയോക്താവിനെ കണ്ടെത്തിയില്ല
+        wrong_email: തെറ്റായ ഇമെയിൽ
     title: ഓൺലൈൻ ഫയൽ ഡ്രൈവ് ലോഗിൻ ചെയ്യുക
+    drive_auth_msgs:
+      expired_credentials: കാലഹരണപ്പെട്ട ക്രെഡൻഷ്യലുകൾ
+      user_not_found: ''
+      wrong_credentials: സ്ഥിരീകരിക്കാത്ത ക്രെഡൻഷ്യലുകൾ
+      wrong_pass: തെറ്റായ പാസ് വേഡ്

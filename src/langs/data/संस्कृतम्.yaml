@@ -12,7 +12,7 @@ drive:
         download_msg: ''
         view_error: सञ्चितं द्रष्टुं केवलैकं तुदतु
       Logout:
-        confirm_msg: किं भवान् निर्प्रविषितुमिच्छसि ?
+        confirm_msg: किं भवान् निर्गच्छितुमिच्छसि ?
         'no': ''
         'yes': ''
       NewFolder:
@@ -21,7 +21,7 @@ drive:
         'no': नैवम्
       Upload:
         added_msg: इत्यिदं युक्तः
-        already_exists: सञ्चितं पूर्वतो विद्यते
+        already_exists: सञ्चितं पूर्वविद्यमानम्
         upload_msg: उपारोपनिदानीम्
         'yes': ''
       Rename:
@@ -45,8 +45,20 @@ drive:
       add_btn: उपयोक्तरं समायुजतु
       blank_msg: ''
       main_pass: सम्मूलगूढपदम्
+      msg_codes:
+        success_detail: सफलतया नवोपयोक्तरं संयोजते
+        user_already_exist: त्वया दत्तोपनामं पूर्वविद्यमानम्
     reset:
       blank_msg: कृपया रिक्तस्थानानि पूरयतु
       new_pass: नवगूढपदम्
       reset_btn: गूढपदं पुनर्प्रवर्तयतु
+      msg_codes:
+        success_detail: सफलतया गूढपदं परिवर्तयते
+        user_not_found: उपयोक्तरमविन्दितम्
+        wrong_email: अनुचितं Emailइति
     title: सञ्चिकाजालवृत्तकसम्प्रवेशम्
+    drive_auth_msgs:
+      expired_credentials: प्रत्ययपत्त्रं कालातिक्रमितम्
+      user_not_found: ''
+      wrong_credentials: प्रत्ययपत्त्रम् अप्रमाणितम्
+      wrong_pass: अनुचितगूढपदम्

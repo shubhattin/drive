@@ -45,8 +45,20 @@ drive:
       add_btn: वापरकर्ता जोडा
       blank_msg: ''
       main_pass: मुख्य गुप्तशब्द
+      msg_codes:
+        success_detail: यशस्वीरित्या नवीन वापरकर्ता जोडला
+        user_already_exist: दिलेले युजरनेम आधीच अस्तित्वात आहे
     reset:
       blank_msg: कृपया रिक्त जागा भरा
       new_pass: नया पासवर्ड
       reset_btn: Reset Password
+      msg_codes:
+        success_detail: यशस्वीरित्या पासवर्ड बदलला
+        user_not_found: वापरकर्ता सापडला नाही
+        wrong_email: चुकीचा ईमेल
     title: ऑनलाइन फाइल ड्राइव
+    drive_auth_msgs:
+      expired_credentials: कालबाह्य क्रेडेंशियल्स
+      user_not_found: ''
+      wrong_credentials: अप्रमाणित क्रेडेंशियल्स
+      wrong_pass: गलत पासवर्ड

@@ -45,8 +45,20 @@ drive:
       add_btn: اُپَیاوکتآ جاوڑےں
       blank_msg: ''
       main_pass: سَمماُولَ گاُوڈھَپَدَ
+      msg_codes:
+        success_detail: سَپھَلَتآ پاُوروَکَ نَیے اُپَیاوکتآ کاو ستھآپِتَ کِیآ گَیآ
+        user_already_exist: آپَکے دوآرآ دِیآ گَیآ اُپَنآمَ پاُوروَ سے وِدیَمآنَ ہاَے
     reset:
       blank_msg: کرِپَیآ رِکتَ ستھآناوں کاو بھَرےں
       new_pass: نَوَ گاُوڈھَپَدَ
       reset_btn: گاُوڈھَپَدَ کاو پُنَرپرَوَرتِتَ کَرےں
+      msg_codes:
+        success_detail: سَپھَلَتآ پاُوروَکَ گاُوڈھَپَدَ پَرِوَرتِتَ ہُآ
+        user_not_found: اُپَیاوکتآ نَہاِی مِلآ
+        wrong_email: اَنُچِتَ ےماَےل
     title: سَںچِکآ جآلَورِتتَکَ سَمپرَوےشَ
+    drive_auth_msgs:
+      expired_credentials: 404 Not Found
+      user_not_found: ''
+      wrong_credentials: 404 Not Found
+      wrong_pass: 404 Not Found

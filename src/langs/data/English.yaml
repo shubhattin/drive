@@ -45,8 +45,20 @@ drive:
       add_btn: Add User
       blank_msg: ''
       main_pass: Main Password
+      msg_codes:
+        success_detail: Successfully Added new user
+        user_already_exist: Username given already exists
     reset:
       blank_msg: Please fill in the Blanks
       new_pass: New Password
       reset_btn: Reset Password
+      msg_codes:
+        success_detail: Successfully Changed Password
+        user_not_found: User Not Found
+        wrong_email: Wrong Email
     title: Login Online File Drive
+    drive_auth_msgs:
+      expired_credentials: Expired Credentials
+      user_not_found: ''
+      wrong_credentials: Unverified Credentials
+      wrong_pass: Wrong Password

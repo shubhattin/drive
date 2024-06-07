@@ -45,8 +45,20 @@ drive:
       add_btn: વપરાશકર્તા ઉમેરો
       blank_msg: ''
       main_pass: મુખ્ય પાસવર્ડ
+      msg_codes:
+        success_detail: સફળતાપૂર્વક નવો વપરાશકર્તા ઉમેરાયો
+        user_already_exist: આપેલ વપરાશકર્તાનામ પહેલાથી જ હાજર છે
     reset:
       blank_msg: મહેરબાની કરીને ખાલી જગ્યાઓ ભરો
       new_pass: નવો પાસવર્ડ
       reset_btn: પાસવર્ડને પુન:સુયોજિત કરો
+      msg_codes:
+        success_detail: સફળતાપૂર્વક બદલાયેલ પાસવર્ડ
+        user_not_found: વપરાશકર્તા મળ્યો નથી
+        wrong_email: ખોટો ઈમેઈલ
     title: ઓનલાઇન ફાઇલ ડ્રાઇવનો પ્રવેશ કરો
+    drive_auth_msgs:
+      expired_credentials: નિવૃત્ત થયેલ શ્રેય
+      user_not_found: ''
+      wrong_credentials: ચકાસાયેલ ઓળખાણપત્રો
+      wrong_pass: ખોટો પાસવર્ડ

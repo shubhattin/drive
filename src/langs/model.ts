@@ -58,13 +58,28 @@ export interface dattType {
         add_btn: string;
         blank_msg: string;
         main_pass: string;
+        msg_codes: {
+          success_detail: string;
+          user_already_exist: string;
+        };
       };
       reset: {
         blank_msg: string;
         new_pass: string;
         reset_btn: string;
+        msg_codes: {
+          success_detail: string;
+          user_not_found: string;
+          wrong_email: string;
+        };
       };
       title: string;
+      drive_auth_msgs: {
+        expired_credentials: string;
+        user_not_found: string;
+        wrong_credentials: string;
+        wrong_pass: string;
+      };
     };
   };
 }

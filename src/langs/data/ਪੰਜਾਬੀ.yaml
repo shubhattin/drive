@@ -45,8 +45,20 @@ drive:
       add_btn: ਯੂਜ਼ਰ ਸ਼ਾਮਲ
       blank_msg: ''
       main_pass: ਮੁੱਖ ਪਾਸਵਰਡ
+      msg_codes:
+        success_detail: ਨਵੇਂ ਯੂਜ਼ਰ ਨੂੰ ਸਫਲਤਾਪੂਰਵਕ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ
+        user_already_exist: ਦਿੱਤਾ ਗਿਆ ਵਰਤੋਂਕਾਰ-ਨਾਮ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ
     reset:
       blank_msg: ਕਿਰਪਾ ਕਰਕੇ ਖਾਲੀ ਥਾਵਾਂ ਭਰੋ
       new_pass: ਨਵਾਂ ਪਾਸਵਰਡ
       reset_btn: ਪਾਸਵਰਡ ਮੁੜ- ਸੈੱਟ
+      msg_codes:
+        success_detail: ਪਾਸਵਰਡ ਸਫਲਤਾਪੂਰਵਕ ਬਦਲਿਆ ਗਿਆ
+        user_not_found: ਯੂਜ਼ਰ ਨਹੀਂ ਲੱਭਿਆ
+        wrong_email: ਗਲਤ ਈਮੇਲ
     title: ਆਨਲਾਈਨ ਫਾਇਲ ਡਰਾਇਵ ਲੌਗਇਨ ਕਰੋ
+    drive_auth_msgs:
+      expired_credentials: ਮਿਆਦ ਪੁੱਗੇ ਪ੍ਰਮਾਣ-ਪੱਤਰ
+      user_not_found: ''
+      wrong_credentials: ਨਾ-ਤਸਦੀਕ ਕੀਤੇ ਪ੍ਰਮਾਣ-ਪੱਤਰ
+      wrong_pass: ਗਲਤ ਪਾਸਵਰਡ
