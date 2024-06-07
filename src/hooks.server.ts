@@ -21,22 +21,30 @@ export const handle: Handle = async ({ event, resolve }) => {
     const locale = get_locale_from_url(event.url.pathname);
     const URL = get_pure_link(event.url.pathname);
 
+    const url_last_part = (() => {
+      const url = event.request.url.split('/');
+      return url[url.length - 1];
+    })();
+
+    const IS_DATA_JSON_REQUEST = url_last_part.includes('data.json');
+
     let user_verified = false;
     const id_token = event.cookies.get(AUTH_ID);
     try {
       user_verified = !!get_verified_id_token_info(id_token).user;
     } catch {}
-
-    if (protected_routes.includes(URL) && !user_verified) {
-      return new Response('Redirect', {
-        status: 302,
-        headers: { Location: get_link(LOGIN_URL, locale) }
-      });
-    } else if (URL === LOGIN_URL && user_verified) {
-      return new Response('Redirect', {
-        status: 302,
-        headers: { Location: get_link(DRIVE_URL, locale) }
-      });
+    if (!IS_DATA_JSON_REQUEST) {
+      if (protected_routes.includes(URL) && !user_verified) {
+        return new Response('Redirect', {
+          status: 302,
+          headers: { Location: get_link(LOGIN_URL, locale) }
+        });
+      } else if (URL === LOGIN_URL && user_verified) {
+        return new Response('Redirect', {
+          status: 302,
+          headers: { Location: get_link(DRIVE_URL, locale) }
+        });
+      }
     }
   }
 

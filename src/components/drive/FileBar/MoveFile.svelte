@@ -7,7 +7,7 @@
   import { to_base64 } from '@tools/kry/gupta';
   import { toast } from '@tools/toast';
   import { client } from '@api/client';
-  import { ensure_jwt_status } from '@tools/auth_tools';
+  import { ensure_auth_access_status } from '@tools/auth_tools';
 
   $: lekh = $lekhAH.fileBar.MoveFile;
 
@@ -45,7 +45,7 @@
         return to_base64(file.name);
       });
       const keys = $filesToMove.files.map((file) => file.key);
-      await ensure_jwt_status();
+      await ensure_auth_access_status();
       await client.drive.move_file.mutate({
         keys: keys,
         names: names

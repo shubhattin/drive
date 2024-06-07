@@ -7,21 +7,22 @@
   import { clsx } from '@tools/clsx';
   import { fly, scale, slide } from 'svelte/transition';
   import ProgressBar from './ProgressBar.svelte';
-  import { getCookieVal, AUTH_ID, ensure_jwt_status } from '@tools/auth_tools';
+  import { ensure_auth_access_status, get_access_token_info } from '@tools/auth_tools';
   import { fetch_post, Fetch } from '@tools/fetch';
   import { toast } from '@tools/toast';
   import { set_val_from_adress } from '@tools/json';
-  import { hash_256, salt, from_base64, to_base64 } from '@tools/kry/gupta';
+  import { from_base64 } from '@tools/kry/gupta';
   import { MIME as MIME_TYPE_LIST } from '../datt/mime';
   import type { fileInfoType } from '@state/drive_types';
   import { client } from '@api/client';
+  import { hash_256, gen_salt } from '@tools/hash';
 
   $: lekh = $lekhAH.fileBar.Upload;
 
   let clicked = false;
   let filesToUpload: FileList;
   let uploading = false;
-  let downloadedSize = 0;
+  let uploadedSize = 0;
   let totalSize = 0;
   let fileName = '';
   const { kAryaCount, currentReq } = fileBarStores;
@@ -36,7 +37,7 @@
   const upload_file = async () => {
     let prefix = $currentLoc;
     if (prefix === '/') prefix = '';
-    await ensure_jwt_status();
+    await ensure_auth_access_status();
     const ID = {
       upload: from_base64(await client.drive.uploadID.query()),
       project: ''
@@ -64,16 +65,17 @@
         date: new Date().toUTCString(),
         key: ''
       };
-      const FILE_HASH_NAME = await hash_256(fileInfo.date + salt());
+      // const FILE_HASH_NAME = uuid_v4();
+      // uuids can also be used for simple cases like these but in our case we go with sha256+salt
+      const FILE_HASH_NAME = await hash_256(JSON.stringify(fileInfo) + gen_salt());
       fileInfo.key = FILE_HASH_NAME;
       const AkAra = file.size / (1024 * 1024);
       fileName = file.name;
       totalSize = parseFloat(AkAra.toFixed(2));
       uploading = true;
       const MAX_CHUNK_SIZE = 9.985 * 1024 * 1024;
-      const USER_TOKEN = JSON.parse(from_base64(getCookieVal(AUTH_ID)?.split('.')[1]!))
-        .user as string;
-      const URL = get_URL(ID.project, USER_TOKEN);
+      const USER = get_access_token_info().user;
+      const URL = get_URL(ID.project, USER);
       const UPLOAD_ID = (
         await (
           await fetch_post(`${URL}/uploads`, {
@@ -103,7 +105,7 @@
           function (evt) {
             if (evt.lengthComputable) {
               let loaded = (evt.loaded + MAX_CHUNK_SIZE * (count - 1)) / (1024 * 1024);
-              downloadedSize = parseFloat(loaded.toFixed(2));
+              uploadedSize = parseFloat(loaded.toFixed(2));
             }
           },
           false
@@ -125,7 +127,7 @@
             if (req.status === 200) {
               // save file info in database
               await client.drive.upload_file.mutate({
-                name: to_base64(`${prefix}/${file.name}`),
+                name: `${prefix}/${file.name}`,
                 size: fileInfo.size,
                 date: fileInfo.date,
                 mime: fileInfo.mime,
@@ -142,7 +144,7 @@
     };
     const continue_next_file = (i: number) => {
       fileName = '';
-      downloadedSize = 0;
+      uploadedSize = 0;
       totalSize = 0;
       if (filesToUpload.length !== ++i) {
         upld(i);
@@ -213,14 +215,14 @@
       </div>
       <div class="text-lg font-semibold">
         <span>
-          <span class="text-purple-600">{downloadedSize}</span>/
+          <span class="text-purple-600">{uploadedSize}</span>/
           <span class="text-violet-800">{totalSize}</span>
         </span>
         <button on:click={closeUpload}>
           <Icon src={CgClose} className="text-[red] text-3xl ml-5 active:text-[brown]" />
         </button>
       </div>
-      <ProgressBar per={(downloadedSize / totalSize) * 100} />
+      <ProgressBar per={(uploadedSize / totalSize) * 100} />
     </div>
   {/if}
 </span>

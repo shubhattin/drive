@@ -9,7 +9,7 @@
   import { reload_file_list, goBackInFileList } from '@components/drive/karah';
   import { preloadData } from '$app/navigation';
   import { get_link } from '@tools/i18n';
-  import { ensure_jwt_status } from '@tools/auth_tools';
+  import { ensure_auth_access_status } from '@tools/auth_tools';
 
   export let data: PageData;
   $: $lekhAH = data.lekh;
@@ -24,7 +24,7 @@
     if (import.meta.env.PROD) {
       window.onbeforeunload = () => 'किं भवान्वास्तवमेव प्रतिगन्तुमिच्छसि';
     }
-    await ensure_jwt_status();
+    await ensure_auth_access_status();
     await reload_file_list();
   });
 </script>

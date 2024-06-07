@@ -3,10 +3,15 @@ import { base_delete, base_fetch_all, base_get, base_put } from '@tools/deta';
 import type { fileInfoType } from '@state/drive_types';
 import { fileInfoSchema } from '@state/drive_types';
 import { z } from 'zod';
+import { from_base64, to_base64 } from '@tools/kry/gupta';
 
 const fetch_file_list_route = protectedProcedure.query(async ({ ctx: { user } }) => {
   const file_list = await base_fetch_all<fileInfoType>(`${user.user}_files`);
-  return file_list;
+  const file_list_decoded_names = file_list.map((file) => ({
+    ...file,
+    name: from_base64(file.name, true)
+  }));
+  return file_list_decoded_names;
 });
 
 const delete_file_route = protectedProcedure
@@ -32,6 +37,7 @@ const download_id_route = protectedProcedure.query(async () => {
 const upload_file_route = protectedProcedure
   .input(fileInfoSchema)
   .mutation(async ({ input: data, ctx: { user } }) => {
+    data.name = to_base64(data.name);
     return await base_put(`${user.user}_files`, [data]);
   });
 

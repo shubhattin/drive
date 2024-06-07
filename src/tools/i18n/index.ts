@@ -15,7 +15,7 @@ export const locale_values = Object.values(locales);
  * @returns string
  */
 export const get_current_locale = (lang = get(page).params.lang) => {
-  return lang || lang_data.default_locale;
+  return lang ?? lang_data.default_locale;
 };
 
 /**

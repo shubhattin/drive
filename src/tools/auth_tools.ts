@@ -61,7 +61,7 @@ export const get_access_token_info = () => {
     .parse(payload);
 };
 
-export const ensure_jwt_status = async () => {
+export const ensure_auth_access_status = async () => {
   if (!getCookieVal(AUTH_ID)) {
     router_push('/login');
     return;
@@ -83,4 +83,5 @@ export const deleteAuthCookies = () => {
     sessionStorage.removeItem(AUTH_ID);
     sessionStorage.removeItem(ACCESS_ID);
   }
+  setJwtToken('');
 };
