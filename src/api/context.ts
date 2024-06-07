@@ -11,18 +11,19 @@ const access_token_payload_schema = z.object({
 
 export async function createContext(event: RequestEvent) {
   const { request } = event;
+  const { headers } = request;
 
-  async function getUserFromHeader() {
+  const getUserFromHeader = () => {
     let payload: z.infer<typeof access_token_payload_schema>;
     try {
-      const access_tokem = request.headers.get('Authorization')?.split(' ')[1]!;
+      const access_tokem = headers.get('Authorization')?.split(' ')[1]!; // formar :-  Bearer access_token
       payload = access_token_payload_schema.parse(jwt.verify(access_tokem, JWT_SECRET));
       return payload;
     } catch {}
     return null;
-  }
+  };
 
-  const user = await getUserFromHeader();
+  const user = getUserFromHeader();
   return {
     user
   };

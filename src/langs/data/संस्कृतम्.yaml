@@ -4,17 +4,17 @@ drive:
       Delete:
         confirm_msg: किं भवाञ् चयनितानि सञ्चितानि प्रणशितुमिच्छसि ?
         deleted_msg: इत्यमानि प्रणष्टः
-        'no': ''
+        'no': !!str
         'yes': अस्तु
       Download:
         download_msg: अवाहरनिदानीम्
       FileView:
-        download_msg: ''
+        download_msg: !!str
         view_error: सञ्चितं द्रष्टुं केवलैकं तुदतु
       Logout:
         confirm_msg: किं भवान् निर्गच्छितुमिच्छसि ?
-        'no': ''
-        'yes': ''
+        'no': !!str
+        'yes': !!str
       NewFolder:
         add_file_msg: सञ्चयं योज्यताम्
         file_input: सञ्चयनामम्
@@ -23,12 +23,12 @@ drive:
         added_msg: इत्यिदं युक्तः
         already_exists: सञ्चितं पूर्वविद्यमानम्
         upload_msg: उपारोपनिदानीम्
-        'yes': ''
+        'yes': !!str
       Rename:
         rename_msg: नामान्तरयतु
         renamed_msg: इत्यिदं नामान्तरितः
         file_name: सञ्चितनामम्
-        'no': ''
+        'no': !!str
       MoveFile:
         moved_msg: स्थानान्तरितः
     fileList:
@@ -43,7 +43,7 @@ drive:
       new_user_btn: नवोपयोक्तृसमायोगम्
     new_user:
       add_btn: उपयोक्तरं समायुजतु
-      blank_msg: ''
+      blank_msg: !!str
       main_pass: सम्मूलगूढपदम्
       msg_codes:
         success_detail: सफलतया नवोपयोक्तरं संयोजते
@@ -59,6 +59,6 @@ drive:
     title: सञ्चिकाजालवृत्तकसम्प्रवेशम्
     drive_auth_msgs:
       expired_credentials: प्रत्ययपत्त्रं कालातिक्रमितम्
-      user_not_found: ''
+      user_not_found: !!str
       wrong_credentials: प्रत्ययपत्त्रम् अप्रमाणितम्
       wrong_pass: अनुचितगूढपदम्

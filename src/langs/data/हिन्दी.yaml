@@ -4,17 +4,17 @@ drive:
       Delete:
         confirm_msg: क्या आप चयनित संचितों को प्रणष्ट करना चहते हैं ?
         deleted_msg: प्रणष्ट किये गये
-        'no': ''
+        'no': !!str
         'yes': हाँ
       Download:
         download_msg: अवाहरित हो रहा
       FileView:
-        download_msg: ''
+        download_msg: !!str
         view_error: संचित देखने के लिए केवल एक हि दबाएं
       Logout:
         confirm_msg: क्या आप निर्गम करना चाहते हैं ?
-        'no': ''
-        'yes': ''
+        'no': !!str
+        'yes': !!str
       NewFolder:
         add_file_msg: संचय को युक्त करें
         file_input: संचय का नाम
@@ -23,12 +23,12 @@ drive:
         added_msg: युक्त किया गया
         already_exists: संचित पूर्वविद्यमान है
         upload_msg: उपारोपित हो रहा
-        'yes': ''
+        'yes': !!str
       Rename:
         rename_msg: नामान्तरण करें
         renamed_msg: नामान्तरित किया गया
         file_name: संचित नाम
-        'no': ''
+        'no': !!str
       MoveFile:
         moved_msg: स्थानान्तरित किया गया
     fileList:
@@ -43,7 +43,7 @@ drive:
       new_user_btn: नव उपयोक्ता जोड़ें
     new_user:
       add_btn: उपयोक्ता जोड़ें
-      blank_msg: ''
+      blank_msg: !!str
       main_pass: सम्मूल गूढपद
       msg_codes:
         success_detail: सफलता पूर्वक नये उपयोक्ता को संयुक्त किया गया
@@ -59,6 +59,6 @@ drive:
     title: संचिका जालवृत्तक सम्प्रवेश
     drive_auth_msgs:
       expired_credentials: प्रत्ययपत्त्र कालातिक्रमित है
-      user_not_found: ''
+      user_not_found: !!str
       wrong_credentials: प्रत्ययपत्त्र अप्रमाणित है
       wrong_pass: अनुचित गूढपद

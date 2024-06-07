@@ -54,10 +54,9 @@ for y in ln:
             yes=only["yes"],
             func=sh.parivartak,
         )
-    sh.write(
-        f"data/{y}.yaml",
-        yaml.safe_dump(anu[y], allow_unicode=True, sort_keys=False),
-    )
+    file_data = yaml.safe_dump(anu[y], allow_unicode=True, sort_keys=False)
+    file_data = file_data.replace("''", "!!str")
+    sh.write(f"data/{y}.yaml", file_data)
     print(ln[y], f"{time()-tm}s")
 
 sh.start_thread(lambda: sh.prettier_beautify("data"))

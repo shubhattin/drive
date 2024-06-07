@@ -4,17 +4,17 @@ drive:
       Delete:
         confirm_msg: کیآ آپَ چَیَنِتَ سَںچِتاوں کاو پرَݨَشٹَ کَرَنآ چَہَتے ہاَےں ؟
         deleted_msg: پرَݨَشٹَ کِیآ گَیآ
-        'no': ''
+        'no': !!str
         'yes': ہآںں
       Download:
         download_msg: اَوآہَرِتَ ہاو رَہآ
       FileView:
-        download_msg: ''
+        download_msg: !!str
         view_error: سَںچِتَ دےکھَنے کے لِے کےوَلَ ےکَ ہِ دَبآےں
       Logout:
         confirm_msg: کیآ آپَ نِرپرَوےشَ کَرَنآ چآہَتے ہاَےں ؟
-        'no': ''
-        'yes': ''
+        'no': !!str
+        'yes': !!str
       NewFolder:
         add_file_msg: سَںچَیَ یاوجِتَ کَرےں
         file_input: سَںچَیَ کآ نآمَ
@@ -23,12 +23,12 @@ drive:
         added_msg: یُکتَ کِیآ گَیآ
         already_exists: 404 Not Found
         upload_msg: اُپآراوپِتَ ہاو رَہآ
-        'yes': ''
+        'yes': !!str
       Rename:
         rename_msg: نآمآنتَرَݨَ کَرےں
         renamed_msg: نآمآنتَرِتَ کِیآ گَیآ
         file_name: سَڃچِتَ نآمَ
-        'no': ''
+        'no': !!str
       MoveFile:
         moved_msg: ستھآنآنتَرِتَ کِیآ گَیآ
     fileList:
@@ -43,7 +43,7 @@ drive:
       new_user_btn: نَوَ اُپَیاوکتآ جاوڑےں
     new_user:
       add_btn: اُپَیاوکتآ جاوڑےں
-      blank_msg: ''
+      blank_msg: !!str
       main_pass: سَمماُولَ گاُوڈھَپَدَ
       msg_codes:
         success_detail: سَپھَلَتآ پاُوروَکَ نَیے اُپَیاوکتآ کاو ستھآپِتَ کِیآ گَیآ
@@ -59,6 +59,6 @@ drive:
     title: سَںچِکآ جآلَورِتتَکَ سَمپرَوےشَ
     drive_auth_msgs:
       expired_credentials: 404 Not Found
-      user_not_found: ''
+      user_not_found: !!str
       wrong_credentials: 404 Not Found
       wrong_pass: 404 Not Found

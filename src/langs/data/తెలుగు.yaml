@@ -4,17 +4,17 @@ drive:
       Delete:
         confirm_msg: ఎంచుకున్న ఫైళ్లను మీరు తొలగించదలిచారా?
         deleted_msg: తొలగించబడింది
-        'no': ''
+        'no': !!str
         'yes': అవును
       Download:
         download_msg: డౌన్ లోడ్ చేస్తోంది
       FileView:
-        download_msg: ''
+        download_msg: !!str
         view_error: ఫైలును వీక్షించడానికి ఒకదానిపై మాత్రమే క్లిక్ చేయండి
       Logout:
         confirm_msg: మీరు నిష్క్రమించదలిచారా?
-        'no': ''
-        'yes': ''
+        'no': !!str
+        'yes': !!str
       NewFolder:
         add_file_msg: సంచికను జోడించు
         file_input: సంచిక పేరు
@@ -23,12 +23,12 @@ drive:
         added_msg: జోడించబడింది
         already_exists: ఫైలు ఇప్పటికే ఉంది
         upload_msg: అప్ లోడ్ చేస్తోంది
-        'yes': ''
+        'yes': !!str
       Rename:
         rename_msg: పేరు మార్చండి
         renamed_msg: పేరు మార్చబడింది
         file_name: ఫైలు పేరు
-        'no': ''
+        'no': !!str
       MoveFile:
         moved_msg: కదిలింది
     fileList:
@@ -43,7 +43,7 @@ drive:
       new_user_btn: కొత్త యూజర్ ని జోడించు
     new_user:
       add_btn: వినియోగదారుని జోడించు
-      blank_msg: ''
+      blank_msg: !!str
       main_pass: ప్రధాన అనుమతిపదం
       msg_codes:
         success_detail: కొత్త యూజర్ ని విజయవంతంగా జోడించారు
@@ -59,6 +59,6 @@ drive:
     title: లాగిన్ ఆన్ లైన్ ఫైల్ డ్రైవ్
     drive_auth_msgs:
       expired_credentials: గడువు ముగిసిన ఆధారాలు
-      user_not_found: ''
+      user_not_found: !!str
       wrong_credentials: ధృవీకరించని Credentials
       wrong_pass: తప్పు పాస్ వర్డ్

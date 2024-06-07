@@ -9,12 +9,12 @@ drive:
       Download:
         download_msg: Downloading
       FileView:
-        download_msg: ''
+        download_msg: !!str
         view_error: To view File click only one
       Logout:
         confirm_msg: Do you want to logout ?
-        'no': ''
-        'yes': ''
+        'no': !!str
+        'yes': !!str
       NewFolder:
         add_file_msg: Add Folder
         file_input: Folder name
@@ -23,12 +23,12 @@ drive:
         added_msg: Added
         already_exists: File already exists
         upload_msg: Uploading
-        'yes': ''
+        'yes': !!str
       Rename:
         rename_msg: Rename
         renamed_msg: Renamed
         file_name: File name
-        'no': ''
+        'no': !!str
       MoveFile:
         moved_msg: Moved
     fileList:
@@ -43,7 +43,7 @@ drive:
       new_user_btn: Add New User
     new_user:
       add_btn: Add User
-      blank_msg: ''
+      blank_msg: !!str
       main_pass: Main Password
       msg_codes:
         success_detail: Successfully Added new user
@@ -59,6 +59,6 @@ drive:
     title: Login Online File Drive
     drive_auth_msgs:
       expired_credentials: Expired Credentials
-      user_not_found: ''
+      user_not_found: !!str
       wrong_credentials: Unverified Credentials
       wrong_pass: Wrong Password

@@ -1,5 +1,5 @@
 import type { Handle } from '@sveltejs/kit';
-import { default_locale } from './langs';
+import { DEFAULT_LOCALE } from './langs';
 import { createContext } from '@api/context';
 import { router } from '@api/trpc_router';
 import { createTRPCHandle } from 'trpc-sveltekit';
@@ -50,7 +50,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
   return resolve(event, {
     transformPageChunk: ({ html }) => {
-      return html.replace('%lang%', event.params.lang || default_locale);
+      return html.replace('%lang%', event.params.lang || DEFAULT_LOCALE);
     }
   });
 };

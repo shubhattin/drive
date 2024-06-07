@@ -17,3 +17,6 @@ api/public/
 api/requirements.txt
 api/langs/data/json/
 .space
+
+a.py
+a.ts

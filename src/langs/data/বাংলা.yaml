@@ -4,17 +4,17 @@ drive:
       Delete:
         confirm_msg: আপনি কি নির্বাচিত ফাইলগুলি মুছতে চান?
         deleted_msg: বিলোপ
-        'no': ''
+        'no': !!str
         'yes': হ্যাঁ
       Download:
         download_msg: ডাউনলোড
       FileView:
-        download_msg: ''
+        download_msg: !!str
         view_error: ফাইল দেখতে শুধুমাত্র একটি ক্লিক করুন
       Logout:
         confirm_msg: তুমি কি লগআউট করতে চাও?
-        'no': ''
-        'yes': ''
+        'no': !!str
+        'yes': !!str
       NewFolder:
         add_file_msg: ফোল্ডার জুড়ুন
         file_input: ফোল্ডারের নাম
@@ -23,12 +23,12 @@ drive:
         added_msg: যুক্ত
         already_exists: ফাইল ইতিমধ্যে বিদ্যমান
         upload_msg: আপলোড করা হচ্ছে
-        'yes': ''
+        'yes': !!str
       Rename:
         rename_msg: পুনঃনামকরণ
         renamed_msg: পুনঃনামকরণ
         file_name: ফাইলের নাম
-        'no': ''
+        'no': !!str
       MoveFile:
         moved_msg: সরানো
     fileList:
@@ -43,7 +43,7 @@ drive:
       new_user_btn: নতুন ব্যবহারকারী যোগ করুন
     new_user:
       add_btn: ব্যবহারকারী যোগ করুন
-      blank_msg: ''
+      blank_msg: !!str
       main_pass: প্রধান পাসওয়ার্ড
       msg_codes:
         success_detail: সফলভাবে নতুন ব্যবহারকারী যোগ করা হয়েছে
@@ -59,6 +59,6 @@ drive:
     title: লগইন অনলাইন ফাইল ড্রাইভ
     drive_auth_msgs:
       expired_credentials: মেয়াদোত্তীর্ণ পরিচয়পত্র
-      user_not_found: ''
+      user_not_found: !!str
       wrong_credentials: যাচাই না করা পরিচয়পত্র
       wrong_pass: ভুল পাসওয়ার্ড

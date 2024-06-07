@@ -4,17 +4,17 @@ drive:
       Delete:
         confirm_msg: തെരഞ്ഞെടുത്ത ഫയലുകൾ ഇല്ലാതാക്കണമോ?
         deleted_msg: നീക്കം ചെയ്തു
-        'no': ''
+        'no': !!str
         'yes': ശരി
       Download:
         download_msg: ഡൌൺലോഡ് ചെയ്യുന്നു
       FileView:
-        download_msg: ''
+        download_msg: !!str
         view_error: ഫയൽ കാണുന്നതിന് ഒരെണ്ണം മാത്രം ക്ലിക്ക് ചെയ്യുക
       Logout:
         confirm_msg: നിങ്ങൾക്ക് ലോഗൗട്ട് ചെയ്യണോ?
-        'no': ''
-        'yes': ''
+        'no': !!str
+        'yes': !!str
       NewFolder:
         add_file_msg: ഫോൾഡർ ചേർക്കുക
         file_input: അറയുടെ പേര്
@@ -23,12 +23,12 @@ drive:
         added_msg: ചേർത്തു
         already_exists: ഫയൽ നിലവിലുണ്ട്
         upload_msg: അപ് ലോഡ് ചെയ്യുന്നു
-        'yes': ''
+        'yes': !!str
       Rename:
         rename_msg: പുനർനാമകരണം
         renamed_msg: പുനർനാമകരണം ചെയ്തു
         file_name: ഫയലിന്റെ പേര്
-        'no': ''
+        'no': !!str
       MoveFile:
         moved_msg: നീങ്ങി
     fileList:
@@ -43,7 +43,7 @@ drive:
       new_user_btn: പുതിയ ഉപയോക്താവിനെ ചേർക്കുക
     new_user:
       add_btn: ഉപയോക്താവിനെ ചേർക്കുക
-      blank_msg: ''
+      blank_msg: !!str
       main_pass: പ്രധാന രഹസ്യവാക്ക്
       msg_codes:
         success_detail: പുതിയ ഉപയോക്താവിനെ വിജയകരമായി ചേർത്തു
@@ -59,6 +59,6 @@ drive:
     title: ഓൺലൈൻ ഫയൽ ഡ്രൈവ് ലോഗിൻ ചെയ്യുക
     drive_auth_msgs:
       expired_credentials: കാലഹരണപ്പെട്ട ക്രെഡൻഷ്യലുകൾ
-      user_not_found: ''
+      user_not_found: !!str
       wrong_credentials: സ്ഥിരീകരിക്കാത്ത ക്രെഡൻഷ്യലുകൾ
       wrong_pass: തെറ്റായ പാസ് വേഡ്
