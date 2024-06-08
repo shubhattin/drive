@@ -6,7 +6,7 @@
   import BiReset from 'svelte-icons-pack/bi/BiReset';
   import Icon from '@tools/Icon.svelte';
   import { toast } from '@tools/toast';
-  import { storeAuthCookies, getCookieVal, AUTH_ID } from '@tools/auth_tools';
+  import { storeAuthCookies, get_id_token_info, get_access_token_info } from '@tools/auth_tools';
   import { router_push } from '@tools/i18n';
   import { isLocalStorage, setIsLocalStorage } from '@state/ref/drive/shared';
   import { getLocalStorageState } from '@tools/state';
@@ -24,7 +24,11 @@
   onMount(() => {
     window.onpopstate = null;
     window.onbeforeunload = null;
-    if (getCookieVal(AUTH_ID)) {
+    try {
+      get_id_token_info();
+      get_access_token_info();
+      // somehow only if both tokens are in good state then only redirect
+    } catch (e) {
       router_push('/');
       // this redirect should usually be handled on the server or edge function
     }
@@ -47,7 +51,7 @@
     if (!res.verified) {
       err = true;
       idElmnt.focus();
-      // if (req.status === 401) toast.error(rs.detail, 3000);
+      toast.error($lekhAH.drive_auth_msgs[res.err_code], 3000);
       return;
     }
     storeAuthCookies(res);

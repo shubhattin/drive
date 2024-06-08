@@ -33,45 +33,65 @@ export const storeAuthCookies = (res: authRes) => {
   }
 };
 
+const JWT_HEADER_SCHEMA = z.object({
+  alg: z.literal('HS256'),
+  typ: z.literal('JWT')
+});
+
 export const get_id_token_info = () => {
   const cookie = isLocalStorage ? getCookieVal(AUTH_ID)! : sessionStorage.getItem(AUTH_ID)!;
-  const payload = JSON.parse(from_base64(cookie.split('.')[1]));
-  return z
+
+  // header parsing :- not returning it as it typically not required, but verifying it to be more sure of the integrity of the token
+  JWT_HEADER_SCHEMA.parse(JSON.parse(from_base64(cookie.split('.')[0])));
+
+  const payload = z
     .object({
       user: z.string(),
       type: z.literal('login'),
       iat: z.number().int(),
       exp: z.number().int()
     })
-    .parse(payload);
+    .parse(JSON.parse(from_base64(cookie.split('.')[1])));
+  if (payload.exp - getTime() <= 0) throw new Error('expired');
+  return payload;
 };
 
 export const get_access_token_info = () => {
   const cookie = isLocalStorage
     ? localStorage.getItem(ACCESS_ID)!
     : sessionStorage.getItem(ACCESS_ID)!;
-  const payload = JSON.parse(from_base64(cookie.split('.')[1]));
-  return z
+
+  // header parsing :- not returning it as it typically not required, but verifying it to be more sure of the integrity of the token
+  JWT_HEADER_SCHEMA.parse(JSON.parse(from_base64(cookie.split('.')[0])));
+
+  const payload = z
     .object({
       user: z.string(),
       type: z.literal('api'),
       iat: z.number().int(),
       exp: z.number().int()
     })
-    .parse(payload);
+    .parse(JSON.parse(from_base64(cookie.split('.')[1])));
+  if (payload.exp - getTime() <= 0) throw new Error('expired');
+  return payload;
 };
 
 export const ensure_auth_access_status = async () => {
-  if (!getCookieVal(AUTH_ID)) {
+  try {
+    get_id_token_info();
+  } catch {
+    deleteAuthCookies();
     router_push('/login');
     return;
   }
-  const access_token_expire = get_access_token_info().exp;
-  if (access_token_expire - getTime() <= 0) {
-    const res = await client.auth.renew_access_token.query({ id_token: getCookieVal(AUTH_ID)! });
-    if (!res.verified) return;
-    storeAuthCookies(res);
-    setJwtToken(res.access_token);
+
+  // renewing our tokens if access token is expired
+  try {
+    get_access_token_info();
+  } catch (e: any) {
+    if (e instanceof Error) {
+      if (e.message === 'expired') await renew_tokens_after_access_expire();
+    }
   }
 };
 
@@ -85,3 +105,12 @@ export const deleteAuthCookies = () => {
   }
   setJwtToken('');
 };
+
+export async function renew_tokens_after_access_expire() {
+  const res = await client.auth.renew_access_token.query({
+    id_token: getCookieVal(AUTH_ID)!
+  });
+  if (!res.verified) return;
+  storeAuthCookies(res);
+  setJwtToken(res.access_token);
+}

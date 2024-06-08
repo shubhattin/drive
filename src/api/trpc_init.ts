@@ -1,7 +1,8 @@
 import type { dattStruct } from '@langs/model';
 import type { Context } from './context';
-import { TRPCError, initTRPC } from '@trpc/server';
+import { initTRPC } from '@trpc/server';
 import { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
+import { TRPCClientError } from '@trpc/client';
 
 export const t = initTRPC.context<Context>().create();
 
@@ -16,7 +17,7 @@ export const protectedProcedure = publicProcedure.use(async function isAuthed({
       'UNAUTHORIZED';
     if (jwt_error instanceof TokenExpiredError) message = 'expired_credentials';
     else if (jwt_error instanceof JsonWebTokenError) message = 'wrong_credentials';
-    throw new TRPCError({ code: 'UNAUTHORIZED', message });
+    throw new TRPCClientError(message);
   }
   return next({
     ctx: { user }

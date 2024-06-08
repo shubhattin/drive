@@ -6,6 +6,7 @@ import { base_get } from '@tools/deta';
 import { compare } from 'bcrypt';
 import ms from 'ms';
 import { dattStruct } from '@langs/model';
+import { get_zod_key_enum } from '@langs/datt';
 
 const ID_TOKREN_EXPIRE = ms('10days') / 1000; // so if not opened for 10 consecutive days will be logged out
 const ACCESS_TOKEN_EXPIRE = ms('12hrs') / 1000;
@@ -101,15 +102,6 @@ export const renew_access_token = publicProcedure
       };
     return { verified: true, ...get_id_and_aceess_token(user.user) };
   });
-
-function get_zod_key_enum<T extends string>(obj: {
-  [x in T]: any;
-}) {
-  // gets the zod enum from on object keys
-  const keys = Object.keys(obj) as T[];
-  const [first, ...other] = keys;
-  return z.enum([first, ...other]);
-}
 
 export const auth_router = t.router({
   verify_pass: verify_pass_router,
