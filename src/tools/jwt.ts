@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { env } from '$env/dynamic/private';
-import jsonwebtoken from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 export const JWT_SECRET = (() => {
   const token = env.JWT_SECRET;
@@ -10,7 +10,7 @@ export const JWT_SECRET = (() => {
 })();
 
 export const get_verified_id_token_info = (token: string | undefined) => {
-  const payload = jsonwebtoken.verify(token!, JWT_SECRET);
+  const payload = jwt.verify(token!, JWT_SECRET);
   return z
     .object({
       user: z.string(),

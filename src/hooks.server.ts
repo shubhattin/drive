@@ -12,8 +12,9 @@ const handle_trpc = createTRPCHandle({ router, createContext });
 export const handle: Handle = async ({ event, resolve }) => {
   const { url, request, cookies, params } = event;
   const { method } = request;
+  const { pathname } = url;
 
-  if (url.pathname.startsWith('/trpc')) {
+  if (pathname.startsWith('/trpc')) {
     return handle_trpc({ event, resolve });
   }
 
@@ -37,17 +38,15 @@ export const handle: Handle = async ({ event, resolve }) => {
       user_verified = !!get_verified_id_token_info(id_token).user;
     } catch {}
     if (!IS_DATA_JSON_REQUEST) {
-      if (protected_routes.includes(URL) && !user_verified) {
-        return new Response('Redirect', {
-          status: 302,
-          headers: { Location: get_link(LOGIN_URL, locale) }
-        });
-      } else if (URL === LOGIN_URL && user_verified) {
-        return new Response('Redirect', {
-          status: 302,
-          headers: { Location: get_link(DRIVE_URL, locale) }
-        });
-      }
+      if (protected_routes.includes(URL) && !user_verified)
+        return redirect_response(get_link(LOGIN_URL, locale));
+      else if (URL === LOGIN_URL && user_verified)
+        return redirect_response(get_link(DRIVE_URL, locale));
+    }
+
+    // redirecting all :- /default_locale/* -> /*
+    if (pathname.split('/')[1] === DEFAULT_LOCALE) {
+      return redirect_response(get_link(pathname, DEFAULT_LOCALE));
     }
   }
 
@@ -57,3 +56,10 @@ export const handle: Handle = async ({ event, resolve }) => {
     }
   });
 };
+
+function redirect_response(loc: string) {
+  return new Response('Redirect', {
+    status: 302,
+    headers: { Location: loc }
+  });
+}

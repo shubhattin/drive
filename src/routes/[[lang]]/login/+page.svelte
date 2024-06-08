@@ -24,14 +24,15 @@
   onMount(() => {
     window.onpopstate = null;
     window.onbeforeunload = null;
+
     try {
       get_id_token_info();
       get_access_token_info();
-      // somehow only if both tokens are in good state then only redirect
-    } catch (e) {
-      router_push('/');
+
+      // somehow only if both tokens are valid then only redirect
       // this redirect should usually be handled on the server or edge function
-    }
+      router_push('/');
+    } catch {}
   });
   let err = false;
   const remember = getLocalStorageState<boolean>('drive_remember_pass_atom', isLocalStorage);
