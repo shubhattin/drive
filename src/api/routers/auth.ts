@@ -5,18 +5,12 @@ import jwt from 'jsonwebtoken';
 import { base_get } from '@tools/deta';
 import { compare } from 'bcrypt';
 import ms from 'ms';
+import { dattStruct } from '@langs/model';
 
 const ID_TOKREN_EXPIRE = ms('10days') / 1000; // so if not opened for 10 consecutive days will be logged out
 const ACCESS_TOKEN_EXPIRE = ms('12hrs') / 1000;
 
 export const USERS_INFO_DRIVE_LOC = 'drive_users';
-
-const get_pass_verify_status = async (username: string, password: string) => {
-  const user_info = await base_get<{ key: string; value: string }>(USERS_INFO_DRIVE_LOC, username);
-  if (!user_info?.value) return false;
-  const verified = await compare(password, user_info.value);
-  return verified;
-};
 
 const get_id_and_aceess_token = (username: string) => {
   const id_token = jwt.sign({ user: username, type: 'login' }, JWT_SECRET, {
@@ -39,17 +33,28 @@ const verify_pass_router = publicProcedure
     })
   )
   .output(
-    z.object({ verified: z.literal(false) }).or(
-      z.object({
-        verified: z.literal(true),
-        access_token: z.string(),
-        id_token: z.string()
+    z
+      .object({
+        verified: z.literal(false),
+        err_code: get_zod_key_enum(dattStruct.drive.login.drive_auth_msgs)
       })
-    )
+      .or(
+        z.object({
+          verified: z.literal(true),
+          access_token: z.string(),
+          id_token: z.string()
+        })
+      )
   )
   .query(async ({ input: { password, username } }) => {
-    const verified = await get_pass_verify_status(username, password);
-    if (!verified) return { verified };
+    let verified = false;
+    const user_info = await base_get<{ key: string; value: string }>(
+      USERS_INFO_DRIVE_LOC,
+      username
+    );
+    if (!user_info?.value) return { verified: false, err_code: 'user_not_found' };
+    verified = await compare(password, user_info.value);
+    if (!verified) return { verified, err_code: 'wrong_pass' };
     const { id_token, access_token } = get_id_and_aceess_token(username);
     return {
       verified,
@@ -96,6 +101,15 @@ export const renew_access_token = publicProcedure
       };
     return { verified: true, ...get_id_and_aceess_token(user.user) };
   });
+
+function get_zod_key_enum<T extends string>(obj: {
+  [x in T]: any;
+}) {
+  // gets the zod enum from on object keys
+  const keys = Object.keys(obj) as T[];
+  const [first, ...other] = keys;
+  return z.enum([first, ...other]);
+}
 
 export const auth_router = t.router({
   verify_pass: verify_pass_router,

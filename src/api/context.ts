@@ -13,19 +13,22 @@ export async function createContext(event: RequestEvent) {
   const { request } = event;
   const { headers } = request;
 
-  const getUserFromHeader = () => {
+  const getUserFromHeader = (): [z.infer<typeof access_token_payload_schema> | null, any] => {
     let payload: z.infer<typeof access_token_payload_schema>;
     try {
       const access_tokem = headers.get('Authorization')?.split(' ')[1]!; // formar :-  Bearer access_token
       payload = access_token_payload_schema.parse(jwt.verify(access_tokem, JWT_SECRET));
-      return payload;
-    } catch {}
-    return null;
+      return [payload, null];
+    } catch (error) {
+      // this error information will be later used in protected procedures to give expired or invalid jwt message
+      return [null, error];
+    }
   };
 
-  const user = getUserFromHeader();
+  const [user, jwt_error] = getUserFromHeader();
   return {
-    user
+    user,
+    jwt_error
   };
 }
 

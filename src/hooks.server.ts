@@ -10,26 +10,29 @@ import { AUTH_ID } from '@tools/auth_tools';
 const handle_trpc = createTRPCHandle({ router, createContext });
 
 export const handle: Handle = async ({ event, resolve }) => {
-  if (event.url.pathname.startsWith('/trpc')) {
+  const { url, request, cookies, params } = event;
+  const { method } = request;
+
+  if (url.pathname.startsWith('/trpc')) {
     return handle_trpc({ event, resolve });
   }
 
-  if (event.request.method === 'GET') {
+  if (method === 'GET') {
     const protected_routes = ['/'];
     const LOGIN_URL = '/login';
     const DRIVE_URL = '/';
-    const locale = get_locale_from_url(event.url.pathname);
-    const URL = get_pure_link(event.url.pathname);
+    const locale = get_locale_from_url(url.pathname);
+    const URL = get_pure_link(url.pathname);
 
     const url_last_part = (() => {
-      const url = event.request.url.split('/');
+      const url = request.url.split('/');
       return url[url.length - 1];
     })();
 
     const IS_DATA_JSON_REQUEST = url_last_part.includes('data.json');
 
     let user_verified = false;
-    const id_token = event.cookies.get(AUTH_ID);
+    const id_token = cookies.get(AUTH_ID);
     try {
       user_verified = !!get_verified_id_token_info(id_token).user;
     } catch {}
@@ -50,7 +53,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 
   return resolve(event, {
     transformPageChunk: ({ html }) => {
-      return html.replace('%lang%', event.params.lang || DEFAULT_LOCALE);
+      return html.replace('%lang%', params.lang ?? DEFAULT_LOCALE);
     }
   });
 };

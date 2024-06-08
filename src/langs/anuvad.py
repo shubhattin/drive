@@ -63,5 +63,20 @@ sh.start_thread(lambda: sh.prettier_beautify("data"))
 
 if True:  # Adding a model for TypeScript
     model = anu["संस्कृतम्"]
-    sh.write("model.ts", sh.generate_typescript_data_model(model, "dattType"))
+    TYPE_NAME = "dattType"
+    STRUCT_NAME = "dattStruct"
+    file = sh.generate_typescript_data_model(model, TYPE_NAME)
+    file = (
+        file.replace(f"export interface {TYPE_NAME}", f"export const {STRUCT_NAME} =")
+        .replace(" string;", " '',")
+        .replace("};", " },")
+        + "\n"
+    )
+    file += "\n".join(
+        [
+            f"type {STRUCT_NAME}Type = typeof {STRUCT_NAME};",
+            f"export interface {TYPE_NAME} extends {STRUCT_NAME}Type " + "{}",
+        ]
+    )
+    sh.write("model.ts", file)
     sh.start_thread(lambda: sh.prettier_beautify("model.ts"))
