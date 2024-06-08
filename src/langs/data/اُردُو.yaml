@@ -58,7 +58,7 @@ drive:
         wrong_email: اَنُچِتَ ےماَےل
     title: سَںچِکآ جآلَورِتتَکَ سَمپرَوےشَ
     drive_auth_msgs:
-      expired_credentials: 404 Not Found
+      expired_credentials: پرَتیَیَپَتترَ کآلآتِکرَمِتَ ہاَے
       user_not_found: !!str
-      wrong_credentials: 404 Not Found
-      wrong_pass: 404 Not Found
+      wrong_credentials: پرَتیَیَپَتترَ اَپرَمآݨِتَ ہاَے
+      wrong_pass: اَنُچِتَ گاُوڈھَپَدَ

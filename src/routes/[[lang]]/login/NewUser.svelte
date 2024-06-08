@@ -4,7 +4,7 @@
   import Icon from '@tools/Icon.svelte';
   import { toast } from '@tools/toast';
   import { lekhAH, mode, id, pass } from './state';
-  import { fetch_post } from '@tools/fetch';
+  import { client } from '@api/client';
 
   $: lekh = $lekhAH.new_user;
   let email = '';
@@ -14,15 +14,16 @@
       toast.error(lekh.blank_msg, 3000);
       return;
     }
-    const req = await fetch_post('/api/drive/add_new_user', {
-      json: { username: $id, password: $pass, email: email }
+    const res = await client.auth.add_new_user.mutate({
+      username: $id,
+      password: $pass,
+      email: email
     });
-    const res = await req.json();
-    if (req.status !== 200) {
-      toast.error(res.detail, 2500);
+    if (!res.success) {
+      toast.error(lekh.msg_codes[res.status_code], 2500);
       return;
     }
-    toast.success(res.detail, 4000, 'top-left');
+    toast.success(lekh.msg_codes[res.status_code], 4000, 'top-left');
     $id = '';
     $pass = '';
     email = '';

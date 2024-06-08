@@ -24,7 +24,7 @@
     if (import.meta.env.PROD) {
       window.onbeforeunload = () => 'किं भवान्वास्तवमेव प्रतिगन्तुमिच्छसि';
     }
-    await ensure_auth_access_status();
+    // await ensure_auth_access_status();
     await reload_file_list();
   });
 </script>

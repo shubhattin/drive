@@ -36,7 +36,11 @@ export const reload_file_list = async () => {
     }
     return;
   }
+  setFilesStateFromFileList(list);
   fileDataFetchDone.set(true); // hiding loading spinner
+};
+
+function setFilesStateFromFileList(list: fileInfoType[]) {
   let json: any = {};
   const current_dir = get(currentLoc);
   let does_dir_exist = false;
@@ -48,8 +52,7 @@ export const reload_file_list = async () => {
   // if current dir does not exist, set current dir to root
   if (!does_dir_exist) currentLoc.set('/');
   files.set(json);
-};
-
+}
 export let goBackInFileList: () => void = null!;
 export const setGoBackInFileList = (func: typeof goBackInFileList) => {
   goBackInFileList = func;

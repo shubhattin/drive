@@ -6,12 +6,15 @@ import { z } from 'zod';
 import { from_base64, to_base64 } from '@tools/kry/gupta';
 
 const fetch_file_list_route = protectedProcedure.query(async ({ ctx: { user } }) => {
-  const file_list = await base_fetch_all<fileInfoType>(`${user.user}_files`);
-  const file_list_decoded_names = file_list.map((file) => ({
-    ...file,
-    name: from_base64(file.name, true)
-  }));
-  return file_list_decoded_names;
+  async function fetchFileList(user: string) {
+    const file_list = await base_fetch_all<fileInfoType>(`${user}_files`);
+    const file_list_decoded_names = file_list.map((file) => ({
+      ...file,
+      name: from_base64(file.name, true)
+    }));
+    return file_list_decoded_names;
+  }
+  return await fetchFileList(user.user);
 });
 
 const delete_file_route = protectedProcedure
