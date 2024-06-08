@@ -2,13 +2,11 @@ v: 0
 icon: ./Icon.png
 app_name: 'drive'
 micros:
-  - name: python-app
-    src: ./api
-    engine: python3.9
+  - name: drive-app
+    src: .
+    engine: svelte-kit
     primary: true
-    public_routes:
-      - '/*'
-    run: uvicorn main:app
+    public: true
     presets:
       env:
-        - name: JWT_KEY
+        - name: JWT_SECRET
