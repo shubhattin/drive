@@ -166,9 +166,7 @@ const reset_pass_route = publicProcedure
     // verifying email
     const verified_email = await puShTi(
       email,
-      (
-        await base_get<{ key: string; value: string }>(`${USERS_INFO_DRIVE_LOC}_email`, id)
-      )?.value!
+      (await base_get<{ key: string; value: string }>(`${USERS_INFO_DRIVE_LOC}_email`, id))?.value!
     );
     if (!verified_email) return { success, status_code: 'wrong_email' };
 
