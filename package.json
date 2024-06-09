@@ -11,7 +11,7 @@
     "lint": "prettier --plugin-search-dir . --check .",
     "format": "prettier --plugin-search-dir . --write .",
     "test": "vitest",
-    "run-test": "vitest run test"
+    "run-test": "vitest run"
   },
   "devDependencies": {
     "@sveltejs/adapter-vercel": "^5.3.1",

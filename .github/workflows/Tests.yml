@@ -19,5 +19,5 @@ jobs:
           version: 8
           run_install: true
 
-      - run: pnpm test
+      - run: pnpm run-test
         name: Run Unit Tests
