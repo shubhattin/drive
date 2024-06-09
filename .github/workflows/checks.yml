@@ -4,7 +4,7 @@ on:
   - push
 
 jobs:
-  check:
+  check-types-and-svelte:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
