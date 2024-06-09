@@ -1,6 +1,6 @@
 import lang_data from './locales.json';
 import { load } from 'js-yaml';
-import { set_val_from_adress } from '@tools/json';
+import { set_val_from_adress } from '../tools/json';
 import * as fs from 'fs';
 import type { dattType } from './model';
 
