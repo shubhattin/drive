@@ -7,10 +7,8 @@ node_modules
 .env.*
 !.env.example
 
-py/public/
-py/Pipfile.lock
-py/.venv/
-py/langs/data/json/
+src/langs/data/json/
+
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml
 static/404.html

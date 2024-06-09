@@ -35,13 +35,19 @@ const reuseValues = (datt: dattType) => {
     for (const y of x[1]) set_val_from_adress(`/${y.split('.').join('/')}`, datt, x[0]);
   return datt;
 };
-// @ts-ignore
-const db: { [x in langKey]: dattType } = {};
-const main = (locale: langKey) => {
-  if (process.env.NODE_ENV === 'production' && locale in db) return db[locale];
-  const LOAD: any = load(fs.readFileSync(`./src/langs/data/${LANG_LIST[locale]}.yaml`).toString());
-  const dt = reuseValues(LOAD as dattType);
-  db[locale] = dt;
-  return dt;
+
+const DEV_MODE = process.env.NODE_ENV === 'development';
+
+const main = async (locale: langKey, dev_mode: boolean | null = null) => {
+  if (dev_mode ?? DEV_MODE) {
+    const LOAD: any = load(
+      fs.readFileSync(`./src/langs/data/${LANG_LIST[locale]}.yaml`).toString()
+    );
+    const dt = reuseValues(LOAD as dattType);
+    return dt;
+  }
+  // in PROD
+  const all_data = import.meta.glob<dattType>('./data/json/*.json');
+  return await all_data[`./data/json/${locale}.json`]();
 };
 export default main;

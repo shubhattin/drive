@@ -13,9 +13,7 @@ vite.config.ts.timestamp-*
 */.env
 *__pycache__
 
-api/public/
-api/requirements.txt
-api/langs/data/json/
+src/langs/data/json/
 
 a.py
 a.ts

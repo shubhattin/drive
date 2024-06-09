@@ -5,6 +5,6 @@ export const load: PageServerLoad = async ({ params }) => {
   const locale = get_locale(params.lang!);
   return {
     locale: locale,
-    lekh: load_data(locale)?.drive.main!
+    lekh: (await load_data(locale))?.drive.main!
   };
 };
