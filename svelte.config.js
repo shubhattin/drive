@@ -1,23 +1,23 @@
 import adapter from '@sveltejs/adapter-vercel';
-import preprocess from 'svelte-preprocess';
-import path from 'path';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+
 // const routes = get_all_routes(['/', '/login']);
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   preprocess: [
-    preprocess({
+    vitePreprocess({
       postcss: true
     })
   ],
   kit: {
     adapter: adapter(),
     alias: {
-      '@langs': path.resolve('./src/langs'),
-      '@tools': path.resolve('./src/tools'),
-      '@components': path.resolve('./src/components'),
-      '@state': path.resolve('./src/state'),
-      '@api': path.resolve('./src/api')
+      '@langs': './src/langs',
+      '@tools': './src/tools',
+      '@components': './src/components',
+      '@state': './src/state',
+      '@api': './src/api'
     }
     // prerender: {
     //   entries: routes

@@ -7,6 +7,9 @@ const config = {
   server: {
     port: 3427,
     strictPort: true
+  },
+  test: {
+    include: ['src/**/*.{test,spec}.{js,ts}', 'tests/**/*.{test,spec}.{js,ts}']
   }
 };
 

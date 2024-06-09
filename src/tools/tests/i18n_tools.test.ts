@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { get_locale_from_url, default_locale, get_link } from './index';
+import { get_locale_from_url, default_locale, get_link } from '@tools/i18n';
 
 describe('Testing i18n Related Functions', () => {
   it('get_locale_from_url', () => {
