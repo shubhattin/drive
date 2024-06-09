@@ -2,13 +2,6 @@
   "extends": "./.svelte-kit/tsconfig.json",
   "compilerOptions": {
     "ignoreDeprecations": "5.0",
-    "paths": {
-      "@langs/*": ["./src/langs/*"],
-      "@tools/*": ["./src/tools/*"],
-      "@components/*": ["./src/components/*"],
-      "@state/*": ["./src/state/*"],
-      "@api/*": ["./src/api/*"]
-    },
     // "allowJs": true,
     // "checkJs": true,
     "esModuleInterop": true,

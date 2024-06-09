@@ -1,7 +1,8 @@
+import { twMerge } from 'tailwind-merge';
+
 /**
- * Joins CSS classes
+ * Joins CSS classes. Also safely work with tailwind classes
  */
-export const clsx: any = function () {
-  const args: string[] = Array.prototype.slice.call(arguments);
-  return args.join(' ');
+export const clsx = (...args: string[]) => {
+  return twMerge(args.join(' '));
 };

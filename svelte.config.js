@@ -1,6 +1,6 @@
 import adapter from '@sveltejs/adapter-vercel';
 import preprocess from 'svelte-preprocess';
-
+import path from 'path';
 // const routes = get_all_routes(['/', '/login']);
 
 /** @type {import('@sveltejs/kit').Config} */
@@ -11,7 +11,14 @@ const config = {
     })
   ],
   kit: {
-    adapter: adapter({})
+    adapter: adapter(),
+    alias: {
+      '@langs': path.resolve('./src/langs'),
+      '@tools': path.resolve('./src/tools'),
+      '@components': path.resolve('./src/components'),
+      '@state': path.resolve('./src/state'),
+      '@api': path.resolve('./src/api')
+    }
     // prerender: {
     //   entries: routes
     // }
