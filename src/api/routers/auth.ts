@@ -1,12 +1,12 @@
 import { publicProcedure, t } from '../trpc_init';
 import { z } from 'zod';
-import { JWT_SECRET } from '@tools/jwt';
+import { JWT_SECRET } from '@tools/jwt.server';
 import jwt from 'jsonwebtoken';
 import { base_get, base_put } from '@tools/deta';
 import * as bcrypt from 'bcrypt';
 import ms from 'ms';
 import { dattStruct } from '@langs/model';
-import { get_zod_key_enum } from '@langs/datt';
+import { get_zod_key_enum } from '@tools/zod_enum';
 import { gen_salt, hash_256, puShTi } from '@tools/hash';
 
 const ID_TOKREN_EXPIRE = ms('10days') / 1000; // so if not opened for 10 consecutive days will be logged out

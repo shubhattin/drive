@@ -3,7 +3,6 @@ import { load } from 'js-yaml';
 import { set_val_from_adress } from '@tools/json';
 import * as fs from 'fs';
 import type { dattType } from './model';
-import { z } from 'zod';
 
 const LANG_LIST = lang_data.locales;
 export type langKey = keyof typeof LANG_LIST; // Language list
@@ -46,12 +45,3 @@ const main = (locale: langKey) => {
   return dt;
 };
 export default main;
-
-export function get_zod_key_enum<T extends string>(obj: {
-  [x in T]: any;
-}) {
-  // gets the zod enum from on object keys
-  const keys = Object.keys(obj) as T[];
-  const [first, ...other] = keys;
-  return z.enum([first, ...other]);
-}

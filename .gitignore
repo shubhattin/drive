@@ -2,8 +2,8 @@
 node_modules
 /build
 /.svelte-kit
-/.space
 /package
+/.vercel
 .env
 .env.*
 !.env.example
@@ -16,7 +16,6 @@ vite.config.ts.timestamp-*
 api/public/
 api/requirements.txt
 api/langs/data/json/
-.space
 
 a.py
 a.ts

@@ -2,7 +2,7 @@ import lang_data from '@langs/locales.json';
 import { goto } from '$app/navigation';
 import { page } from '$app/stores';
 import { get } from 'svelte/store';
-import type { langKey } from '@langs/datt';
+import type { langKey } from '@langs/datt.server';
 
 export const default_locale = lang_data.default_locale;
 export const locales = lang_data.locales;

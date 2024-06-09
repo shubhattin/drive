@@ -1,10 +1,10 @@
 import type { Handle } from '@sveltejs/kit';
-import { DEFAULT_LOCALE } from './langs';
+import { DEFAULT_LOCALE } from '@langs/datt.server';
 import { createContext } from '@api/context';
 import { router } from '@api/trpc_router';
 import { createTRPCHandle } from 'trpc-sveltekit';
 import { get_link, get_locale_from_url, get_pure_link } from '@tools/i18n';
-import { get_verified_id_token_info } from '@tools/jwt';
+import { get_verified_id_token_info } from '@tools/jwt.server';
 import { AUTH_ID } from '@tools/auth_tools';
 
 const handle_trpc = createTRPCHandle({ router, createContext });

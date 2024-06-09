@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import jwt from 'jsonwebtoken';
-import { JWT_SECRET } from '@tools/jwt';
+import { JWT_SECRET } from '@tools/jwt.server';
 import type { RequestEvent } from '@sveltejs/kit';
 import type { inferAsyncReturnType } from '@trpc/server';
 

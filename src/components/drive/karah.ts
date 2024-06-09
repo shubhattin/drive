@@ -4,7 +4,7 @@ import { set_val_from_adress } from '@tools/json';
 import { get } from 'svelte/store';
 import { client, setJwtToken } from '@api/client';
 import type { fileInfoType } from '@state/drive_types';
-import { get_zod_key_enum } from '@langs/datt';
+import { get_zod_key_enum } from '@tools/zod_enum';
 import { dattStruct } from '@langs/model';
 import { router_push } from '@tools/i18n';
 

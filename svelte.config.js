@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-node';
+import adapter from '@sveltejs/adapter-vercel';
 import preprocess from 'svelte-preprocess';
 
 // const routes = get_all_routes(['/', '/login']);
@@ -11,9 +11,7 @@ const config = {
     })
   ],
   kit: {
-    adapter: adapter({
-      precompress: true
-    })
+    adapter: adapter({})
     // prerender: {
     //   entries: routes
     // }

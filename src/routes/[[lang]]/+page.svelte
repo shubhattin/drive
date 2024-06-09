@@ -9,7 +9,6 @@
   import { reload_file_list, goBackInFileList } from '@components/drive/karah';
   import { preloadData } from '$app/navigation';
   import { get_link } from '@tools/i18n';
-  import { ensure_auth_access_status } from '@tools/auth_tools';
 
   export let data: PageData;
   $: $lekhAH = data.lekh;

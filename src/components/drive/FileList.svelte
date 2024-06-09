@@ -49,6 +49,7 @@
     {lekh.no_file}
   {:else}
     {#each $currentFolders as key (key)}
+      <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
       <label
         class="font-semibold text-[purple] hover:text-black"
         on:click={() => folderOpen(key)}

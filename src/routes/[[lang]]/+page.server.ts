@@ -1,5 +1,5 @@
 import type { PageServerLoad } from './$types';
-import load_data, { get_locale } from '@langs/datt';
+import load_data, { get_locale } from '@langs/datt.server';
 
 export const load: PageServerLoad = async ({ params }) => {
   const locale = get_locale(params.lang!);
