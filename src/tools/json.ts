@@ -5,7 +5,8 @@ export const json_to_address = (v: any) => {
   function prcs(x: any, n: any, pr: any) {
     let tp = typeof n[x];
     let v1 = `${pr}/${x}`;
-    if (Array.isArray(n[x])) lst(n[x], v1); // @ts-check
+    if (Array.isArray(n[x]))
+      lst(n[x], v1); // @ts-check
     else if (tp == 'object') jsn(n[x], v1);
     else r.push(`${pr}/${x}`);
   }

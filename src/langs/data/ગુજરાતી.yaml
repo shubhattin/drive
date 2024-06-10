@@ -4,17 +4,17 @@ drive:
       Delete:
         confirm_msg: તમે પસંદ કરેલી ફાઇલ્સ ડિલીટ કરવા ઇચ્છો છો?
         deleted_msg: કાઢી નંખાયેલ
-        'no': ''
+        'no': !!str
         'yes': હા
       Download:
         download_msg: ડાઉનલોડ કરી રહ્યા છીએ
       FileView:
-        download_msg: ''
+        download_msg: !!str
         view_error: ફાઈલ જોવા માટે માત્ર એક જ ક્લિક કરો
       Logout:
         confirm_msg: શું તમે બહાર નીકળવા માંગો છો?
-        'no': ''
-        'yes': ''
+        'no': !!str
+        'yes': !!str
       NewFolder:
         add_file_msg: ફોલ્ડર ઉમેરો
         file_input: ફોલ્ડર નામ
@@ -23,12 +23,12 @@ drive:
         added_msg: ઉમેરાયેલ
         already_exists: ફાઈલ પહેલાથી જ હાજર છે
         upload_msg: અપલોડ કરી રહ્યા છીએ
-        'yes': ''
+        'yes': !!str
       Rename:
         rename_msg: નામ બદલો
         renamed_msg: નામ બદલાયેલ
         file_name: ફાઈલ નામ
-        'no': ''
+        'no': !!str
       MoveFile:
         moved_msg: ખસેડેલ છે
     fileList:
@@ -43,10 +43,22 @@ drive:
       new_user_btn: નવો વપરાશકર્તા ઉમેરો
     new_user:
       add_btn: વપરાશકર્તા ઉમેરો
-      blank_msg: ''
+      blank_msg: !!str
       main_pass: મુખ્ય પાસવર્ડ
+      msg_codes:
+        success_detail: સફળતાપૂર્વક નવો વપરાશકર્તા ઉમેરાયો
+        user_already_exist: આપેલ વપરાશકર્તાનામ પહેલાથી જ હાજર છે
     reset:
       blank_msg: મહેરબાની કરીને ખાલી જગ્યાઓ ભરો
       new_pass: નવો પાસવર્ડ
       reset_btn: પાસવર્ડને પુન:સુયોજિત કરો
+      msg_codes:
+        success_detail: સફળતાપૂર્વક બદલાયેલ પાસવર્ડ
+        user_not_found: વપરાશકર્તા મળ્યો નથી
+        wrong_email: ખોટો ઈમેઈલ
     title: ઓનલાઇન ફાઇલ ડ્રાઇવનો પ્રવેશ કરો
+    drive_auth_msgs:
+      expired_credentials: નિવૃત્ત થયેલ શ્રેય
+      user_not_found: !!str
+      wrong_credentials: ચકાસાયેલ ઓળખાણપત્રો
+      wrong_pass: ખોટો પાસવર્ડ

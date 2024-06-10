@@ -4,9 +4,10 @@
   import { slide } from 'svelte/transition';
   import CgClose from 'svelte-icons-pack/cg/CgClose';
   import { set_val_from_adress } from '@tools/json';
-  import { graphql } from '@tools/drive/request';
   import { to_base64 } from '@tools/kry/gupta';
   import { toast } from '@tools/toast';
+  import { client } from '@api/client';
+  import { ensure_auth_access_status } from '@tools/auth_tools';
 
   $: lekh = $lekhAH.fileBar.MoveFile;
 
@@ -44,17 +45,11 @@
         return to_base64(file.name);
       });
       const keys = $filesToMove.files.map((file) => file.key);
-      await graphql(
-        `
-          mutation ($keys: [String!]!, $names: [String!]!) {
-            moveFiles(keys: $keys, names: $names)
-          }
-        `,
-        {
-          keys: keys,
-          names: names
-        }
-      );
+      await ensure_auth_access_status();
+      await client.drive.move_file.mutate({
+        keys: keys,
+        names: names
+      });
     }
     toast.success(`${lekh.moved_msg}`, 2000, 'bottom-right');
     $filesToMove = null!;

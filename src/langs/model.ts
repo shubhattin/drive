@@ -1,70 +1,87 @@
-export interface dattType {
+export const dattStruct = {
   drive: {
     main: {
       fileBar: {
         Delete: {
-          confirm_msg: string;
-          deleted_msg: string;
-          no: string;
-          yes: string;
-        };
+          confirm_msg: '',
+          deleted_msg: '',
+          no: '',
+          yes: ''
+        },
         Download: {
-          download_msg: string;
-        };
+          download_msg: ''
+        },
         FileView: {
-          download_msg: string;
-          view_error: string;
-        };
+          download_msg: '',
+          view_error: ''
+        },
         Logout: {
-          confirm_msg: string;
-          no: string;
-          yes: string;
-        };
+          confirm_msg: '',
+          no: '',
+          yes: ''
+        },
         NewFolder: {
-          add_file_msg: string;
-          file_input: string;
-          no: string;
-        };
+          add_file_msg: '',
+          file_input: '',
+          no: ''
+        },
         Upload: {
-          added_msg: string;
-          already_exists: string;
-          upload_msg: string;
-          yes: string;
-        };
+          added_msg: '',
+          already_exists: '',
+          upload_msg: '',
+          yes: ''
+        },
         Rename: {
-          rename_msg: string;
-          renamed_msg: string;
-          file_name: string;
-          no: string;
-        };
+          rename_msg: '',
+          renamed_msg: '',
+          file_name: '',
+          no: ''
+        },
         MoveFile: {
-          moved_msg: string;
-        };
-      };
+          moved_msg: ''
+        }
+      },
       fileList: {
-        no_file: string;
-      };
-      title: string;
-    };
+        no_file: ''
+      },
+      title: ''
+    },
     login: {
       main: {
-        id_input: string;
-        pass_input: string;
-        reset_btn: string;
-        remember_btn: string;
-        new_user_btn: string;
-      };
+        id_input: '',
+        pass_input: '',
+        reset_btn: '',
+        remember_btn: '',
+        new_user_btn: ''
+      },
       new_user: {
-        add_btn: string;
-        blank_msg: string;
-        main_pass: string;
-      };
+        add_btn: '',
+        blank_msg: '',
+        main_pass: '',
+        msg_codes: {
+          success_detail: '',
+          user_already_exist: ''
+        }
+      },
       reset: {
-        blank_msg: string;
-        new_pass: string;
-        reset_btn: string;
-      };
-      title: string;
-    };
-  };
-}
+        blank_msg: '',
+        new_pass: '',
+        reset_btn: '',
+        msg_codes: {
+          success_detail: '',
+          user_not_found: '',
+          wrong_email: ''
+        }
+      },
+      title: '',
+      drive_auth_msgs: {
+        expired_credentials: '',
+        user_not_found: '',
+        wrong_credentials: '',
+        wrong_pass: ''
+      }
+    }
+  }
+};
+type dattStructType = typeof dattStruct;
+export interface dattType extends dattStructType {}

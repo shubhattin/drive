@@ -1,20 +1,15 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import path from 'path';
+import { lang_data_json_build_plugin } from './src/langs/json_build_plugin';
 
 /** @type {import('vite').UserConfig} */
 const config = {
-  plugins: [sveltekit()],
+  plugins: [sveltekit(), lang_data_json_build_plugin()],
   server: {
     port: 3427,
     strictPort: true
   },
-  resolve: {
-    alias: {
-      '@langs': path.resolve('./src/langs'),
-      '@tools': path.resolve('./src/tools'),
-      '@components': path.resolve('./src/components'),
-      '@state': path.resolve('./src/state')
-    }
+  test: {
+    include: ['src/**/*.{test,spec}.{js,ts}', 'tests/**/*.{test,spec}.{js,ts}']
   }
 };
 

@@ -72,7 +72,7 @@
     <div
       in:scale
       out:slide
-      class="fixed left-2 bottom-2 z-10 min-h-[20px] min-w-[100px] max-w-[90%] rounded-lg border-2 border-[red] bg-[aliceblue] p-1 pl-1.5"
+      class="fixed bottom-2 left-2 z-10 min-h-[20px] min-w-[100px] max-w-[90%] rounded-lg border-2 border-[red] bg-[aliceblue] p-1 pl-1.5"
     >
       <div class="font-semibold">
         {lekh.download_msg} - <span class="text-[brown]">{$fileName}</span>

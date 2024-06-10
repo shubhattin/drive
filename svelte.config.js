@@ -1,21 +1,28 @@
-import adapter from '@sveltejs/adapter-static';
-import preprocess from 'svelte-preprocess';
-import { get_all_routes } from './src/tools/i18n/get_all_routes.js';
+import adapter from '@sveltejs/adapter-vercel';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
-const routes = get_all_routes(['/drive', '/drive/login']);
+// const routes = get_all_routes(['/', '/login']);
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   preprocess: [
-    preprocess({
+    vitePreprocess({
       postcss: true
     })
   ],
   kit: {
     adapter: adapter(),
-    prerender: {
-      entries: routes
+    alias: {
+      '@langs': './src/langs',
+      '@tools': './src/tools',
+      '@components': './src/components',
+      '@state': './src/state',
+      '@api': './src/api'
     }
+    // prerender: {
+    //   entries: routes
+    // }
+    // disabling prerender for now as using adapter-node
   }
 };
 

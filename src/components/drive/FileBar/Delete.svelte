@@ -4,31 +4,23 @@
   import { selectedFiles, lekhAH, currentLoc, files } from '@state/drive';
   import { slide, scale } from 'svelte/transition';
   import { set_val_from_adress } from '@tools/json';
-  import { graphql } from '@tools/drive/request';
   import { toast } from '@tools/toast';
+  import { client } from '@api/client';
+  import { ensure_auth_access_status } from '@tools/auth_tools';
 
   let clicked = false;
   $: lekh = $lekhAH.fileBar.Delete;
 
   const delete_files = async () => {
     if ($selectedFiles.length === 0) return;
-    /** File names with full path preixed */
     const fileHashes = $selectedFiles.map((val) => val.key);
+    /** File names with full path preixed */
     const fileNames = $selectedFiles.map(
       (val) => ($currentLoc === '/' ? '' : $currentLoc) + '/' + val.name
     );
     clicked = false;
-    await graphql(
-      `
-        mutation ($fileHashes: [String!]!) {
-          deleteFiles(fileHashes: $fileHashes) {
-            deleted
-            failed
-          }
-        }
-      `,
-      { fileHashes: fileHashes }
-    );
+    await ensure_auth_access_status();
+    await client.drive.delete_file.mutate({ keys: fileHashes });
     // -2 value deletes the key from the object
     for (let x of fileNames) set_val_from_adress(x, $files, -2);
     toast.info(

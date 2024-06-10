@@ -1,8 +1,8 @@
-import { graphql } from '@tools/drive/request';
 import { selectedFiles, fileBarStores } from '@state/drive';
 import { get } from 'svelte/store';
-import { AUTH_ID, getCookieVal } from '@tools/drive/request';
+import { ensure_auth_access_status, get_access_token_info } from '@tools/auth_tools';
 import { from_base64 } from '@tools/kry/gupta';
+import { client } from '@api/client';
 
 const { fileName, viewFileName, totalSize, downloadedSize, downloading, iframeViewSrc } =
   fileBarStores.download;
@@ -10,18 +10,9 @@ const { currentReq, kAryaCount } = fileBarStores;
 
 const get_URL = (id: string, user: string) => `https://drive.deta.sh/v1/${id}/${user}`;
 export const download_file = async (isView: boolean) => {
+  await ensure_auth_access_status();
   const ID = {
-    download: from_base64(
-      (
-        await graphql(
-          `
-            {
-              downloadID
-            }
-          `
-        )
-      ).downloadID as string
-    ),
+    download: from_base64(await client.drive.downloadID.query()),
     project: ''
   };
   ID.project = ID.download.split('_')[0];
@@ -29,8 +20,8 @@ export const download_file = async (isView: boolean) => {
     const fl_info = get(selectedFiles)[i];
     fileName.set(fl_info.name);
     totalSize.set(parseFloat((parseFloat(fl_info.size) / (1024 * 1024)).toFixed(2)));
-    const TOKEN = JSON.parse(from_base64(getCookieVal(AUTH_ID)?.split('.')[1]!)).sub as string;
-    const URL = get_URL(ID.project, TOKEN);
+    const USER = get_access_token_info().user;
+    const URL = get_URL(ID.project, USER);
     const xhr = new XMLHttpRequest();
     currentReq.set(xhr);
     xhr.open('GET', `${URL}/files/download?name=${fl_info.key}`, true);

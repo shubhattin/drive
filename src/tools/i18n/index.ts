@@ -2,7 +2,7 @@ import lang_data from '@langs/locales.json';
 import { goto } from '$app/navigation';
 import { page } from '$app/stores';
 import { get } from 'svelte/store';
-import type { langKey } from '@langs/datt';
+import type { langKey } from '@langs/datt.server';
 
 export const default_locale = lang_data.default_locale;
 export const locales = lang_data.locales;
@@ -15,9 +15,14 @@ export const locale_values = Object.values(locales);
  * @returns string
  */
 export const get_current_locale = (lang = get(page).params.lang) => {
-  return lang || lang_data.default_locale;
+  return lang ?? lang_data.default_locale;
 };
 
+/**
+ * Extract the locale from the url
+ * @param url current url
+ * @returns exrtracted locale
+ */
 export const get_locale_from_url = (url: string) => {
   let parts = url.split('/').slice(1);
   let locale: string = null!; // detected locale
@@ -25,7 +30,7 @@ export const get_locale_from_url = (url: string) => {
     locale = parts[0];
     parts = parts.slice(1);
   }
-  return locale || default_locale;
+  return locale ?? default_locale;
 };
 
 /**
@@ -37,7 +42,14 @@ export const change_html_lang_tag = () => {
   });
 };
 
-export const get_link = (url: string | null = null!, locale: string | null = null!) => {
+/**
+ * Returns the link for a given URL and locale.
+ *
+ * @param {string | null} url - The URL for which to get the link. If null, the current URL is used.
+ * @param {string | null} locale - The locale for which to get the link. If null, the current locale is used.
+ * @return {string} The link for the given URL and locale.
+ */
+export const get_link = (url: string | null = null!, locale: string | null = null!): string => {
   if (!url) url = window.location.pathname;
   let parts = url.split('/').slice(1);
   let dec_locale: string = null!; // detected locale
@@ -52,6 +64,10 @@ export const get_link = (url: string | null = null!, locale: string | null = nul
   if (locale !== default_locale) link = locale + (link === '' ? '' : '/') + link;
   link = '/' + link;
   return link;
+};
+
+export const get_pure_link = (url: string) => {
+  return get_link(url, default_locale);
 };
 
 export const router_push = (

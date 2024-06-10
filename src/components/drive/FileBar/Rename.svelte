@@ -5,9 +5,10 @@
   import { scale } from 'svelte/transition';
   import { set_val_from_adress } from '@tools/json';
   import type { fileInfoType } from '@state/drive_types';
-  import { graphql } from '@tools/drive/request';
+  import { client } from '@api/client';
   import { to_base64 } from '@tools/kry/gupta';
   import { toast } from '@tools/toast';
+  import { ensure_auth_access_status } from '@tools/auth_tools';
 
   $: lekh = $lekhAH.fileBar.Rename;
 
@@ -50,17 +51,11 @@
     // adding renamed file refrence
     set_val_from_adress(new_loc, $files, new_loc_obj);
     clicked = false;
-    await graphql(
-      `
-        mutation ($name: String!, $key: String!) {
-          renameFile(name: $name, key: $key)
-        }
-      `,
-      {
-        key: $selectedFiles[0].key,
-        name: to_base64(new_loc)
-      }
-    );
+    await ensure_auth_access_status();
+    await client.drive.rename_file.mutate({
+      key: $selectedFiles[0].key,
+      name: to_base64(new_loc)
+    });
     toast.info(`${fl_name} ${lekh.renamed_msg}`, 3800, 'bottom-right');
     $files = $files;
   };

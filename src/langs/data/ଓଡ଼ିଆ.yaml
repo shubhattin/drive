@@ -4,17 +4,17 @@ drive:
       Delete:
         confirm_msg: ଆପଣ ଚୟନିତ ଫାଇଲଗୁଡିକ ବିଲୋପ କରିବାକୁ ଚାହାଁନ୍ତି କି?
         deleted_msg: ବିଲୋପ ହୋଇଛି
-        'no': ''
+        'no': !!str
         'yes': ହଁ
       Download:
         download_msg: ଡାଉନଲୋଡ୍ ହେଉଛି
       FileView:
-        download_msg: ''
+        download_msg: !!str
         view_error: ଫାଇଲ୍ ଦେଖିବାକୁ କେବଳ ଗୋଟିଏ କ୍ଲିକ୍ କରନ୍ତୁ
       Logout:
         confirm_msg: ଆପଣ ଲଗ୍ ଆଉଟ୍ କରିବାକୁ ଚାହାଁନ୍ତି କି?
-        'no': ''
-        'yes': ''
+        'no': !!str
+        'yes': !!str
       NewFolder:
         add_file_msg: ଫୋଲ୍ଡର୍ ଯୋଡନ୍ତୁ
         file_input: ଫୋଲ୍ଡର୍ ନାମ
@@ -23,12 +23,12 @@ drive:
         added_msg: ଯୋଡାଯାଇଛି
         already_exists: ଫାଇଲ୍ ପୂର୍ବରୁ ବିଦ୍ୟମାନ ଅଛି
         upload_msg: ଅପଲୋଡ୍ ହେଉଛି
-        'yes': ''
+        'yes': !!str
       Rename:
         rename_msg: ନାମ ପରିବର୍ତ୍ତନ କରାଯାଇଛି
         renamed_msg: ପୁନଃନାମିତ ହୋଇଛି
         file_name: ଫାଇଲ୍ ନାମ[ସମ୍ପାଦନା]
-        'no': ''
+        'no': !!str
       MoveFile:
         moved_msg: ସ୍ଥାନାନ୍ତରିତ ହୋଇଛି
     fileList:
@@ -43,10 +43,22 @@ drive:
       new_user_btn: ନୂତନ ଉପଭୋକ୍ତା ଯୋଡନ୍ତୁ
     new_user:
       add_btn: ଉପଭୋକ୍ତା ଯୋଡନ୍ତୁ
-      blank_msg: ''
+      blank_msg: !!str
       main_pass: ମୁଖ୍ୟ ପାସୱାର୍ଡ୍
+      msg_codes:
+        success_detail: ସଫଳତାର ସହ ନୂତନ ଉପଭୋକ୍ତା ଯୋଡାଯାଇଛି
+        user_already_exist: ଦିଆଯାଇଥିବା ଉପଭୋକ୍ତା ନାମ ପୂର୍ବରୁ ବିଦ୍ୟମାନ ଅଛି
     reset:
       blank_msg: ଦୟାକରି ଖାଲି ସ୍ଥାନଗୁଡିକ ପୂରଣ କରନ୍ତୁ
       new_pass: ନୂତନ ପାସୱାର୍ଡ
       reset_btn: ପାସୱାର୍ଡ ପୁନଃସେଟ୍ କରନ୍ତୁ
+      msg_codes:
+        success_detail: ସଫଳତାର ସହ ପାସୱାର୍ଡ୍ ପରିବର୍ତ୍ତନ ହୋଇଛି
+        user_not_found: ଉପଭୋକ୍ତା ମିଳିଲା ନାହିଁ
+        wrong_email: ଭୁଲ୍ ଇମେଲ୍
     title: ଅନଲାଇନ୍ ଫାଇଲ୍ ଡ୍ରାଇଭ୍ ଲଗଇନ୍ କରନ୍ତୁ
+    drive_auth_msgs:
+      expired_credentials: ଅବଧି ସମାପ୍ତ ହୋଇଛି ପରିଚୟପତ୍ର
+      user_not_found: !!str
+      wrong_credentials: Unverified Credentials
+      wrong_pass: ଭୁଲ୍ ପାସୱାର୍ଡ

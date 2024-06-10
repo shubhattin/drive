@@ -4,17 +4,17 @@ drive:
       Delete:
         confirm_msg: தேர்ந்தெடுத்த கோப்புகளை நீக்க விரும்புகிறீர்களா?
         deleted_msg: நீக்கப்பட்ட
-        'no': ''
+        'no': !!str
         'yes': ஆம்
       Download:
         download_msg: பதிவிறக்குகிறது
       FileView:
-        download_msg: ''
+        download_msg: !!str
         view_error: கோப்பைக் காண ஒன்றை மட்டும் கிளிக் செய்யவும்
       Logout:
         confirm_msg: வெளியேற விரும்புகிறீர்களா?
-        'no': ''
-        'yes': ''
+        'no': !!str
+        'yes': !!str
       NewFolder:
         add_file_msg: கோப்புறை சேர்
         file_input: கோப்புறை பெயர்
@@ -23,12 +23,12 @@ drive:
         added_msg: சேர்க்க
         already_exists: கோப்பு ஏற்கனவே உள்ளது
         upload_msg: பதிவேற்றுகிறது
-        'yes': ''
+        'yes': !!str
       Rename:
         rename_msg: மறு பெயரிடு
         renamed_msg: மறுபெயரிட
         file_name: கோப்பு பெயர்
-        'no': ''
+        'no': !!str
       MoveFile:
         moved_msg: நகர்த்த
     fileList:
@@ -43,10 +43,22 @@ drive:
       new_user_btn: புதிய பயனரைச் சேர்
     new_user:
       add_btn: பயனரை சேர்
-      blank_msg: ''
+      blank_msg: !!str
       main_pass: பிரதான கடவுச்சொல்
+      msg_codes:
+        success_detail: புதிய பயனரை வெற்றிகரமாகச் சேர்த்தது
+        user_already_exist: கொடுக்கப்பட்ட பயனர்பெயர் ஏற்கனவே உள்ளது
     reset:
       blank_msg: வெற்றிடங்களை நிரப்பவும்
       new_pass: புதிய கடவுச்சொல்
       reset_btn: கடவுச்சொல்லை மீட்டமைக்கவும்
+      msg_codes:
+        success_detail: கடவுச்சொல் வெற்றிகரமாக மாற்றப்பட்டது
+        user_not_found: பயனர் காணப்படவில்லை
+        wrong_email: தவறான மின்னஞ்சல்
     title: உள்நுழைவு ஆன்லைன் கோப்பு இயக்ககம்
+    drive_auth_msgs:
+      expired_credentials: காலாவதியான சான்றுகள்
+      user_not_found: !!str
+      wrong_credentials: சரிபார்க்கப்படாத சான்றுகள்
+      wrong_pass: தவறான கடவுச்சொல்

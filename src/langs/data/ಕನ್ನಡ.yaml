@@ -4,17 +4,17 @@ drive:
       Delete:
         confirm_msg: ಆಯ್ಕೆಮಾಡಿದ ಫೈಲ್ ಗಳನ್ನು ನೀವು ಅಳಿಸಲು ಬಯಸುವಿರಾ?
         deleted_msg: ಅಳಿಸಿದ
-        'no': ''
+        'no': !!str
         'yes': ಹೌದು
       Download:
         download_msg: ಡೌನ್ ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ
       FileView:
-        download_msg: ''
+        download_msg: !!str
         view_error: ಫೈಲ್ ವೀಕ್ಷಿಸಲು ಕೇವಲ ಒಂದು ಕ್ಲಿಕ್ ಮಾಡಿ
       Logout:
         confirm_msg: ನೀವು ನಿರ್ಗಮಿಸಲು ಬಯಸುವಿರಾ?
-        'no': ''
-        'yes': ''
+        'no': !!str
+        'yes': !!str
       NewFolder:
         add_file_msg: ಫೋಲ್ಡರ್ ಸೇರಿಸಿ
         file_input: ಫೋಲ್ಡರ್ ಹೆಸರು
@@ -23,12 +23,12 @@ drive:
         added_msg: ಸೇರಿಸಲಾಗಿದೆ
         already_exists: ಫೈಲ್ ಈಗಾಗಲೇ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ
         upload_msg: ಅಪ್ ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ
-        'yes': ''
+        'yes': !!str
       Rename:
         rename_msg: ಹೆಸರು ಬದಲಿಸಿ
         renamed_msg: ಪುನರ್ನಾಮಕರಣ ಮಾಡಲಾಗಿದೆ
         file_name: ಫೈಲ್ ಹೆಸರು
-        'no': ''
+        'no': !!str
       MoveFile:
         moved_msg: ಸರಿ
     fileList:
@@ -43,10 +43,22 @@ drive:
       new_user_btn: ಹೊಸ ಬಳಕೆದಾರನನ್ನು ಸೇರಿಸಿ
     new_user:
       add_btn: ಬಳಕೆದಾರನನ್ನು ಸೇರಿಸು
-      blank_msg: ''
+      blank_msg: !!str
       main_pass: ಮುಖ್ಯ ಪಾಸ್ ವರ್ಡ್
+      msg_codes:
+        success_detail: ಹೊಸ ಬಳಕೆದಾರನನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಸೇರಿಸಲಾಗಿದೆ
+        user_already_exist: ನೀಡಲಾದ ಬಳಕೆದಾರಹೆಸರು ಈಗಾಗಲೇ ಅಸ್ತಿತ್ವದಲ್ಲಿದೆ
     reset:
       blank_msg: ದಯವಿಟ್ಟು ಖಾಲಿ ಜಾಗಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ
       new_pass: ಹೊಸ ಪಾಸ್ ವರ್ಡ್
       reset_btn: ಪಾಸ್ ವರ್ಡ್ ಮರುಹೊಂದಿಸಿ
+      msg_codes:
+        success_detail: ಪಾಸ್ ವರ್ಡ್ ಅನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಬದಲಿಸಲಾಗಿದೆ
+        user_not_found: ಬಳಕೆದಾರ ದೊರೆಯಲಿಲ್ಲ
+        wrong_email: ತಪ್ಪು ಇಮೇಲ್
     title: ಆನ್ ಲೈನ್ ಫೈಲ್ ಡ್ರೈವ್ ಲಾಗಿನ್ ಮಾಡಿ
+    drive_auth_msgs:
+      expired_credentials: ಅವಧಿ ಮೀರಿದ ರುಜುವಾತುಗಳು
+      user_not_found: !!str
+      wrong_credentials: ಪರಿಶೀಲಿಸದ ರುಜುವಾತುಗಳು
+      wrong_pass: ತಪ್ಪು ಪಾಸ್ ವರ್ಡ್

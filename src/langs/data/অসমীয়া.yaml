@@ -4,17 +4,17 @@ drive:
       Delete:
         confirm_msg: আপুনি নিৰ্বাচিত ফাইলসমূহ বিলোপ কৰিব বিচাৰে নেকি?
         deleted_msg: বিলোপ কৰা হৈছে
-        'no': ''
+        'no': !!str
         'yes': হয়
       Download:
         download_msg: ডাউনলোড কৰা হৈছে
       FileView:
-        download_msg: ''
+        download_msg: !!str
         view_error: ফাইল দৰ্শন কৰিবলৈ কেৱল এটা ক্লিক কৰক
       Logout:
         confirm_msg: আপুনি লগআউট কৰিব বিচাৰে নেকি?
-        'no': ''
-        'yes': ''
+        'no': !!str
+        'yes': !!str
       NewFolder:
         add_file_msg: ফোল্ডাৰ যোগ কৰক
         file_input: ফোল্ডাৰৰ নাম
@@ -23,12 +23,12 @@ drive:
         added_msg: যোগ কৰা হৈছে
         already_exists: ফাইল ইতিমধ্যে বিদ্যমান
         upload_msg: আপলোড কৰা হৈছে
-        'yes': ''
+        'yes': !!str
       Rename:
         rename_msg: পুনৰ নামকৰণ কৰক
         renamed_msg: পুনৰ নামকৰণ কৰা হৈছে
         file_name: নথিপত্ৰৰ নাম
-        'no': ''
+        'no': !!str
       MoveFile:
         moved_msg: স্থানান্তৰিত হৈছে
     fileList:
@@ -43,10 +43,22 @@ drive:
       new_user_btn: নতুন ব্যৱহাৰকাৰী যোগ কৰক
     new_user:
       add_btn: ব্যৱহাৰকাৰী যোগ কৰক
-      blank_msg: ''
+      blank_msg: !!str
       main_pass: প্ৰধান পাছৱাৰ্ড
+      msg_codes:
+        success_detail: সফলতাৰে নতুন ব্যৱহাৰকাৰী যোগ কৰা হৈছে
+        user_already_exist: প্ৰদান কৰা ব্যৱহাৰকাৰীনাম ইতিমধ্যে বিদ্যমান
     reset:
       blank_msg: অনুগ্ৰহ কৰি খালী ঠাইবোৰ পূৰণ কৰক
       new_pass: নতুন পাছৱাৰ্ড
       reset_btn: পাছৱাৰ্ড ৰিছেট কৰক
+      msg_codes:
+        success_detail: সফলতাৰে পৰিবৰ্তন কৰা পাছৱৰ্ড
+        user_not_found: ব্যৱহাৰকাৰী পোৱা নগল
+        wrong_email: ভুল ইমেইল
     title: লগইন অনলাইন ফাইল ড্ৰাইভ
+    drive_auth_msgs:
+      expired_credentials: ম্যাদ উকলি যোৱা প্ৰমাণপত্ৰসমূহ
+      user_not_found: !!str
+      wrong_credentials: অপ্ৰমাণিত প্ৰমাণপত্ৰ
+      wrong_pass: ভুল পাছৱাৰ্ড

@@ -4,17 +4,17 @@ drive:
       Delete:
         confirm_msg: ਕੀ ਤੁਸੀਂ ਚੁਣੀਆਂ ਹੋਈਆਂ ਫ਼ਾਈਲਾਂ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੁੰਦੇ ਹੋ?
         deleted_msg: ਹਟਾਇਆ
-        'no': ''
+        'no': !!str
         'yes': ਹਾਂ
       Download:
         download_msg: ਡਾਊਨਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ
       FileView:
-        download_msg: ''
+        download_msg: !!str
         view_error: ਫਾਈਲ ਦੇਖਣ ਲਈ ਕੇਵਲ ਇੱਕ ਕਲਿੱਕ ਕਰੋ
       Logout:
         confirm_msg: ਕੀ ਤੁਸੀਂ ਲੌਗਆਉਟ ਕਰਨਾ ਚਾਹੁੰਦੇ ਹੋ?
-        'no': ''
-        'yes': ''
+        'no': !!str
+        'yes': !!str
       NewFolder:
         add_file_msg: ਫੋਲਡਰ ਸ਼ਾਮਲ
         file_input: ਫੋਲਡਰ ਨਾਂ
@@ -23,12 +23,12 @@ drive:
         added_msg: ਸ਼ਾਮਲ ਕੀਤੇ
         already_exists: ਫਾਇਲ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ
         upload_msg: ਅੱਪਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ
-        'yes': ''
+        'yes': !!str
       Rename:
         rename_msg: ਨਾਂ ਬਦਲੋ
         renamed_msg: ਨਾਂ- ਬਦਲੋ
         file_name: ਫਾਇਲ ਨਾਂ
-        'no': ''
+        'no': !!str
       MoveFile:
         moved_msg: ਮੂਵ ਕੀਤਾ
     fileList:
@@ -43,10 +43,22 @@ drive:
       new_user_btn: ਨਵਾਂ ਯੂਜ਼ਰ ਸ਼ਾਮਲ
     new_user:
       add_btn: ਯੂਜ਼ਰ ਸ਼ਾਮਲ
-      blank_msg: ''
+      blank_msg: !!str
       main_pass: ਮੁੱਖ ਪਾਸਵਰਡ
+      msg_codes:
+        success_detail: ਨਵੇਂ ਯੂਜ਼ਰ ਨੂੰ ਸਫਲਤਾਪੂਰਵਕ ਸ਼ਾਮਲ ਕੀਤਾ ਗਿਆ
+        user_already_exist: ਦਿੱਤਾ ਗਿਆ ਵਰਤੋਂਕਾਰ-ਨਾਮ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ
     reset:
       blank_msg: ਕਿਰਪਾ ਕਰਕੇ ਖਾਲੀ ਥਾਵਾਂ ਭਰੋ
       new_pass: ਨਵਾਂ ਪਾਸਵਰਡ
       reset_btn: ਪਾਸਵਰਡ ਮੁੜ- ਸੈੱਟ
+      msg_codes:
+        success_detail: ਪਾਸਵਰਡ ਸਫਲਤਾਪੂਰਵਕ ਬਦਲਿਆ ਗਿਆ
+        user_not_found: ਯੂਜ਼ਰ ਨਹੀਂ ਲੱਭਿਆ
+        wrong_email: ਗਲਤ ਈਮੇਲ
     title: ਆਨਲਾਈਨ ਫਾਇਲ ਡਰਾਇਵ ਲੌਗਇਨ ਕਰੋ
+    drive_auth_msgs:
+      expired_credentials: ਮਿਆਦ ਪੁੱਗੇ ਪ੍ਰਮਾਣ-ਪੱਤਰ
+      user_not_found: !!str
+      wrong_credentials: ਨਾ-ਤਸਦੀਕ ਕੀਤੇ ਪ੍ਰਮਾਣ-ਪੱਤਰ
+      wrong_pass: ਗਲਤ ਪਾਸਵਰਡ

@@ -4,17 +4,17 @@ drive:
       Delete:
         confirm_msg: तुम्हाला निवडलेले फाइल नष्ट करायचे आहे का?
         deleted_msg: हटविलेName
-        'no': ''
+        'no': !!str
         'yes': हो
       Download:
         download_msg: डाउनलोड करत आहे
       FileView:
-        download_msg: ''
+        download_msg: !!str
         view_error: फाइल पाहण्यासाठी फक्त एका क्लिक करा
       Logout:
         confirm_msg: तुला लॉगआऊट करायचे आहे का?
-        'no': ''
-        'yes': ''
+        'no': !!str
+        'yes': !!str
       NewFolder:
         add_file_msg: संचयीका जोडा
         file_input: संचयीका नावName
@@ -23,12 +23,12 @@ drive:
         added_msg: जोड़ा
         already_exists: फाइल आधीच अस्तित्वात आहे
         upload_msg: अपलोड करत आहे
-        'yes': ''
+        'yes': !!str
       Rename:
         rename_msg: नाम बदला
         renamed_msg: नामांतर
         file_name: फाइल चे नाव
-        'no': ''
+        'no': !!str
       MoveFile:
         moved_msg: हल चले
     fileList:
@@ -43,10 +43,22 @@ drive:
       new_user_btn: नवीन वापरकर्ता जोडा
     new_user:
       add_btn: वापरकर्ता जोडा
-      blank_msg: ''
+      blank_msg: !!str
       main_pass: मुख्य गुप्तशब्द
+      msg_codes:
+        success_detail: यशस्वीरित्या नवीन वापरकर्ता जोडला
+        user_already_exist: दिलेले युजरनेम आधीच अस्तित्वात आहे
     reset:
       blank_msg: कृपया रिक्त जागा भरा
       new_pass: नया पासवर्ड
       reset_btn: Reset Password
+      msg_codes:
+        success_detail: यशस्वीरित्या पासवर्ड बदलला
+        user_not_found: वापरकर्ता सापडला नाही
+        wrong_email: चुकीचा ईमेल
     title: ऑनलाइन फाइल ड्राइव
+    drive_auth_msgs:
+      expired_credentials: कालबाह्य क्रेडेंशियल्स
+      user_not_found: !!str
+      wrong_credentials: अप्रमाणित क्रेडेंशियल्स
+      wrong_pass: गलत पासवर्ड
