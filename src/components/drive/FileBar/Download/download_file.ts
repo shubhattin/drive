@@ -19,7 +19,7 @@ export const download_file = async (isView: boolean) => {
   const down_sanchit = async (i = 0) => {
     const fl_info = get(selectedFiles)[i];
     fileName.set(fl_info.name);
-    totalSize.set(parseFloat((parseFloat(fl_info.size) / (1024 * 1024)).toFixed(2)));
+    totalSize.set(parseFloat((fl_info.size / (1024 * 1024)).toFixed(2)));
     const USER = get_access_token_info().user;
     const URL = get_URL(ID.project, USER);
     const xhr = new XMLHttpRequest();

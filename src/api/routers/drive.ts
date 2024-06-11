@@ -36,7 +36,8 @@ const fetch_file_list_route = protectedProcedure
       }));
       return file_list_decoded_names;
     }
-    return await fetchFileList(user.user);
+    const data = await fetchFileList(user.user);
+    return data;
   });
 
 const delete_file_route = protectedProcedure
