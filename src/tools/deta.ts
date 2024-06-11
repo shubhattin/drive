@@ -1,5 +1,6 @@
 import { fetch_post, fetch_get, Fetch } from '@tools/fetch';
 import { env } from '$env/dynamic/private';
+import { z } from 'zod';
 
 export type key_value_type<T> = {
   key: string;
@@ -9,11 +10,20 @@ const KEY = import.meta.env ? env.DETA_PROJECT_KEY : process.env.DETA_PROJECT_KE
 
 const URL = (baseName: string) => `https://database.deta.sh/v1/${KEY?.split('_')[0]}/${baseName}`;
 
-export const base_fetch = async <T>(baseName: string, last: string = null!) => {
+const fetch_options_schema = z.object({
+  query: z.any().array().optional(),
+  limit: z.number().int().min(1).optional(),
+  last: z.string().optional(),
+  sort: z.enum(['asc', 'desc']).optional()
+});
+const fetch_all_options_schema = fetch_options_schema.omit({ last: true });
+
+export const base_fetch = async <T>(
+  baseName: string,
+  options?: z.infer<typeof fetch_options_schema>
+) => {
   const req = fetch_post(`${URL(baseName)}/query`, {
-    json: {
-      last: last
-    },
+    json: options,
     headers: {
       'X-Api-Key': KEY!
     }
@@ -29,13 +39,16 @@ export const base_fetch = async <T>(baseName: string, last: string = null!) => {
   return json;
 };
 
-export const base_fetch_all = async <T>(baseName: string) => {
-  let last: string = null!;
+export const base_fetch_all = async <T>(
+  baseName: string,
+  options?: z.infer<typeof fetch_all_options_schema>
+) => {
+  let last: string | undefined;
   let list: T[] = [];
   while (true) {
-    const dt = await base_fetch<T>(baseName, last);
+    const dt = await base_fetch<T>(baseName, { last, ...options });
     list = list.concat(dt.items);
-    last = dt.paging.last!;
+    last = dt.paging.last;
     if (!last) break;
   }
   return list;
