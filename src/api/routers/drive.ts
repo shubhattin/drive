@@ -1,18 +1,21 @@
 import { protectedProcedure, t } from '@api/trpc_init';
-import { base_delete, base_fetch_all, base_get, base_put } from '@tools/deta';
+import { base_delete, base_fetch_all, base_get, base_put, drive_delete } from '@tools/deta';
 import type { fileInfoType, fileInfoWithUserType } from '@state/drive_types';
 import { fileInfoSchema } from '@state/drive_types';
 import { z } from 'zod';
-import { from_base64, to_base64 } from '@tools/kry/gupta';
+import { to_base64 } from '@tools/kry/gupta';
 import { decrypt_text_buffer, encrypt_text_buffer } from '@tools/encrypt_decrypt.server';
 
 const user_info_schema = z.object({
   key: z.string(),
   encrypt_key: z.string().base64()
 });
+const USER_INFO_LOC = 'users_info';
+const USER_FILE_INFO_LOC = 'user_files';
+const FILE_DRIVE_NAME = 'files';
 
 async function get_user_encryption_key(user: string) {
-  const { encrypt_key } = user_info_schema.parse(await base_get('users_info', user));
+  const { encrypt_key } = user_info_schema.parse(await base_get(USER_INFO_LOC, user));
   return Buffer.from(encrypt_key, 'base64');
 }
 const encrypt_file_name = (file_name: string, key: Buffer) => {
@@ -27,7 +30,7 @@ const fetch_file_list_route = protectedProcedure
   .query(async ({ ctx: { user } }) => {
     async function fetchFileList(user: string) {
       const encrypion_key = await get_user_encryption_key(user);
-      const file_list = await base_fetch_all<fileInfoType>(`user_files`, {
+      const file_list = await base_fetch_all<fileInfoType>(USER_FILE_INFO_LOC, {
         query: [{ user: user }]
       });
       const file_list_decoded_names = file_list.map((file) => ({
@@ -47,24 +50,26 @@ const delete_file_route = protectedProcedure
     })
   )
   .mutation(async ({ input: { keys }, ctx: { user } }) => {
-    return await base_delete(`${user.user}_files`, keys);
+    const keys_prefixed_with_user = keys.map((key) => `${user.user}/${key}`);
+    await base_delete(USER_FILE_INFO_LOC, keys);
+    return await drive_delete(FILE_DRIVE_NAME, keys_prefixed_with_user);
   });
 
 const upload_id_route = protectedProcedure.query(async () => {
   const id = (await base_get<{ key: string; value: string }>('keys', 'drive_key'))!.value;
-  return to_base64(id, false);
+  return to_base64(id);
 });
 
 const download_id_route = protectedProcedure.query(async () => {
   const id = (await base_get<{ key: string; value: string }>('keys', 'drive_key'))!.value;
-  return to_base64(id, false);
+  return to_base64(id);
 });
 
 const upload_file_route = protectedProcedure
   .input(fileInfoSchema)
   .mutation(async ({ input: data, ctx: { user } }) => {
     data.name = encrypt_file_name(data.name, await get_user_encryption_key(user.user));
-    return await base_put<fileInfoWithUserType>(`user_files`, [{ ...data, user: user.user }]);
+    return await base_put<fileInfoWithUserType>(USER_FILE_INFO_LOC, [{ ...data, user: user.user }]);
   });
 
 const rename_file_route = protectedProcedure
@@ -75,9 +80,9 @@ const rename_file_route = protectedProcedure
     })
   )
   .mutation(async ({ input: { name, key }, ctx: { user } }) => {
-    const data = await base_get<fileInfoType>(`${user.user}_files`, key);
-    data!.name = to_base64(name);
-    await base_put(`${user.user}_files`, [data!]);
+    const data = await base_get<fileInfoType>(USER_FILE_INFO_LOC, key);
+    data!.name = encrypt_file_name(name, await get_user_encryption_key(user.user));
+    await base_put(USER_FILE_INFO_LOC, [data!]);
   });
 
 const move_file_route = protectedProcedure
@@ -88,10 +93,11 @@ const move_file_route = protectedProcedure
     })
   )
   .mutation(async ({ input: { names, keys }, ctx: { user } }) => {
+    const encryption_key = await get_user_encryption_key(user.user);
     const responses = keys.map(async (key, i) => {
-      const data = await base_get<fileInfoType>(`${user.user}_files`, key);
-      data!.name = names[i];
-      return base_put(`${user.user}_files`, [data!]);
+      const data = await base_get<fileInfoType>(USER_FILE_INFO_LOC, key);
+      data!.name = encrypt_file_name(names[i], encryption_key);
+      return base_put(USER_FILE_INFO_LOC, [data!]);
     });
     await Promise.all(responses);
   });

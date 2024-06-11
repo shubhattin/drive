@@ -6,7 +6,6 @@
   import { set_val_from_adress } from '@tools/json';
   import type { fileInfoType } from '@state/drive_types';
   import { client } from '@api/client';
-  import { to_base64 } from '@tools/kry/gupta';
   import { toast } from '@tools/toast';
   import { ensure_auth_access_status } from '@tools/auth_tools';
 
@@ -54,7 +53,7 @@
     await ensure_auth_access_status();
     await client.drive.rename_file.mutate({
       key: $selectedFiles[0].key,
-      name: to_base64(new_loc)
+      name: new_loc
     });
     toast.info(`${fl_name} ${lekh.renamed_msg}`, 3800, 'bottom-right');
     $files = $files;

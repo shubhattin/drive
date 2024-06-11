@@ -25,8 +25,8 @@ export const bin_str_to_str = (binary: string) => {
   }
   return String.fromCharCode(...new Uint16Array(bytes.buffer));
 };
-/** `encode=true` by default */
-export const to_base64 = (str: string, encode = true) => {
+/** `encode=false` by default */
+export const to_base64 = (str: string, encode = false) => {
   if (encode) str = str_to_bin_str(str);
   if (typeof window === 'undefined') str = Buffer.from(str, 'utf-8').toString('base64');
   else str = window.btoa(str);

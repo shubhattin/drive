@@ -16,6 +16,7 @@
   import type { fileInfoType } from '@state/drive_types';
   import { client } from '@api/client';
   import { v4 as uuid_v4 } from 'uuid';
+  import { USER_FILES_DRIVE_NAME, get_user_folder_in_drive } from './Download/download_file';
 
   $: lekh = $lekhAH.fileBar.Upload;
 
@@ -27,7 +28,7 @@
   let fileName = '';
   const { kAryaCount, currentReq } = fileBarStores;
 
-  const get_URL = (id: string) => `https://drive.deta.sh/v1/${id}`;
+  const get_URL = (id: string) => `https://drive.deta.sh/v1/${id}/${USER_FILES_DRIVE_NAME}`;
   const check_for_file_in_current_directory = (name: string) => {
     for (let item of $currentFiles) {
       if (item.name === name) return true;
@@ -77,7 +78,7 @@
       uploading = true;
       const MAX_CHUNK_SIZE = 9.985 * 1024 * 1024;
       const URL = get_URL(ID.project);
-      const FILE_NAME_UPLOAD = encodeURI(`${USER}/${FILE_HASH_NAME}`);
+      const FILE_NAME_UPLOAD = encodeURI(`${get_user_folder_in_drive(USER)}/${FILE_HASH_NAME}`);
 
       const UPLOAD_ID = (
         await (
@@ -131,11 +132,8 @@
             if (req.status === 200) {
               // save file info in database
               await client.drive.upload_file.mutate({
-                name: `${prefix}/${file.name}`,
-                size: fileInfo.size,
-                date: fileInfo.date,
-                mime: fileInfo.mime,
-                key: fileInfo.key
+                ...fileInfo,
+                name: `${prefix}/${file.name}`
               });
               set_val_from_adress(`${prefix}/${file.name}`, $files, fileInfo);
               toast.success(`${file.name} ${lekh.added_msg}`, 3800, 'bottom-right');
@@ -160,12 +158,19 @@
     };
     upld();
   };
-  const startUpload = () => {
+  const startUpload = async () => {
     if ($kAryaCount !== 0) return;
     if (filesToUpload && filesToUpload.length === 0) return;
     clicked = false;
     $kAryaCount++;
-    upload_file();
+    try {
+      await upload_file();
+    } catch {
+      filesToUpload = null!;
+      uploading = false;
+      $kAryaCount = 0;
+      $currentReq = null!;
+    }
   };
   const closeUpload = () => {
     uploading = false;

@@ -8,7 +8,10 @@ export type key_value_type<T> = {
 };
 const KEY = import.meta.env ? env.DETA_PROJECT_KEY : process.env.DETA_PROJECT_KEY!;
 
-const URL = (baseName: string) => `https://database.deta.sh/v1/${KEY?.split('_')[0]}/${baseName}`;
+const BASE_URL = (baseName: string) =>
+  `https://database.deta.sh/v1/${KEY?.split('_')[0]}/${baseName}`;
+const DRIVE_URL = (driveName: string) =>
+  `https://drive.deta.sh/v1/${KEY?.split('_')[0]}/${driveName}`;
 
 const fetch_options_schema = z.object({
   query: z.any().array().optional(),
@@ -22,7 +25,7 @@ export const base_fetch = async <T>(
   baseName: string,
   options?: z.infer<typeof fetch_options_schema>
 ) => {
-  const req = fetch_post(`${URL(baseName)}/query`, {
+  const req = fetch_post(`${BASE_URL(baseName)}/query`, {
     json: options,
     headers: {
       'X-Api-Key': KEY!
@@ -55,7 +58,7 @@ export const base_fetch_all = async <T>(
 };
 
 export const base_get = async <T>(baseName: string, key: string) => {
-  const req = fetch_get(`${URL(baseName)}/items/${key}`, {
+  const req = fetch_get(`${BASE_URL(baseName)}/items/${key}`, {
     headers: {
       'X-Api-Key': KEY!
     }
@@ -65,7 +68,7 @@ export const base_get = async <T>(baseName: string, key: string) => {
 };
 
 export const base_put = async <T>(baseName: string, values: T[]) => {
-  const req = Fetch(`${URL(baseName)}/items`, {
+  const req = Fetch(`${BASE_URL(baseName)}/items`, {
     method: 'PUT',
     json: {
       items: values
@@ -92,7 +95,7 @@ export const base_delete = async <T extends string | string[]>(
   const file_keys = Array.isArray(keys) ? keys : [keys];
   const responses_json = await Promise.all(
     file_keys.map(async (key) => {
-      const resp = await Fetch(`${URL(baseName)}/items/${key}`, {
+      const resp = await Fetch(`${BASE_URL(baseName)}/items/${key}`, {
         method: 'DELETE',
         headers: {
           'X-Api-Key': KEY!
@@ -102,4 +105,21 @@ export const base_delete = async <T extends string | string[]>(
     })
   );
   return responses_json as BaseDeleteResponse<T>;
+};
+export const drive_delete = async (driveName: string, names: string[]) => {
+  const resp = await Fetch(`${DRIVE_URL(driveName)}/files`, {
+    method: 'DELETE',
+    json: {
+      names: names
+    },
+    headers: {
+      'X-Api-Key': KEY!
+    }
+  });
+  return (await resp.json()) as {
+    deleted: string[];
+    failed: {
+      [x in string]: string;
+    };
+  };
 };
