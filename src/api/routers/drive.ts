@@ -51,12 +51,12 @@ const delete_file_route = protectedProcedure
 
 const upload_id_route = protectedProcedure.query(async () => {
   const id = (await base_get<{ key: string; value: string }>('keys', 'drive_key'))!.value;
-  return to_base64(id);
+  return to_base64(id, false);
 });
 
 const download_id_route = protectedProcedure.query(async () => {
   const id = (await base_get<{ key: string; value: string }>('keys', 'drive_key'))!.value;
-  return to_base64(id);
+  return to_base64(id, false);
 });
 
 const upload_file_route = protectedProcedure
