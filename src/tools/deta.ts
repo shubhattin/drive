@@ -118,8 +118,6 @@ export const drive_delete = async (driveName: string, names: string[]) => {
   });
   return (await resp.json()) as {
     deleted: string[];
-    failed: {
-      [x in string]: string;
-    };
+    failed: Record<string, string>;
   };
 };
