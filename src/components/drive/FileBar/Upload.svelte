@@ -7,7 +7,7 @@
   import { clsx } from '@tools/clsx';
   import { fly, scale, slide } from 'svelte/transition';
   import ProgressBar from './ProgressBar.svelte';
-  import { ensure_auth_access_status, get_access_token_info } from '@tools/auth_tools';
+  import { ensure_auth_access_status } from '@tools/auth_tools';
   import { fetch_post, Fetch } from '@tools/fetch';
   import { toast } from '@tools/toast';
   import { set_val_from_adress } from '@tools/json';
@@ -15,7 +15,8 @@
   import { MIME as MIME_TYPE_LIST } from '../datt/mime';
   import type { fileInfoType } from '@state/drive_types';
   import { client } from '@api/client';
-  import { hash_256, gen_salt } from '@tools/hash';
+  import { v4 as uuid_v4 } from 'uuid';
+  import { USER_FILES_DRIVE_NAME } from './Download/download_file';
 
   $: lekh = $lekhAH.fileBar.Upload;
 
@@ -27,7 +28,7 @@
   let fileName = '';
   const { kAryaCount, currentReq } = fileBarStores;
 
-  const get_URL = (id: string, user: string) => `https://drive.deta.sh/v1/${id}/${user}`;
+  const get_URL = (id: string) => `https://drive.deta.sh/v1/${id}/${USER_FILES_DRIVE_NAME}`;
   const check_for_file_in_current_directory = (name: string) => {
     for (let item of $currentFiles) {
       if (item.name === name) return true;
@@ -60,32 +61,35 @@
       }
       const fileInfo: fileInfoType = {
         name: file.name,
-        size: file.size.toString(),
+        size: file.size,
         mime: MIME_TYPE,
+        // @ts-ignore
         date: new Date().toUTCString(),
         key: ''
       };
-      // const FILE_HASH_NAME = uuid_v4();
-      // uuids can also be used for simple cases like these but in our case we go with sha256+salt
-      const FILE_HASH_NAME = await hash_256(JSON.stringify(fileInfo) + gen_salt());
+      // const FILE_HASH_NAME = await hash_256(JSON.stringify(fileInfo) + USER + gen_salt());
+      // uuids can be used for simple cases like these but the above method can also be used
+      const FILE_HASH_NAME = uuid_v4();
       fileInfo.key = FILE_HASH_NAME;
       const AkAra = file.size / (1024 * 1024);
       fileName = file.name;
       totalSize = parseFloat(AkAra.toFixed(2));
       uploading = true;
       const MAX_CHUNK_SIZE = 9.985 * 1024 * 1024;
-      const USER = get_access_token_info().user;
-      const URL = get_URL(ID.project, USER);
+      const URL = get_URL(ID.project);
+      const FILE_NAME_UPLOAD = FILE_HASH_NAME;
+
       const UPLOAD_ID = (
         await (
           await fetch_post(`${URL}/uploads`, {
             params: {
-              name: FILE_HASH_NAME
+              name: FILE_NAME_UPLOAD
             },
             headers: { 'X-Api-Key': ID.upload }
           })
         ).json()
       ).upload_id as string;
+      console.log(UPLOAD_ID);
       let loaded = 0,
         count = 0;
       const reader = new FileReader();
@@ -96,7 +100,7 @@
         $currentReq = xhr;
         xhr.open(
           'POST',
-          `${URL}/uploads/${UPLOAD_ID}/parts?part=${++count}&name=${FILE_HASH_NAME}`,
+          `${URL}/uploads/${UPLOAD_ID}/parts?part=${++count}&name=${FILE_NAME_UPLOAD}`,
           true
         );
         xhr.setRequestHeader('X-Api-Key', ID.upload);
@@ -119,7 +123,7 @@
           } else {
             const req = await Fetch(`${URL}/uploads/${UPLOAD_ID}`, {
               params: {
-                name: FILE_HASH_NAME
+                name: FILE_NAME_UPLOAD
               },
               method: 'PATCH',
               headers: { 'X-Api-Key': ID.upload }
@@ -127,11 +131,8 @@
             if (req.status === 200) {
               // save file info in database
               await client.drive.upload_file.mutate({
-                name: `${prefix}/${file.name}`,
-                size: fileInfo.size,
-                date: fileInfo.date,
-                mime: fileInfo.mime,
-                key: fileInfo.key
+                ...fileInfo,
+                name: `${prefix}/${file.name}`
               });
               set_val_from_adress(`${prefix}/${file.name}`, $files, fileInfo);
               toast.success(`${file.name} ${lekh.added_msg}`, 3800, 'bottom-right');
@@ -156,12 +157,19 @@
     };
     upld();
   };
-  const startUpload = () => {
+  const startUpload = async () => {
     if ($kAryaCount !== 0) return;
     if (filesToUpload && filesToUpload.length === 0) return;
     clicked = false;
     $kAryaCount++;
-    upload_file();
+    try {
+      await upload_file();
+    } catch {
+      filesToUpload = null!;
+      uploading = false;
+      $kAryaCount = 0;
+      $currentReq = null!;
+    }
   };
   const closeUpload = () => {
     uploading = false;

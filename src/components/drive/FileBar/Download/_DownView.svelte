@@ -9,6 +9,7 @@
   import FiExternalLink from 'svelte-icons-pack/fi/FiExternalLink';
   import CgClose from 'svelte-icons-pack/cg/CgClose';
   import RiSystemDownloadLine from 'svelte-icons-pack/ri/RiSystemDownloadLine';
+  import { download_file } from './download_file';
 
   export let isView: boolean;
 
@@ -33,8 +34,13 @@
       return;
     }
     $kAryaCount++;
-    const download_file = (await import('./download_file')).download_file;
-    download_file(isView);
+    try {
+      await download_file(isView);
+    } catch {
+      $downloading = false;
+      $kAryaCount = 0;
+      $currentReq = null!;
+    }
   };
 </script>
 

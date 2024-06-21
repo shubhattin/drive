@@ -3,8 +3,11 @@ import type { Context } from './context';
 import { initTRPC } from '@trpc/server';
 import jwt from 'jsonwebtoken';
 import { TRPCClientError } from '@trpc/client';
+import transformer from './transformer';
 
-export const t = initTRPC.context<Context>().create();
+export const t = initTRPC.context<Context>().create({
+  transformer
+});
 
 export const publicProcedure = t.procedure;
 

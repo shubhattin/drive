@@ -4,7 +4,6 @@
   import { slide } from 'svelte/transition';
   import CgClose from 'svelte-icons-pack/cg/CgClose';
   import { set_val_from_adress } from '@tools/json';
-  import { to_base64 } from '@tools/kry/gupta';
   import { toast } from '@tools/toast';
   import { client } from '@api/client';
   import { ensure_auth_access_status } from '@tools/auth_tools';
@@ -42,7 +41,7 @@
     if (true) {
       // making change in dataabase
       const names = $filesToMove.files.map((file) => {
-        return to_base64(file.name);
+        return file.name;
       });
       const keys = $filesToMove.files.map((file) => file.key);
       await ensure_auth_access_status();
