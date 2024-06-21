@@ -1,6 +1,5 @@
 import { protectedProcedure, t } from '@api/trpc_init';
 import { base_delete, base_fetch_all, base_get, base_put, drive_delete } from '@tools/deta';
-import type { fileInfoType, fileInfoWithUserType } from '@state/drive_types';
 import { fileInfoSchema } from '@state/drive_types';
 import { z } from 'zod';
 import { to_base64 } from '@tools/kry/gupta';
@@ -82,10 +81,9 @@ const delete_file_route = protectedProcedure
       keys: z.string().array()
     })
   )
-  .mutation(async ({ input: { keys }, ctx: { user } }) => {
-    const keys_prefixed_with_user = keys.map((key) => `${user.user}/${key}`);
+  .mutation(async ({ input: { keys } }) => {
     await base_delete(USER_FILE_INFO_LOC, keys);
-    return await drive_delete(FILE_DRIVE_NAME, keys_prefixed_with_user);
+    return await drive_delete(FILE_DRIVE_NAME, keys);
   });
 
 const upload_id_route = protectedProcedure.query(async () => {
