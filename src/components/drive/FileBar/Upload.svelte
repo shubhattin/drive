@@ -7,7 +7,7 @@
   import { clsx } from '@tools/clsx';
   import { fly, scale, slide } from 'svelte/transition';
   import ProgressBar from './ProgressBar.svelte';
-  import { ensure_auth_access_status, get_access_token_info } from '@tools/auth_tools';
+  import { ensure_auth_access_status } from '@tools/auth_tools';
   import { fetch_post, Fetch } from '@tools/fetch';
   import { toast } from '@tools/toast';
   import { set_val_from_adress } from '@tools/json';
@@ -16,7 +16,7 @@
   import type { fileInfoType } from '@state/drive_types';
   import { client } from '@api/client';
   import { v4 as uuid_v4 } from 'uuid';
-  import { USER_FILES_DRIVE_NAME, get_user_folder_in_drive } from './Download/download_file';
+  import { USER_FILES_DRIVE_NAME } from './Download/download_file';
 
   $: lekh = $lekhAH.fileBar.Upload;
 
@@ -67,7 +67,6 @@
         date: new Date().toUTCString(),
         key: ''
       };
-      const USER = get_access_token_info().user;
       // const FILE_HASH_NAME = await hash_256(JSON.stringify(fileInfo) + USER + gen_salt());
       // uuids can be used for simple cases like these but the above method can also be used
       const FILE_HASH_NAME = uuid_v4();
@@ -78,7 +77,7 @@
       uploading = true;
       const MAX_CHUNK_SIZE = 9.985 * 1024 * 1024;
       const URL = get_URL(ID.project);
-      const FILE_NAME_UPLOAD = encodeURI(`${get_user_folder_in_drive(USER)}/${FILE_HASH_NAME}`);
+      const FILE_NAME_UPLOAD = FILE_HASH_NAME;
 
       const UPLOAD_ID = (
         await (

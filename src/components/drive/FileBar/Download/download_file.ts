@@ -1,7 +1,7 @@
 import { selectedFiles, fileBarStores } from '@state/drive';
 import { get } from 'svelte/store';
-import { ensure_auth_access_status, get_access_token_info } from '@tools/auth_tools';
-import { from_base64, to_base64 } from '@tools/kry/gupta';
+import { ensure_auth_access_status } from '@tools/auth_tools';
+import { from_base64 } from '@tools/kry/gupta';
 import { client } from '@api/client';
 
 const { fileName, viewFileName, totalSize, downloadedSize, downloading, iframeViewSrc } =
@@ -9,7 +9,6 @@ const { fileName, viewFileName, totalSize, downloadedSize, downloading, iframeVi
 const { currentReq, kAryaCount } = fileBarStores;
 
 export const USER_FILES_DRIVE_NAME = 'files';
-export const get_user_folder_in_drive = (user: string) => to_base64(user);
 
 const get_URL = (id: string) => `https://drive.deta.sh/v1/${id}/${USER_FILES_DRIVE_NAME}`;
 export const download_file = async (isView: boolean) => {
@@ -23,11 +22,10 @@ export const download_file = async (isView: boolean) => {
     const fl_info = get(selectedFiles)[i];
     fileName.set(fl_info.name);
     totalSize.set(parseFloat((fl_info.size / (1024 * 1024)).toFixed(2)));
-    const USER = get_access_token_info().user;
     const URL = get_URL(ID.project);
     const xhr = new XMLHttpRequest();
     currentReq.set(xhr);
-    const FILE_NAME = encodeURI(`${get_user_folder_in_drive(USER)}/${fl_info.key}`);
+    const FILE_NAME = fl_info.key;
     xhr.open('GET', `${URL}/files/download?name=${FILE_NAME}`, true);
     xhr.setRequestHeader('X-Api-Key', ID.download);
     xhr.addEventListener(

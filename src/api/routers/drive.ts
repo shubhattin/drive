@@ -18,11 +18,37 @@ async function get_user_encryption_key(user: string) {
   const { encrypt_key } = user_info_schema.parse(await base_get(USER_INFO_LOC, user));
   return Buffer.from(encrypt_key, 'base64');
 }
-const encrypt_file_name = (file_name: string, key: Buffer) => {
-  return encrypt_text_buffer(file_name, key);
+const fileDBInfo = z.object({
+  key: z.string(),
+  user: z.string(),
+  file_info: z.object({
+    name: z.string(),
+    size: z.number(),
+    mime: z.string(),
+    date: z.coerce.date()
+  })
+});
+const fileDBEncryptedInfo = z.object({
+  key: z.string(),
+  user: z.string(),
+  file_info: z.string()
+});
+type fileDBEncryptedInfoType = z.infer<typeof fileDBEncryptedInfo>;
+type fileDBInfoType = z.infer<typeof fileDBInfo>;
+
+const encrypt_file_info = (info: fileDBInfoType, key: Buffer) => {
+  let encrypion_info: fileDBEncryptedInfoType = {
+    ...info,
+    file_info: encrypt_text_buffer(JSON.stringify(info.file_info), key)
+  };
+  return encrypion_info;
 };
-const decrypt_file_name = (file_name: string, key: Buffer) => {
-  return decrypt_text_buffer(file_name, key);
+const decrypt_file_info = (info: fileDBEncryptedInfoType, key: Buffer) => {
+  let decrypion_info: fileDBInfoType = {
+    ...info,
+    file_info: JSON.parse(decrypt_text_buffer(info.file_info, key))
+  };
+  return decrypion_info;
 };
 
 const fetch_file_list_route = protectedProcedure
@@ -30,14 +56,21 @@ const fetch_file_list_route = protectedProcedure
   .query(async ({ ctx: { user } }) => {
     async function fetchFileList(user: string) {
       const encrypion_key = await get_user_encryption_key(user);
-      const file_list = await base_fetch_all<fileInfoType>(USER_FILE_INFO_LOC, {
+      const file_list = await base_fetch_all<fileDBEncryptedInfoType>(USER_FILE_INFO_LOC, {
         query: [{ user: user }]
       });
-      const file_list_decoded_names = file_list.map((file) => ({
-        ...file,
-        name: decrypt_file_name(file.name, encrypion_key)
-      }));
-      return file_list_decoded_names;
+      const file_list_decoded = file_list.map((file) => {
+        const data = decrypt_file_info(file, encrypion_key);
+        return {
+          key: data.key,
+          user: data.user,
+          name: data.file_info.name,
+          size: data.file_info.size,
+          mime: data.file_info.mime,
+          date: data.file_info.date
+        };
+      });
+      return file_list_decoded;
     }
     const data = await fetchFileList(user.user);
     return data;
@@ -68,8 +101,19 @@ const download_id_route = protectedProcedure.query(async () => {
 const upload_file_route = protectedProcedure
   .input(fileInfoSchema)
   .mutation(async ({ input: data, ctx: { user } }) => {
-    data.name = encrypt_file_name(data.name, await get_user_encryption_key(user.user));
-    return await base_put<fileInfoWithUserType>(USER_FILE_INFO_LOC, [{ ...data, user: user.user }]);
+    let db_data: fileDBInfoType = {
+      key: data.key,
+      user: user.user,
+      file_info: {
+        name: data.name,
+        size: data.size,
+        mime: data.mime,
+        date: data.date
+      }
+    };
+    return await base_put<fileDBEncryptedInfoType>(USER_FILE_INFO_LOC, [
+      encrypt_file_info(db_data, await get_user_encryption_key(user.user))
+    ]);
   });
 
 const rename_file_route = protectedProcedure
@@ -80,9 +124,13 @@ const rename_file_route = protectedProcedure
     })
   )
   .mutation(async ({ input: { name, key }, ctx: { user } }) => {
-    const data = await base_get<fileInfoType>(USER_FILE_INFO_LOC, key);
-    data!.name = encrypt_file_name(name, await get_user_encryption_key(user.user));
-    await base_put(USER_FILE_INFO_LOC, [data!]);
+    const encryption_key = await get_user_encryption_key(user.user);
+    const data = decrypt_file_info(
+      (await base_get<fileDBEncryptedInfoType>(USER_FILE_INFO_LOC, key))!,
+      encryption_key
+    );
+    data.file_info.name = name;
+    await base_put(USER_FILE_INFO_LOC, [encrypt_file_info(data, encryption_key)]);
   });
 
 const move_file_route = protectedProcedure
@@ -95,9 +143,12 @@ const move_file_route = protectedProcedure
   .mutation(async ({ input: { names, keys }, ctx: { user } }) => {
     const encryption_key = await get_user_encryption_key(user.user);
     const responses = keys.map(async (key, i) => {
-      const data = await base_get<fileInfoType>(USER_FILE_INFO_LOC, key);
-      data!.name = encrypt_file_name(names[i], encryption_key);
-      return base_put(USER_FILE_INFO_LOC, [data!]);
+      const data = decrypt_file_info(
+        (await base_get<fileDBEncryptedInfoType>(USER_FILE_INFO_LOC, key))!,
+        encryption_key
+      );
+      data.file_info.name = names[i];
+      await base_put(USER_FILE_INFO_LOC, [encrypt_file_info(data, encryption_key)]);
     });
     await Promise.all(responses);
   });
