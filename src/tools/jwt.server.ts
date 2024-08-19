@@ -1,16 +1,18 @@
 import { z } from 'zod';
 import { env } from '$env/dynamic/private';
-import jwt from 'jsonwebtoken';
+import { jwtVerify } from 'jose';
 
 export const JWT_SECRET = (() => {
   const token = env.JWT_SECRET;
   const jwt_token_parse = z.string().safeParse(token);
   if (!jwt_token_parse.success) throw new Error('Please set `JWT_SECRET`');
-  return jwt_token_parse.data;
+  return new TextEncoder().encode(jwt_token_parse.data);
 })();
 
-export const get_verified_id_token_info = (token: string | undefined) => {
-  const payload = jwt.verify(token!, JWT_SECRET);
+export const get_verified_id_token_info = async (token: string | undefined) => {
+  const jwt_data = await jwtVerify(token!, JWT_SECRET, {
+    algorithms: ['HS256']
+  });
   return z
     .object({
       user: z.string(),
@@ -18,5 +20,5 @@ export const get_verified_id_token_info = (token: string | undefined) => {
       iat: z.number().int(),
       exp: z.number().int()
     })
-    .parse(payload);
+    .parse(jwt_data.payload);
 };

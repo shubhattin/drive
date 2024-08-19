@@ -11,7 +11,9 @@ const config = {
     })
   ],
   kit: {
-    adapter: adapter(),
+    adapter: adapter({
+      runtime: 'edge'
+    }),
     alias: {
       '@langs': './src/langs',
       '@tools': './src/tools',

@@ -1,17 +1,16 @@
 import { publicProcedure, t } from '../trpc_init';
 import { z } from 'zod';
 import { JWT_SECRET } from '@tools/jwt.server';
-import jwt from 'jsonwebtoken';
+import { SignJWT, jwtVerify } from 'jose';
 import { base_get, base_put } from '@tools/deta';
-import * as bcrypt from 'bcrypt';
-import ms from 'ms';
+import * as bcrypt from 'bcryptjs';
 import { dattStruct } from '@langs/model';
 import { get_zod_key_enum } from '@tools/zod_enum';
 import { gen_salt, hash_256, puShTi } from '@tools/hash';
 import * as crypto from 'crypto';
 
-const ID_TOKREN_EXPIRE = ms('10days') / 1000; // so if not opened for 10 consecutive days will be logged out
-const ACCESS_TOKEN_EXPIRE = ms('12hrs') / 1000;
+const ID_TOKREN_EXPIRE = '10days'; // so if not opened for 10 consecutive days will be logged out
+const ACCESS_TOKEN_EXPIRE = '12hrs';
 
 export const USERS_INFO_DRIVE_LOC = 'users_info';
 
@@ -23,13 +22,22 @@ const user_info_schema = z.object({
 });
 type user_info_type = z.infer<typeof user_info_schema>;
 
-const get_id_and_aceess_token = (username: string) => {
-  const id_token = jwt.sign({ user: username, type: 'login' }, JWT_SECRET, {
-    expiresIn: ID_TOKREN_EXPIRE
-  });
-  const access_token = jwt.sign({ user: username, type: 'api' }, JWT_SECRET, {
-    expiresIn: ACCESS_TOKEN_EXPIRE
-  });
+const get_id_and_aceess_token = async (username: string) => {
+  const id_token = await new SignJWT({ user: username, type: 'login' })
+    .setIssuedAt()
+    .setProtectedHeader({
+      alg: 'HS256'
+    })
+    .setExpirationTime(ID_TOKREN_EXPIRE)
+    .sign(JWT_SECRET);
+  const access_token = await new SignJWT({ user: username, type: 'api' })
+    .setIssuedAt()
+    .setProtectedHeader({
+      alg: 'HS256'
+    })
+    .setExpirationTime(ACCESS_TOKEN_EXPIRE)
+    .sign(JWT_SECRET);
+
   return {
     id_token,
     access_token
@@ -66,7 +74,7 @@ const verify_pass_router = publicProcedure
     const user_info = user_info_parse.data;
     verified = await bcrypt.compare(password, user_info.password);
     if (!verified) return { verified, err_code: 'wrong_pass' };
-    const { id_token, access_token } = get_id_and_aceess_token(username);
+    const { id_token, access_token } = await get_id_and_aceess_token(username);
     return {
       verified,
       id_token,
@@ -100,7 +108,7 @@ export const renew_access_token = publicProcedure
     async function get_user_from_id_token() {
       let payload: z.infer<typeof id_token_payload_schema>;
       try {
-        payload = id_token_payload_schema.parse(jwt.verify(id_token, JWT_SECRET));
+        payload = id_token_payload_schema.parse((await jwtVerify(id_token, JWT_SECRET)).payload);
         return payload;
       } catch {}
       return null;
@@ -110,7 +118,7 @@ export const renew_access_token = publicProcedure
       return {
         verified: false
       };
-    return { verified: true, ...get_id_and_aceess_token(user.user) };
+    return { verified: true, ...(await get_id_and_aceess_token(user.user)) };
   });
 
 async function check_user_already_exist(username: string) {

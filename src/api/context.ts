@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import jwt from 'jsonwebtoken';
+import { jwtVerify } from 'jose';
 import { JWT_SECRET } from '@tools/jwt.server';
 import type { RequestEvent } from '@sveltejs/kit';
 import type { inferAsyncReturnType } from '@trpc/server';
@@ -9,14 +9,17 @@ const access_token_payload_schema = z.object({
   type: z.literal('api')
 });
 
-const getUserFromHeader = (
+const getUserFromHeader = async (
   req: Request
-): [z.infer<typeof access_token_payload_schema> | null, any] => {
+): Promise<[z.infer<typeof access_token_payload_schema> | null, any]> => {
   const { headers } = req;
   let payload: z.infer<typeof access_token_payload_schema>;
   try {
     const access_tokem = headers.get('Authorization')?.split(' ')[1]!; // formar :-  Bearer access_token
-    payload = access_token_payload_schema.parse(jwt.verify(access_tokem, JWT_SECRET));
+    const jwt_data = await jwtVerify(access_tokem, JWT_SECRET, {
+      algorithms: ['HS256']
+    });
+    payload = access_token_payload_schema.parse(jwt_data.payload);
     return [payload, null];
   } catch (error) {
     // this error information will be later used in protected procedures to give expired or invalid jwt message
@@ -27,7 +30,7 @@ const getUserFromHeader = (
 export async function createContext(event: RequestEvent) {
   const { request } = event;
 
-  const [user, jwt_error] = getUserFromHeader(request);
+  const [user, jwt_error] = await getUserFromHeader(request);
   return {
     user,
     jwt_error

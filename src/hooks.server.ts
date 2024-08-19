@@ -35,7 +35,7 @@ export const handle: Handle = async ({ event, resolve }) => {
     let user_verified = false;
     const id_token = cookies.get(AUTH_ID);
     try {
-      user_verified = !!get_verified_id_token_info(id_token).user;
+      user_verified = !!(await get_verified_id_token_info(id_token)).user;
     } catch {}
     if (!IS_DATA_JSON_REQUEST) {
       if (protected_routes.includes(URL) && !user_verified)
