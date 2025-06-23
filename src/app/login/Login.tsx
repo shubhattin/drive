@@ -10,7 +10,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '~/com
 import { Eye, EyeOff, Lock, Mail, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import TurnstileWidget from '~/components/Turnstile';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const Login = () => {
   const [email, setEmail] = useState('');
