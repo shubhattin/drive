@@ -69,6 +69,7 @@ interface FileListProps {
   bulkDeleteTrigger?: number;
   bulkCopyTrigger?: number;
   bulkMoveTrigger?: number;
+  isFetching: boolean;
 }
 
 export function FileList({
@@ -83,7 +84,8 @@ export function FileList({
   onViewModeChange,
   bulkDeleteTrigger,
   bulkCopyTrigger,
-  bulkMoveTrigger
+  bulkMoveTrigger,
+  isFetching
 }: FileListProps) {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [itemToDelete, setItemToDelete] = useState<{
@@ -615,7 +617,7 @@ export function FileList({
     downloadFileMutation.mutate({ file_id: fileId });
   };
 
-  if (files.length === 0 && folders.length === 0) {
+  if (files.length === 0 && folders.length === 0 && !isFetching) {
     return (
       <Card className="border-dashed">
         <CardContent className="flex items-center justify-center py-16">

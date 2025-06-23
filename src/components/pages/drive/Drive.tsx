@@ -40,7 +40,8 @@ export default function Drive() {
     data: folderData,
     isFetching,
     error,
-    refetch
+    refetch,
+    isSuccess 
   } = client_q.files.list_files.useQuery({ folder_id: currentFolderId }, { enabled: !!session });
 
   const handleRefresh = () => {
@@ -212,6 +213,7 @@ export default function Drive() {
             bulkDeleteTrigger={bulkDeleteTrigger}
             bulkCopyTrigger={bulkCopyTrigger}
             bulkMoveTrigger={bulkMoveTrigger}
+            isFetching={isFetching || !isSuccess}
           />
         )}
 
