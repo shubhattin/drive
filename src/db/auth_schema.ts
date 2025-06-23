@@ -12,7 +12,8 @@ export const user = pgTable('user', {
   role: text('role'),
   banned: boolean('banned'),
   banReason: text('ban_reason'),
-  banExpires: timestamp('ban_expires')
+  banExpires: timestamp('ban_expires'),
+  is_approved: boolean('is_approved')
 });
 
 export const account = pgTable('account', {
