@@ -11,6 +11,7 @@ import { Eye, EyeOff, Lock, Mail, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import TurnstileWidget from '~/components/Turnstile';
 import { useRouter } from 'next/navigation';
+import { z } from 'zod';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -22,15 +23,27 @@ const Login = () => {
 
   const loginMutation = useMutation({
     mutationFn: async ({ email, password }: { email: string; password: string }) => {
-      return await signIn.email({
-        email,
-        password,
-        fetchOptions: {
-          headers: {
-            'x-captcha-response': turnstileToken!
+      if (z.string().email().safeParse(email).success) {
+        return await signIn.email({
+          email,
+          password,
+          fetchOptions: {
+            headers: {
+              'x-captcha-response': turnstileToken!
+            }
           }
-        }
-      });
+        });
+      } else {
+        return await signIn.username({
+          username: email,
+          password,
+          fetchOptions: {
+            headers: {
+              'x-captcha-response': turnstileToken!
+            }
+          }
+        });
+      }
     },
     onSuccess(response) {
       if (!response.error) {
@@ -66,12 +79,10 @@ const Login = () => {
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email">Username/Email</Label>
               <div className="relative">
                 <Mail className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
                 <Input
-                  id="email"
-                  type="email"
                   placeholder="Enter your email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
