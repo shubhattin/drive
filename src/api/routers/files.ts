@@ -619,6 +619,221 @@ const rename_folder_procedure = protectedProcedure
     }
   });
 
+// Move folder
+const move_folder_procedure = protectedProcedure
+  .input(
+    z.object({
+      folder_id: z.string().uuid(),
+      target_folder_id: z.string().optional().nullable()
+    })
+  )
+  .mutation(async ({ input: { folder_id, target_folder_id }, ctx: { user } }) => {
+    // Get the folder and verify ownership
+    const [folder] = await db
+      .select()
+      .from(folders)
+      .where(and(eq(folders.id, folder_id), eq(folders.userId, user.id)))
+      .limit(1);
+
+    if (!folder) {
+      throw new TRPCError({
+        code: 'NOT_FOUND',
+        message: 'Folder not found or access denied'
+      });
+    }
+
+    // Cannot move folder to itself or its descendants
+    if (target_folder_id === folder_id) {
+      throw new TRPCError({
+        code: 'BAD_REQUEST',
+        message: 'Cannot move folder to itself'
+      });
+    }
+
+    // Verify target folder ownership if target_folder_id is provided
+    if (target_folder_id) {
+      const targetFolder = await db
+        .select()
+        .from(folders)
+        .where(and(eq(folders.id, target_folder_id), eq(folders.userId, user.id)))
+        .limit(1);
+
+      if (targetFolder.length === 0) {
+        throw new TRPCError({
+          code: 'NOT_FOUND',
+          message: 'Target folder not found or access denied'
+        });
+      }
+
+      // Check if moving to a descendant (would create cycle)
+      const isDescendant = async (
+        parentId: string,
+        potentialDescendantId: string
+      ): Promise<boolean> => {
+        const children = await db
+          .select({ id: folders.id })
+          .from(folders)
+          .where(and(eq(folders.parentId, parentId), eq(folders.userId, user.id)));
+
+        for (const child of children) {
+          if (child.id === potentialDescendantId) {
+            return true;
+          }
+          if (await isDescendant(child.id, potentialDescendantId)) {
+            return true;
+          }
+        }
+        return false;
+      };
+
+      if (await isDescendant(folder_id, target_folder_id)) {
+        throw new TRPCError({
+          code: 'BAD_REQUEST',
+          message: 'Cannot move folder to its own descendant'
+        });
+      }
+    }
+
+    try {
+      const [updatedFolder] = await db
+        .update(folders)
+        .set({
+          parentId: target_folder_id || null,
+          updatedAt: new Date()
+        })
+        .where(eq(folders.id, folder_id))
+        .returning();
+
+      return updatedFolder;
+    } catch (error) {
+      throw new TRPCError({
+        code: 'INTERNAL_SERVER_ERROR',
+        message: 'Failed to move folder'
+      });
+    }
+  });
+
+// Copy folder (deep copy with all contents)
+const copy_folder_procedure = protectedProcedure
+  .input(
+    z.object({
+      folder_id: z.string().uuid(),
+      target_folder_id: z.string().optional().nullable(),
+      new_name: z.string().min(1).max(255).optional().nullable()
+    })
+  )
+  .mutation(async ({ input: { folder_id, target_folder_id, new_name }, ctx: { user } }) => {
+    // Get the original folder and verify ownership
+    const [originalFolder] = await db
+      .select()
+      .from(folders)
+      .where(and(eq(folders.id, folder_id), eq(folders.userId, user.id)))
+      .limit(1);
+
+    if (!originalFolder) {
+      throw new TRPCError({
+        code: 'NOT_FOUND',
+        message: 'Folder not found or access denied'
+      });
+    }
+
+    // Verify target folder ownership if target_folder_id is provided
+    if (target_folder_id) {
+      const targetFolder = await db
+        .select()
+        .from(folders)
+        .where(and(eq(folders.id, target_folder_id), eq(folders.userId, user.id)))
+        .limit(1);
+
+      if (targetFolder.length === 0) {
+        throw new TRPCError({
+          code: 'NOT_FOUND',
+          message: 'Target folder not found or access denied'
+        });
+      }
+    }
+
+    const copyName = new_name || `Copy of ${originalFolder.name}`;
+
+    try {
+      // Recursive function to copy folder and all its contents
+      const copyFolderRecursive = async (
+        sourceFolderId: string,
+        targetParentId: string | null,
+        folderName: string
+      ): Promise<string> => {
+        // Create the new folder
+        const [newFolder] = await db
+          .insert(folders)
+          .values({
+            name: folderName,
+            userId: user.id,
+            parentId: targetParentId
+          })
+          .returning();
+
+        // Copy all files in this folder
+        const folderFiles = await db
+          .select()
+          .from(files)
+          .where(and(eq(files.folderId, sourceFolderId), eq(files.userId, user.id)));
+
+        for (const file of folderFiles) {
+          const newFileId = uuidv4();
+          const newS3Key = generateS3Key(user.id, newFolder.id, newFileId, file.name);
+
+          // Copy the S3 object
+          const copyCommand = new CopyObjectCommand({
+            Bucket: BUCKET_NAME,
+            CopySource: `${BUCKET_NAME}/${file.s3Key}`,
+            Key: newS3Key,
+            StorageClass: STORAGE_CLASS,
+            Metadata: {
+              'user-id': user.id,
+              'file-id': newFileId,
+              'original-filename': file.name
+            },
+            MetadataDirective: 'REPLACE'
+          });
+
+          await s3Client.send(copyCommand);
+
+          // Create database record for the copied file
+          await db.insert(files).values({
+            id: newFileId,
+            name: file.name,
+            s3Key: newS3Key,
+            mimeType: file.mimeType,
+            size: file.size,
+            userId: user.id,
+            folderId: newFolder.id
+          });
+        }
+
+        // Copy all subfolders recursively
+        const subfolders = await db
+          .select()
+          .from(folders)
+          .where(and(eq(folders.parentId, sourceFolderId), eq(folders.userId, user.id)));
+
+        for (const subfolder of subfolders) {
+          await copyFolderRecursive(subfolder.id, newFolder.id, subfolder.name);
+        }
+
+        return newFolder.id;
+      };
+
+      await copyFolderRecursive(folder_id, target_folder_id ?? null, copyName);
+
+      return { success: true };
+    } catch (error) {
+      throw new TRPCError({
+        code: 'INTERNAL_SERVER_ERROR',
+        message: 'Failed to copy folder'
+      });
+    }
+  });
+
 // Delete folder (and all its contents)
 const delete_folder_procedure = protectedProcedure
   .input(
@@ -704,6 +919,8 @@ export const files_router = t.router({
   get_download_url: get_download_url_procedure,
   create_folder: create_folder_procedure,
   rename_folder: rename_folder_procedure,
+  move_folder: move_folder_procedure,
+  copy_folder: copy_folder_procedure,
   delete_folder: delete_folder_procedure
 });
 

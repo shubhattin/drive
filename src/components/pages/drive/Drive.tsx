@@ -12,7 +12,7 @@ import { UserMenu } from '~/components/pages/drive/UserMenu';
 import { BreadcrumbNav } from '~/components/pages/drive/BreadcrumbNav';
 import { FolderCreateDialog } from '~/components/pages/drive/FolderCreateDialog';
 import { FileListSkeleton } from '~/components/pages/drive/FileListSkeleton';
-import { Plus, Upload, FolderPlus, RefreshCw } from 'lucide-react';
+import { Plus, Upload, FolderPlus, RefreshCw, Trash2, Copy, Move } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,6 +26,12 @@ export default function Drive() {
   const [isUploadOpen, setIsUploadOpen] = useState(false);
   const [isFolderCreateOpen, setIsFolderCreateOpen] = useState(false);
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [breadcrumbPath, setBreadcrumbPath] = useState<{ id?: string; name: string }[]>([
+    { name: 'My Drive' }
+  ]);
+  const [bulkDeleteTrigger, setBulkDeleteTrigger] = useState(0);
+  const [bulkCopyTrigger, setBulkCopyTrigger] = useState(0);
+  const [bulkMoveTrigger, setBulkMoveTrigger] = useState(0);
   const { data: session } = useSession();
 
   const utils = client_q.useUtils();
@@ -39,6 +45,40 @@ export default function Drive() {
 
   const handleRefresh = () => {
     refetch();
+    setSelectedItems(new Set()); // Clear selected items on refresh
+  };
+
+  const resetSelection = () => {
+    setSelectedItems(new Set());
+  };
+
+  const handleFolderNavigation = (folderId?: string, folderName?: string) => {
+    if (!folderId) {
+      // Navigate to root
+      setCurrentFolderId(undefined);
+      setBreadcrumbPath([{ name: 'My Drive' }]);
+    } else {
+      // Navigate to folder
+      setCurrentFolderId(folderId);
+      if (folderName) {
+        // Add to breadcrumb path
+        setBreadcrumbPath((prev) => [...prev, { id: folderId, name: folderName }]);
+      }
+    }
+  };
+
+  const handleBreadcrumbNavigation = (targetIndex: number) => {
+    const newPath = breadcrumbPath.slice(0, targetIndex + 1);
+    setBreadcrumbPath(newPath);
+
+    if (targetIndex === 0) {
+      // Navigate to root
+      setCurrentFolderId(undefined);
+    } else {
+      // Navigate to specific folder
+      const targetFolder = newPath[targetIndex];
+      setCurrentFolderId(targetFolder.id);
+    }
   };
 
   return (
@@ -49,7 +89,10 @@ export default function Drive() {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <h1 className="text-2xl font-bold">My Drive</h1>
-              <BreadcrumbNav currentFolderId={currentFolderId} onNavigate={setCurrentFolderId} />
+              <BreadcrumbNav
+                breadcrumbPath={breadcrumbPath}
+                onNavigate={handleBreadcrumbNavigation}
+              />
             </div>
             <UserMenu />
           </div>
@@ -86,6 +129,30 @@ export default function Drive() {
                 <span className="text-sm text-muted-foreground">
                   {selectedItems.size} item(s) selected
                 </span>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setBulkCopyTrigger((prev) => prev + 1)}
+                >
+                  <Copy className="mr-2 h-4 w-4" />
+                  Copy Selected
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setBulkMoveTrigger((prev) => prev + 1)}
+                >
+                  <Move className="mr-2 h-4 w-4" />
+                  Move Selected
+                </Button>
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  onClick={() => setBulkDeleteTrigger((prev) => prev + 1)}
+                >
+                  <Trash2 className="mr-2 h-4 w-4" />
+                  Delete Selected
+                </Button>
               </>
             )}
           </div>
@@ -137,10 +204,14 @@ export default function Drive() {
             folders={folderData?.folders || []}
             selectedItems={selectedItems}
             onSelectionChange={setSelectedItems}
-            onFolderOpen={setCurrentFolderId}
+            onSelectionReset={resetSelection}
+            onFolderOpen={(folderId, folderName) => handleFolderNavigation(folderId, folderName)}
             currentFolderId={currentFolderId}
             viewMode={viewMode}
             onViewModeChange={setViewMode}
+            bulkDeleteTrigger={bulkDeleteTrigger}
+            bulkCopyTrigger={bulkCopyTrigger}
+            bulkMoveTrigger={bulkMoveTrigger}
           />
         )}
 
@@ -155,6 +226,7 @@ export default function Drive() {
         <FolderCreateDialog
           isOpen={isFolderCreateOpen}
           onClose={() => setIsFolderCreateOpen(false)}
+          onSelectionReset={resetSelection}
           currentFolderId={currentFolderId}
         />
       </main>

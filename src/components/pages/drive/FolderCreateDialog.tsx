@@ -18,10 +18,16 @@ import { toast } from 'sonner';
 interface FolderCreateDialogProps {
   isOpen: boolean;
   onClose: () => void;
+  onSelectionReset: () => void;
   currentFolderId?: string;
 }
 
-export function FolderCreateDialog({ isOpen, onClose, currentFolderId }: FolderCreateDialogProps) {
+export function FolderCreateDialog({
+  isOpen,
+  onClose,
+  onSelectionReset,
+  currentFolderId
+}: FolderCreateDialogProps) {
   const [folderName, setFolderName] = useState('');
   const [isCreating, setIsCreating] = useState(false);
 
@@ -31,6 +37,7 @@ export function FolderCreateDialog({ isOpen, onClose, currentFolderId }: FolderC
     onSuccess: (data) => {
       toast.success(`Folder "${data.name}" created successfully`);
       utils.files.list_files.invalidate({ folder_id: currentFolderId });
+      onSelectionReset();
       handleClose();
     },
     onError: (error) => {
