@@ -1,5 +1,3 @@
-import LandingPage from './LandingPage';
-
 export const metadata = {
   title: 'Drive'
 };

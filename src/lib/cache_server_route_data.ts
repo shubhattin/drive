@@ -1,7 +1,5 @@
 import { cache } from 'react';
 import { cookies, headers } from 'next/headers';
-import { SCRIPT_DATA_COOKIE_KEY } from '~/state/script_list';
-import { get_lang_from_cookie } from '~/state/script_font_data';
 import get_seesion_from_cookie from '~/lib/get_auth_from_cookie';
 
 /**
