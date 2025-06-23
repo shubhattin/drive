@@ -10,9 +10,9 @@ export const auth = betterAuth({
     provider: 'pg',
     schema: schema
   }),
-  // emailAndPassword: {
-  //   enabled: true
-  // },
+  emailAndPassword: {
+    enabled: true
+  },
   plugins: [
     username({
       minUsernameLength: 6,
