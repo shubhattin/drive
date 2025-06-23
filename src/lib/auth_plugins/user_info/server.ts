@@ -2,6 +2,7 @@ import { type BetterAuthPlugin } from 'better-auth';
 import { createAuthEndpoint } from 'better-auth/plugins';
 import { z } from 'zod';
 import { auth } from '~/lib/auth';
+import { redis } from '~/db/redis';
 
 export const userInfoPlugin = () => {
   return {
@@ -11,7 +12,9 @@ export const userInfoPlugin = () => {
         fields: {
           is_approved: {
             type: 'boolean',
-            defaultValue: false
+            defaultValue: false,
+            required: false,
+            input: false
           }
         }
       }
@@ -40,6 +43,29 @@ export const userInfoPlugin = () => {
               is_approved: true
             },
             ctx
+          );
+
+          // invalidating cache
+          const { sessions } = await auth.api.listUserSessions({
+            body: {
+              userId: ctx.body.userId
+            },
+            headers: ctx.headers
+          });
+          await Promise.allSettled(
+            sessions.map(async (session, i) => {
+              const data = await redis.get<typeof auth.$Infer.Session>(session.token);
+              const ttl = await redis.ttl(session.token);
+              await redis.set(
+                session.token,
+                JSON.stringify({ ...data, user: updatedUser }),
+                ttl > 0
+                  ? {
+                      ex: ttl
+                    }
+                  : {}
+              );
+            })
           );
 
           return ctx.json({
