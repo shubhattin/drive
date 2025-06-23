@@ -1,6 +1,6 @@
 import { cache } from 'react';
-import { cookies, headers } from 'next/headers';
-import get_seesion_from_cookie from '~/lib/get_auth_from_cookie';
+import { headers } from 'next/headers';
+import { auth } from './auth';
 
 /**
  * A cached function to get the user's session.
@@ -8,7 +8,6 @@ import get_seesion_from_cookie from '~/lib/get_auth_from_cookie';
  * Any component can call this function to get the session data.
  */
 export const getCachedSession = cache(async () => {
-  const cookieHeader = (await headers()).get('cookie') ?? '';
-  const session = await get_seesion_from_cookie(cookieHeader);
+  const session = await auth.api.getSession({ headers: await headers() });
   return session;
 });

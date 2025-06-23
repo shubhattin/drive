@@ -14,7 +14,7 @@ export default function TurnstileWidget({ setToken }: Props) {
     setMounted(true);
   }, []);
 
-  if (!mounted || !SITE_KEY || !PROD) return <></>;
+  // if (!mounted || !SITE_KEY || !PROD) return <></>;
   // if (!mounted || !SITE_KEY || PROD) return <></>; // for dev mode testing
 
   return (

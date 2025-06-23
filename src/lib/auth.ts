@@ -2,7 +2,7 @@ import { betterAuth } from 'better-auth';
 import { drizzleAdapter } from 'better-auth/adapters/drizzle';
 import { db } from '../db/db';
 import * as schema from '../db/schema';
-import { admin, openAPI, username } from 'better-auth/plugins';
+import { admin, captcha, openAPI, username } from 'better-auth/plugins';
 import { userInfoPlugin } from './auth_plugins/user_info/server';
 import { redis } from '~/db/redis';
 
@@ -21,11 +21,11 @@ export const auth = betterAuth({
     }),
     admin(),
     userInfoPlugin(),
+    captcha({
+      provider: 'cloudflare-turnstile',
+      secretKey: process.env.TURNSTILE_SECRET_KEY!
+    }),
     ...(process.env.NODE_ENV === 'development' ? [openAPI()] : [])
-    // captcha({
-    //   provider: 'cloudflare-turnstile',
-    //   secretKey: env.TURNSTILE_SECRET_KEY!
-    // })
   ],
   secondaryStorage: {
     get: async (key) => {
