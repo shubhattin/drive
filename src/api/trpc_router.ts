@@ -1,10 +1,8 @@
-import { auth_router } from './routers/auth';
-import { drive_router } from './routers/drive';
 import { t } from './trpc_init';
+import { files_router } from './routers/files';
 
-export const router = t.router({
-  auth: auth_router,
-  drive: drive_router
+export const appRouter = t.router({
+  files: files_router
 });
 
-export type Router = typeof router;
+export type AppRouter = typeof appRouter;

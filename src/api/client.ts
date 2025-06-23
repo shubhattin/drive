@@ -1,25 +1,14 @@
-import type { Router } from '@api/trpc_router';
-import { httpBatchLink } from '@trpc/client';
-import { createTRPCClient } from 'trpc-sveltekit';
+import { createTRPCReact } from '@trpc/react-query';
+import { createTRPCClient, httpBatchLink } from '@trpc/client';
+import { type AppRouter } from './trpc_router';
 import transformer from './transformer';
 
-let jwt_token: string;
-
-export const setJwtToken = (token: string) => {
-  // to set the jwt_token while we make trpc request
-  jwt_token = token;
-};
-
-export const client = createTRPCClient<Router>({
+export const client_q = createTRPCReact<AppRouter>({});
+export const client = createTRPCClient<AppRouter>({
   links: [
     httpBatchLink({
-      url: '/trpc',
-      headers() {
-        return {
-          Authorization: `Bearer ${jwt_token}`
-        };
-      }
+      url: '/api/trpc',
+      transformer
     })
-  ],
-  transformer
+  ]
 });

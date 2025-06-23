@@ -1,8 +1,5 @@
-import type { dattStruct } from '@langs/model';
 import type { Context } from './context';
-import { initTRPC } from '@trpc/server';
-import jwt from 'jsonwebtoken';
-import { TRPCClientError } from '@trpc/client';
+import { TRPCError, initTRPC } from '@trpc/server';
 import transformer from './transformer';
 
 export const t = initTRPC.context<Context>().create({
@@ -11,18 +8,50 @@ export const t = initTRPC.context<Context>().create({
 
 export const publicProcedure = t.procedure;
 
-export const protectedProcedure = publicProcedure.use(async function isAuthed({
+export const protectedUnverifiedProcedure = publicProcedure.use(async function isAuthed({
   next,
-  ctx: { user, jwt_error }
+  ctx: { user }
 }) {
-  if (!user) {
-    let message: keyof typeof dattStruct.drive.login.drive_auth_msgs | 'UNAUTHORIZED' =
-      'UNAUTHORIZED';
-    if (jwt_error instanceof jwt.TokenExpiredError) message = 'expired_credentials';
-    else if (jwt_error instanceof jwt.JsonWebTokenError) message = 'wrong_credentials';
-    throw new TRPCClientError(message);
-  }
+  if (!user) throw new TRPCError({ code: 'UNAUTHORIZED' });
   return next({
     ctx: { user }
   });
 });
+
+export const protectedProcedure = publicProcedure.use(async function isAuthed({
+  next,
+  ctx: { user }
+}) {
+  if (!user || !user.is_approved) throw new TRPCError({ code: 'UNAUTHORIZED' });
+  return next({
+    ctx: { user }
+  });
+});
+
+export const protectedAdminProcedure = protectedProcedure.use(async function isAuthed({
+  next,
+  ctx: { user }
+}) {
+  if (user.role !== 'admin')
+    throw new TRPCError({ code: 'UNAUTHORIZED', message: 'Not a Admin User' });
+  return next({
+    ctx: { user }
+  });
+});
+
+export const verify_cloudflare_turnstile_token = async (token: string) => {
+  try {
+    const response = await fetch(`https://challenges.cloudflare.com/turnstile/v0/siteverify`, {
+      method: 'POST',
+      body: JSON.stringify({ secret: process.env.TURNSTILE_SECRET_KEY, response: token }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    const data = await response.json();
+    return data.success;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};

@@ -1,16 +1,15 @@
-.DS_Store
 node_modules
 build
-.svelte-kit
+.netlify
 .vercel
-/package
-.env
-.env.*
-!.env.example
-
-src/langs/data/json/
-src/langs/r.json
+.next
 
 # Ignore files for PNPM, NPM and YARN
 pnpm-lock.yaml
-static/404.html
+
+src/db/migrations
+src/db/scripts/out/
+src/db/scripts/backup/
+
+src/tools/lipi_lekhika/resources
+src/db/migrations
