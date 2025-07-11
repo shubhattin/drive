@@ -31,17 +31,12 @@ const DOWNLOAD_URL_EXPIRY = ms('2hrs') / 1000;
 const STORAGE_CLASS = StorageClass.STANDARD;
 
 // Helper function to generate S3 key
-function generateS3Key(
-  userId: string,
-  folderId: string | null,
-  fileId: string,
-  filename: string
-): string {
-  const sanitizedFilename = filename.replace(/[^a-zA-Z0-9.-]/g, '_');
+function generateS3Key(userId: string, folderId: string | null, fileId: string): string {
+  // const sanitizedFilename = filename.replace(/[^a-zA-Z0-9.-]/g, '_');
   if (folderId) {
-    return `users/${userId}/folders/${folderId}/${fileId}-${sanitizedFilename}`;
+    return `users/${userId}/folders/${folderId}/${fileId}`;
   } else {
-    return `users/${userId}/root/${fileId}-${sanitizedFilename}`;
+    return `users/${userId}/root/${fileId}`;
   }
 }
 
@@ -136,7 +131,7 @@ const get_upload_url_procedure = protectedProcedure
     // MIME type is now provided by the client for better accuracy
 
     const fileId = uuidv4();
-    const s3Key = generateS3Key(user.id, folder_id || null, fileId, filename);
+    const s3Key = generateS3Key(user.id, folder_id || null, fileId);
 
     // Generate presigned URL for upload
     const command = new PutObjectCommand({
@@ -179,7 +174,7 @@ const upload_complete_procedure = protectedProcedure
   .mutation(
     async ({ input: { file_id, filename, mime_type, size, s3_key, folder_id }, ctx: { user } }) => {
       // Verify the S3 key matches expected pattern
-      const expectedS3Key = generateS3Key(user.id, folder_id || null, file_id, filename);
+      const expectedS3Key = generateS3Key(user.id, folder_id || null, file_id);
       if (s3_key !== expectedS3Key) {
         throw new TRPCError({
           code: 'BAD_REQUEST',
@@ -367,7 +362,7 @@ const copy_file_procedure = protectedProcedure
 
     const newFileId = uuidv4();
     const copyName = new_name || `Copy of ${originalFile.name}`;
-    const newS3Key = generateS3Key(user.id, target_folder_id || null, newFileId, copyName);
+    const newS3Key = generateS3Key(user.id, target_folder_id || null, newFileId);
 
     try {
       // Copy the S3 object
@@ -780,7 +775,7 @@ const copy_folder_procedure = protectedProcedure
 
         for (const file of folderFiles) {
           const newFileId = uuidv4();
-          const newS3Key = generateS3Key(user.id, newFolder.id, newFileId, file.name);
+          const newS3Key = generateS3Key(user.id, newFolder.id, newFileId);
 
           // Copy the S3 object
           const copyCommand = new CopyObjectCommand({
